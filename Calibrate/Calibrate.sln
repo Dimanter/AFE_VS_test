@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Calibrate", "Calibrate.vcxproj", "{2D31BC55-9F24-46A7-B6DF-33E1FAEF575E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D31BC55-9F24-46A7-B6DF-33E1FAEF575E}.Debug|x64.ActiveCfg = Debug|x64
+		{2D31BC55-9F24-46A7-B6DF-33E1FAEF575E}.Debug|x64.Build.0 = Debug|x64
+		{2D31BC55-9F24-46A7-B6DF-33E1FAEF575E}.Release|x64.ActiveCfg = Release|x64
+		{2D31BC55-9F24-46A7-B6DF-33E1FAEF575E}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1182BA3-55EB-445F-83F7-BC04DA058381}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Meter">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{e2932623-f53e-4369-8f50-7f10f37d0f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form">
+      <UniqueIdentifier>{688c60de-74ac-4d8e-88bc-b7bf2d37dd04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DSP">
+      <UniqueIdentifier>{8807ef43-5c38-4809-8351-315a3b662975}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{1c614f2a-3502-4afc-885a-e02d96138684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exchange">
+      <UniqueIdentifier>{f39c9ddf-bd83-42fe-91a2-755ac5c97255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exchange\Buffer">
+      <UniqueIdentifier>{4027d7b1-fce9-42f2-b8d1-e1ff404bc4a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StepWindow">
+      <UniqueIdentifier>{f7e31e7a-70b9-4ae8-9b6a-4e54be6e9f6d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="AFE_VS_test.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <QtUic Include="AFE_VS_test.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtMoc Include="MainWindow.hpp">
+      <Filter>Meter</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Meter</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Meter</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Meter</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Exchange\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="device.cpp">
+      <Filter>Form</Filter>
+    </ClCompile>
+    <ClCompile Include="output.cpp">
+      <Filter>Form</Filter>
+    </ClCompile>
+    <ClCompile Include="coefin.cpp">
+      <Filter>Form</Filter>
+    </ClCompile>
+    <ClCompile Include="coefout.cpp">
+      <Filter>Form</Filter>
+    </ClCompile>
+    <ClCompile Include="StepWindow.cpp">
+      <Filter>StepWindow</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Board.hpp">
+      <Filter>Meter</Filter>
+    </ClInclude>
+    <ClInclude Include="qTable.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="qAxis.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Limb.hpp">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="measureService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="cyclebuff.hpp">
+      <Filter>DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="DSP.hpp">
+      <Filter>DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="coefinService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="coefOutService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="controlService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="eventService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="parameterService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="outService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="rawService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Typedef.hpp">
+      <Filter>Exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.hpp">
+      <Filter>Exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="Transport.hpp">
+      <Filter>Exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="serviceRaw.hpp">
+      <Filter>Exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="Dispatcher.hpp">
+      <Filter>Exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferIterator.hpp">
+      <Filter>Exchange\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.hpp">
+      <Filter>Exchange\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferAllocator.hpp">
+      <Filter>Exchange\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferWrapper.hpp">
+      <Filter>Exchange\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryWrapper.hpp">
+      <Filter>Exchange\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="stepService.hpp">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="DataAnalyze.hpp">
+      <Filter>StepWindow</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="device.hpp">
+      <Filter>Form</Filter>
+    </QtMoc>
+    <QtMoc Include="output.hpp">
+      <Filter>Form</Filter>
+    </QtMoc>
+    <QtMoc Include="coefin.hpp">
+      <Filter>Form</Filter>
+    </QtMoc>
+    <QtMoc Include="coefout.hpp">
+      <Filter>Form</Filter>
+    </QtMoc>
+    <QtMoc Include="Work.hpp">
+      <Filter>Meter</Filter>
+    </QtMoc>
+    <QtMoc Include="StepWindow.hpp">
+      <Filter>StepWindow</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="..\..\AFE_Copy\Form\device.ui">
+      <Filter>Form</Filter>
+    </QtUic>
+    <QtUic Include="..\..\AFE_Copy\Form\output.ui">
+      <Filter>Form</Filter>
+    </QtUic>
+    <QtUic Include="..\..\AFE_Copy\Form\coefin.ui">
+      <Filter>Form</Filter>
+    </QtUic>
+    <QtUic Include="..\..\AFE_Copy\Form\coefout.ui">
+      <Filter>Form</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>

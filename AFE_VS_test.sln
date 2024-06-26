@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AFE_VS_test", "AFE_VS_test\AFE_VS_test.vcxproj", "{63453EF4-17C9-42CB-AD07-8779D5B8DEB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		GG|x64 = GG|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63453EF4-17C9-42CB-AD07-8779D5B8DEB4}.Debug|x64.ActiveCfg = Debug|x64
+		{63453EF4-17C9-42CB-AD07-8779D5B8DEB4}.Debug|x64.Build.0 = Debug|x64
+		{63453EF4-17C9-42CB-AD07-8779D5B8DEB4}.GG|x64.ActiveCfg = GG|x64
+		{63453EF4-17C9-42CB-AD07-8779D5B8DEB4}.GG|x64.Build.0 = GG|x64
+		{63453EF4-17C9-42CB-AD07-8779D5B8DEB4}.Release|x64.ActiveCfg = Release|x64
+		{63453EF4-17C9-42CB-AD07-8779D5B8DEB4}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54F28D0C-88A5-4C92-9F04-5584C3EA0BCD}
+	EndGlobalSection
+EndGlobal

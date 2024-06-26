@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Внешние файлы">
+      <UniqueIdentifier>{6d5e693f-11bd-4622-8137-ccae92a08e74}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="MainWindow.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <QtUic Include="MainWindow.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtMoc Include="MainWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\stepService.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\serviceRaw.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\output.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\measuringService.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\device.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\cyclebuff.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\coefout.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\coefin.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\BufferAllocator.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AFE_VS_test\Buffer.cpp">
+      <Filter>Внешние файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Board.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Typedef.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Transport.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\stepService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\serviceRaw.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Service.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\rawService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\qTable.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\qAxis.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Protocol.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Process.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Point.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\parameterService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\outService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\measureService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Limb.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\FactoryWrapper.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\eventService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\DSP.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Dispatcher.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\cyclebuff.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\controlService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\coefOutService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\coefinService.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\BufferWrapper.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\BufferIterator.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\BufferAllocator.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AFE_VS_test\Buffer.hpp">
+      <Filter>Внешние файлы</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Work.hpp">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\AFE_VS_test\output.hpp">
+      <Filter>Внешние файлы</Filter>
+    </QtMoc>
+    <QtMoc Include="..\AFE_VS_test\device.hpp">
+      <Filter>Внешние файлы</Filter>
+    </QtMoc>
+    <QtMoc Include="..\AFE_VS_test\coefout.hpp">
+      <Filter>Внешние файлы</Filter>
+    </QtMoc>
+    <QtMoc Include="..\AFE_VS_test\coefin.hpp">
+      <Filter>Внешние файлы</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="..\AFE_VS_test\output.ui">
+      <Filter>Внешние файлы</Filter>
+    </QtUic>
+    <QtUic Include="..\AFE_VS_test\coefin.ui">
+      <Filter>Внешние файлы</Filter>
+    </QtUic>
+    <QtUic Include="..\AFE_VS_test\coefout.ui">
+      <Filter>Внешние файлы</Filter>
+    </QtUic>
+    <QtUic Include="..\AFE_VS_test\device.ui">
+      <Filter>Внешние файлы</Filter>
+    </QtUic>
+  </ItemGroup>
+</Project>
