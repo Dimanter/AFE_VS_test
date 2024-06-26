@@ -144,6 +144,7 @@ public:
 	* @returns
 	*/
 	void SwapData(Data& val1, Data& val2);
+	void CreateReport();
 	/*@brief Метод поиска максимального напряжения
 	* @param cont - контенер данных измеренных прибором
 	* @returns Индекс максимального угла
@@ -282,7 +283,7 @@ private:
 
 	QString NumberDevice = "";//номер изделия
 	int loop = 1;// Текущий круг измерений
-	int fileNum = 0;//Кол-во файлов для конвертации
+	int fileNum = 0;//Кол-во файлов для конвертации макс 44
 	int angle = 0;// Угол в градусах целочисленный
 	int min = 0;// Минуты угла
 	int sec = 0;// Секунды Угла

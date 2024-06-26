@@ -1,4 +1,4 @@
-﻿#include "MainWindow.hpp"
+﻿//#include "MainWindow.hpp"
 #include "StepWindow.hpp"
 #include <QApplication>
 #include <QLocale>

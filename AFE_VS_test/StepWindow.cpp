@@ -517,6 +517,7 @@ void StepWindow::StartUpConverter()
 	setlocale(LC_ALL, "Russian");
 	fileNum = 0;
 	system("Converter.exe");
+	//CreateReport();
 }
 
 vector<Data> StepWindow::EraseErrors(vector<Data> cont)
@@ -830,6 +831,11 @@ void StepWindow::SwapData(Data& val1, Data& val2)
 	val2.Phase2 = tmp.Phase2;
 	val2.V1 = tmp.V1;
 	val2.V2 = tmp.V2;
+}
+
+void StepWindow::CreateReport()
+{
+	
 }
 
 void StepWindow::ConvertAngle(float _angle)

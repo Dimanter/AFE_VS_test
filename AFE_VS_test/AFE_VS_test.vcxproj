@@ -193,7 +193,6 @@
     <ClInclude Include="coefOutService.hpp" />
     <ClInclude Include="controlService.hpp" />
     <ClInclude Include="cyclebuff.hpp" />
-    <ClInclude Include="DataAnalyze.hpp" />
     <ClInclude Include="Dispatcher.hpp" />
     <ClInclude Include="DSP.hpp" />
     <ClInclude Include="eventService.hpp" />

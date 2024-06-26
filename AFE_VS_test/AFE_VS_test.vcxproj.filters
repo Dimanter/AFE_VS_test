@@ -168,9 +168,6 @@
     <ClInclude Include="stepService.hpp">
       <Filter>Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="DataAnalyze.hpp">
-      <Filter>StepWindow</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="device.hpp">

@@ -1,6 +1,33 @@
 ﻿#pragma once
 
-#include "Board.hpp"
+#include <QGraphicsView>
+#include <QtWidgets>
+#include <QObject>
+#include <QtSerialPort/QSerialPort>
+#include <math.h>
+#include <cstdlib>
+#include <iostream>
+#include <numeric>
+#include <string_view>
+#include <vector>
+#include <QTextStream>
+#include <algorithm>
+#include <chrono>
+#include <cmath>
+#include <fstream>
+#include <map>
+#include <ranges>
+#include <tuple>
+
+#include "cyclebuff.hpp"
+#include "measureService.hpp"
+
+#include "device.hpp"
+#include "qAxis.hpp"
+#include "qTable.hpp"
+#include "DataAnalyze.hpp"
+
+#include <set>
 #include "output.hpp"
 
 #include "protocol.hpp"
@@ -211,7 +238,7 @@ public:
 			qDebug("Do not create serial port object");
 		}
 
-		board = new BoardGraphicsItem(width, height);
+		//board = new BoardGraphicsItem(width, height);
 
 		processes.add(processMonitor, load());
 		processes.add(processMonitor, setOutput());
@@ -255,10 +282,10 @@ public:
 
 
 
-	void setPos(qreal x, qreal y)
+	/*void setPos(qreal x, qreal y)
 	{
 		board->setPos(x, y);
-	}
+	}*/
 
 	bool Connect(QString portName)
 	{
@@ -307,7 +334,7 @@ public:
 		return port->isOpen();
 	}
 
-	QGraphicsItem* getBoardItem()
+	/*QGraphicsItem* getBoardItem()
 	{
 		return board;
 	}
@@ -315,7 +342,7 @@ public:
 	QRectF getBoundingRect() const
 	{
 		return board->boundingRect();
-	}
+	}*/
 
 	void testCommand()
 	{
@@ -671,7 +698,7 @@ public:
 	bool Finished = false;
 	Stage              stage{ Stage::Idle };
 	QSerialPort* port;
-	BoardGraphicsItem* board;
+	//BoardGraphicsItem* board;
 	QWidget ResulWin;
 	Processes                       processes{ std::bind(&Work::eventProcess, this, std::placeholders::_1) };
 	Dispatcher                      dispatcher;

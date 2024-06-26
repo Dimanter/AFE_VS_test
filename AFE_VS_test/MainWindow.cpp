@@ -76,8 +76,8 @@ MainWindow::MainWindow(const QString& device, QWidget* parent) : QMainWindow(par
 
     addToolBar(Qt::TopToolBarArea, ptb);
 
-    scene->addItem(work->getBoardItem());
-    scene->setSceneRect(work->getBoundingRect());
+    //scene->addItem(work->getBoardItem());
+   // scene->setSceneRect(work->getBoundingRect());
     
     scale();
 }
