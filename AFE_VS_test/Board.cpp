@@ -30,6 +30,8 @@ auto convert(T val)
 }
 
 
+
+
 /*
 * @brief Установить параметры
 * @param agnel Угол
@@ -47,32 +49,26 @@ void BoardGraphicsItem::setParameters(float angle, const measures_t& res)
 	sec = (angle - grad) * 60.0 - min;
 	sec = std::trunc(sec * 60.0);
 
-
 	/*
 		Запись результатов измерения
 	*/
+	Data.push_back(DataAnalyze{ angle,res.V1.RMS,res.V2.RMS,res.V1.Phase,res.V2.Phase,res.I.Amp,res.I.Phase });
+
 	bufV1.push(res.V1.RMS);
-	pV1.push_back(DataAnalyze{ angle,res.V1.RMS });
 	plV1.push_back(Point_t{ angle, res.V1.RMS });
 	//plotV1->insert(angle, res.V1.RMS);
 
 	bufVPhase1.push(res.V1.Phase);
-	pVP1.push_back(DataAnalyze{ angle,res.V1.Phase});
 	plVP1.push_back(Point_t{ angle,res.V1.Phase });
 	//plotVPhase1->insert(angle, res.V1.Phase);
 
-
 	bufV2.push(res.V2.RMS);
 	plV2.push_back(Point_t{ angle,res.V2.RMS });
-	pV2.push_back(DataAnalyze{ angle,res.V2.RMS });
 	//plotV2->insert(angle, res.V2.RMS);
-
 
 	bufVPhase2.push(res.V2.Phase);
 	plVP2.push_back(Point_t{ angle,res.V2.Phase });
-	pVP2.push_back(DataAnalyze{ angle,res.V2.Phase });
 	//plotVPhase2->insert(angle, res.V2.Phase);
-
 
 	bufI1.push(res.I.Amp);
 	//plI.push_back(Point_t{ angle,res.I.Amp });
@@ -84,12 +80,15 @@ void BoardGraphicsItem::setParameters(float angle, const measures_t& res)
 	//pIP.push_back(DataAnalyze{ angle,res.I.Phase });
 	//plotIPhase1->insert( angle, res.I.Phase );
 
-	
-
 	textRef->setHtml(QString("<big><bold>&alpha;</bold></big>: %1˚ %2\' %3\"").arg(static_cast<uint32_t>(grad), 3).arg(static_cast<uint32_t>(min), 2).arg(static_cast<uint32_t>(sec), 2));
 	textI1->setHtml(QString("<bold>I</bold>: %1").arg(bufI1.apply(DSP::mean), 5, 'f', 3));
 	textV1->setHtml(QString("<bold>U</bold>: %1").arg(bufV1.apply(DSP::mean), 5, 'f', 3));
 	textV2->setHtml(QString("<bold>U</bold>: %1").arg(bufV2.apply(DSP::mean), 5, 'f', 3));
+}
+
+void BoardGraphicsItem::DataScience()
+{
+
 }
 
 /// @brief Анализ параметров изделия 45Д-20-2

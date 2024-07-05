@@ -22,14 +22,14 @@
 #include "cyclebuff.hpp"
 #include "measureService.hpp"
 
-#include "device.hpp"
-#include "qAxis.hpp"
-#include "qTable.hpp"
-#include "DataAnalyze.hpp"
+//#include "device.hpp"
+//#include "qAxis.hpp"
+//#include "qTable.hpp"
+//#include "DataAnalyze.hpp"
 
 #include <set>
-#include "output.hpp"
 
+#include "output.hpp"
 #include "protocol.hpp"
 
 #include "Dispatcher.hpp"
@@ -699,7 +699,6 @@ public:
 	Stage              stage{ Stage::Idle };
 	QSerialPort* port;
 	//BoardGraphicsItem* board;
-	QWidget ResulWin;
 	Processes                       processes{ std::bind(&Work::eventProcess, this, std::placeholders::_1) };
 	Dispatcher                      dispatcher;
 	std::shared_ptr<Transport>      transport = std::make_shared<Transport>(1, std::bind(&Work::Write, this, _1, _2));
@@ -708,5 +707,4 @@ public:
 	std::shared_ptr<stepService>    step = makeService<stepService>(this, &Work::notify, Services::Step);
 	std::shared_ptr<qOutput>        out = makeService<qOutput>(this, &Work::notify, Services::Output);
 	std::shared_ptr<measureService> measure = makeService<measureService>(this, &Work::notify, Services::Parameters);
-	std::shared_ptr<measureService> stepWin = makeService<measureService>(this, &Work::notify, Services::Parameters);
 };

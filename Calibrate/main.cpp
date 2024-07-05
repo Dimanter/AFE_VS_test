@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
     QCoreApplication::setApplicationName("Calibrate");
-    QCoreApplication::setApplicationVersion("1.0");
+    QCoreApplication::setApplicationVersion("1.01");
 
     MainWindow w;
     w.setWindowTitle(QCoreApplication::applicationName());

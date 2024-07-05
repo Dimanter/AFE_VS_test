@@ -144,7 +144,6 @@ public:
 	* @returns
 	*/
 	void SwapData(Data& val1, Data& val2);
-	void CreateReport();
 	/*@brief Метод поиска максимального напряжения
 	* @param cont - контенер данных измеренных прибором
 	* @returns Индекс максимального угла
@@ -240,9 +239,6 @@ public:
 	*/
 	~StepWindow();
 private:
-
-
-
 	QTimer* timer = new QTimer(this);// Таймер для вывода данных на интерфейс
 	QTimer* testTimer = new QTimer(this);// Таймер для тестирования прибора
 

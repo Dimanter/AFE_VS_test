@@ -100,6 +100,8 @@ public:
         textI1->setTextWidth(width / 6 - gap);
     }
 
+    void DataScience();
+
     /*@breif Метод удалаления элементов контенера выходящих за пределы угла
     * @param temp Контенер из которого нужно удалить элементы
     * @param minAngle Минимальный угол
@@ -186,13 +188,8 @@ private:
     const QRectF rectBounding;
     
     int counter = 0;
-
-    std::vector<DataAnalyze> pV1;
-    std::vector<DataAnalyze> pV2;
-    std::vector<DataAnalyze> pVP1;
-    std::vector<DataAnalyze> pVP2;
-    std::vector<DataAnalyze> pI;
-    std::vector<DataAnalyze> pIP;
+    
+    vector <DataAnalyze> Data;
 
     device info;
     std::vector<Point_t> plV1;

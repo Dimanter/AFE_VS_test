@@ -495,6 +495,11 @@ void StepWindow::Stop()
 
 void StepWindow::Start()
 {
+	if (fileNum > 48)
+	{
+		QMessageBox::warning(window, "Error", "Документ переполнен. Создайте отчёт.");
+		return;
+	}
 	if (work->stage != Work::Stage::Idle)return;
 	if (!Dialog())return;
 	work->testCommand();
@@ -517,7 +522,6 @@ void StepWindow::StartUpConverter()
 	setlocale(LC_ALL, "Russian");
 	fileNum = 0;
 	system("Converter.exe");
-	//CreateReport();
 }
 
 vector<Data> StepWindow::EraseErrors(vector<Data> cont)
@@ -833,11 +837,6 @@ void StepWindow::SwapData(Data& val1, Data& val2)
 	val2.V2 = tmp.V2;
 }
 
-void StepWindow::CreateReport()
-{
-	
-}
-
 void StepWindow::ConvertAngle(float _angle)
 {
 	float grad, _min, _sec;
@@ -867,7 +866,7 @@ void StepWindow::TestComplete()
 
 	int UavSize = 0;//Размер буфера среднего напряжения
 	int k = 0;
-	int IndT[13] = { 0, 1, 6, 7, 9, 10, 11, 12, 3, 5, 2, 8, 4 };//Индекс заполнения минимумов
+	int IndT[13] = { 0, 1, 6, 7, 9, 10, 11, 12, 3, 5, 2, 8, 4 };//Индексы заполнения минимумов
 
 	vector <Data> temp;//Буфер данных
 	vector <Data> MaxU;//Контенер для поиска максимума нарпяжения
@@ -906,6 +905,7 @@ void StepWindow::TestComplete()
 	{
 		for (int i = 2; i < adt.size(); i++)
 		{
+			//*Участок поиска квадратурного напряжения
 			if (flagResist)
 			{
 				if (adt[i].V2 < 500)
@@ -971,7 +971,7 @@ void StepWindow::TestComplete()
 	if (allData.size() < 12)
 	{
 		QMessageBox::warning(window, "Error", "Недостаточно данных");
-		//return;
+		return;
 	}
 	//*Убираем ошибки при переключении схемы комутации и усредняем данные
 	Quad = EraseErrors(Quad);
