@@ -40,6 +40,7 @@ class BoardGraphicsItem : public QGraphicsItem
     using pContainer_t = std::shared_ptr<Container_t>;
 
 public:
+    
     /**
      * @brief Конструктор с отрисовкой таблицы измерениями
      * @param width Ширина окна
@@ -100,7 +101,6 @@ public:
         textI1->setTextWidth(width / 6 - gap);
     }
 
-    void DataScience();
 
     /*@breif Метод удалаления элементов контенера выходящих за пределы угла
     * @param temp Контенер из которого нужно удалить элементы
@@ -179,8 +179,23 @@ public:
         }
         return false;
     }
-
+    //анализ данных
+    void DataScience();
+    //возвращает среднее напряжение необходимого угла
+    float FindAngle(int _angle);
+    //возвращает контенер усредненых данных
+    vector<DataAnalyze> Average();
+    //возвращает массив углов из контенера
+    int* VectorInMass(bool mins);
+    //возвращает массив напряжения из контенера данных
+    float* VectorInMassV();
+    //проверяет содержит ли контенер данных данный угол
+    bool Contains(vector<DataAnalyze> cont, int _angle, int _min);
+    //возвращает индекс минимального угла
+    int FindMinV();
     void Analyze();
+    //смещение относительно минимума
+    void Offset();
 
     ~BoardGraphicsItem() = default;
 
@@ -189,7 +204,7 @@ private:
     
     int counter = 0;
     
-    vector <DataAnalyze> Data;
+    vector <DataAnalyze> Data;//контенер измеренных данных
 
     device info;
     std::vector<Point_t> plV1;

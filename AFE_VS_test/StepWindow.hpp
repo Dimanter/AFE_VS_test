@@ -86,19 +86,12 @@ public:
 	/*@brief Метод вывода данных на интерфейс
 	*/
 	void StepThreading();
-	/*@brief Отображение текущих параметров заданных для шагового мотора
+	/*@brief Метод создания пользовательского интерфейса СКТ-232Б
 	*/
-	void Aply();
-	/*@brief Отображение текущих параметров заданных для шагового мотора
-	* @param _dir - направление движения (0 - вперёдт, 1 - назад)
-	* @param _period - период импульсов
-	* @param _step  - длинна шага (1, 1/2, 1/4...)
-	* @param _count - количество шагов
+	void CreateWindowSKT();
+	/*@brief Метод создания пользовательского интерфейса 45Д-20-2
 	*/
-	void AplyOpt(int _dir, int _period, int _step, int _count);
-	/*@brief Метод создания пользовательского интерфейса
-	*/
-	void CreateWindow();
+	void CreateWindow45D20();
 	/*@brief Метод покдлючения к com-порту
 	*/
 	void Connect();
@@ -108,28 +101,37 @@ public:
 	/*@brief Метод остановки процессов измерения
 	*/
 	void Stop();
-	/*@brief Метод запускающий шаговый двигатель с установленными параметрами
+	/*@brief Метод запускающий шаговый двигатель с установленными параметрами для СКТ-232Б
 	*/
-	void Start();
+	void StartSKT();
+	/*@brief Метод запускающий шаговый двигатель с установленными параметрами для 45Д-20-2
+	*/
+	void Start45D20();
 	/*@brief Метод конвертации угла с плавающей запятов в угол с минутами и секундами
 	* @param _angle - угол с плавающей запятой
 	*/
 	void ConvertAngle(float angle);
-	/*@brief Метод обработки данных после завершения измерений
+	/*@brief Метод обработки данных после завершения измерений на СКТ-232Б
 	*/
 	void TestComplete();
+	/*@brief Метод обработки данных после завершения измерений на 45Д-20-2
+	*/
+	void Test45D20Complete();
 	/*@brief Метод старта мониторинга данных
 	*/
 	void StartMonitor();
 	/*@brief Метод обновления доступных com-портов
 	*/
 	void RefreshComBox();
-	/*@brief Метод тестирования прибора
-	*/
-	void testCommand();
 	/*@brief Метод запускающий программу конвертер
 	*/
 	void StartUpConverter();
+	/*@brief Метод создающий таблицу
+	*/
+	void CreateTable();
+	/*@brief Метод который удаляет заданную строку из таблицы
+	*/
+	void DeleteRow();
 	/*@brief Метод записи данных в файл
 	* @param file - имя фалйа для записи
 	* @param cont - контенер данных измеренных прибором
@@ -138,15 +140,28 @@ public:
 	/*@brief Метод вызывающий диалоговое окно для записи названия изделия
 	*/
 	bool Dialog();
+	/*@brief Метод вызывающий диалоговое окно для записи номера строки
+	*/
+	bool DialogDel();
 	/*@brief Метод обмена данными мужду двумя параметрами
 	* @param val1 - первый параметр
 	* @param val2 - второй параметр
 	* @returns
 	*/
 	void SwapData(Data& val1, Data& val2);
+	/*@brief Метод поиска угла
+	* @param cont - контенер данных измеренных прибором
+	* @returns Индекс угла
+	*/
+	int FindAngle(int _angle, int _min, vector<Data> cont);
+	/*@brief Метод поиска максимальной погрешности U выхода
+	* @param cont - контенер содержайщий погрешность линейности характеристики
+	* @returns максимальная погрешность U выхода
+	*/
+	float FindUex(vector<int> cont);
 	/*@brief Метод поиска максимального напряжения
 	* @param cont - контенер данных измеренных прибором
-	* @returns Индекс максимального угла
+	* @returns Индекс угла с максимальным напряжением
 	*/
 	int FindMaxV(vector<Data> cont);
 	/*@brief Метод поиска минимального напряжения
@@ -166,6 +181,13 @@ public:
 	* @returns Индекс минимального угла
 	*/
 	int FindMinAngle(vector<Data> cont);
+	/*@brief Метод нахождения ближайшего угла к напряженияию
+	* @param V - напряжение к котому необходимо найти ближайший угол
+	* @param _angle - угол от которого берётся диапазон в 1 еденицу
+	* @param cont - контенер данных измеренных прибором
+	* @returns Данные найденого угла
+	*/
+	Data FindNearestAngle(float V,int _angle, vector<Data> cont);
 	/*@brief Метод нахождения минимального смещения угла
 	* @param Angle - массив углов
 	* @returns Минимальный угол
@@ -191,7 +213,17 @@ public:
 	* @param cont - контенер данных измеренных прибором
 	* @returns Массив данных напряжения
 	*/
-	float* VectorInMassV(vector<Data> cont);
+	float* VectorInMassV(vector<Data> cont, bool V1);
+	/*@brief Метод усреднения имезернной силы тока
+	* @param cont - контенер данных измеренных прибором
+	* @returns Среднее значение силы тока
+	*/
+	float AverageI(vector<Data> cont);
+	/*@brief Метод сдвига угла относительно минимума напряжения
+	* @param cont - контенер данных измеренных прибором
+	* @returns Смещённый контенер данных
+	*/
+	vector<Data>  OffsetToZero(vector<Data> cont);
 	/*@brief Метод усреднения данных по минутам угла
 	* @param cont - контенер данных измеренных прибором
 	* @returns Изменённый контенер данных
@@ -240,14 +272,15 @@ public:
 	~StepWindow();
 private:
 	QTimer* timer = new QTimer(this);// Таймер для вывода данных на интерфейс
-	QTimer* testTimer = new QTimer(this);// Таймер для тестирования прибора
+	QTimer* testTimer = new QTimer(this);// Таймер для тестирования прибора 45Д-20-2
+	QTimer* testSktTimer = new QTimer(this);// Таймер для тестирования прибора СКТ-232Б
 
 	Data temp;// Буффер для хранения данных
 
 	vector<Data> data;// Контенер считанных данных
 	vector<vector<Data>> allData;// Контенер данных разделённых на схемы комутации
 
-	QStandardItemModel* model = new QStandardItemModel(15, 22);//Таблица расчёта данных
+	QStandardItemModel* model = new QStandardItemModel(15, 23);//Таблица расчёта данных
 	QComboBox* comboPort1;// Раскрывающшийся список с доступными com-портами
 	QComboBox* DirBox;//Направление движения
 	QComboBox* Steps;//Длинна шага
@@ -258,6 +291,7 @@ private:
 	QColor red = QColor(255, 51, 51);//красный цвет в ргб
 	QColor green = QColor(51, 153, 51);//зелёный цвет в ргб
 	QColor yellow = QColor(218, 165, 32);//жёлтый цвет в ргб
+	QColor orange = QColor(190, 85, 4);//оранжевый цвет в ргб
 
 	QPushButton* btnConnect;// Кнопка подклчения
 	QPushButton* btnDisconnect;// Кнопка отключения
@@ -277,7 +311,9 @@ private:
 	QTextEdit* textAngle = new QTextEdit("");// Текствовое окно для вывода угла
 	QTextEdit* IPhase = new QTextEdit("");// Текстовое окно для вывода фазы тока
 
-	QString NumberDevice = "";//номер изделия
+	QString NumberDevice = "";// Номер изделия
+	QString DeviceName;
+	int rowDel = 0;// Номер строки для удаления
 	int loop = 1;// Текущий круг измерений
 	int fileNum = 0;//Кол-во файлов для конвертации макс 44
 	int angle = 0;// Угол в градусах целочисленный
@@ -301,14 +337,19 @@ private:
 
 	Work* work;// Экземпляр класса Work
 	QWidget* window = new QWidget();// Главное окно
-
 private slots:
 	/*
 	*@brief Обновление данных на интерфейсе
 	*/
 	void Update();
 	/*
-	*@brief Тест прибора
+	*@brief Тест прибора СКТ-232Б
 	*/
-	void TestUp();
+	void TestSKT232B();
+	/*
+	*@brief Тест прибора 45Д-20-2
+	*/
+	void Test45D20();
 };
+//туду
+//if v2 > 250 - проверить подключение в колодке

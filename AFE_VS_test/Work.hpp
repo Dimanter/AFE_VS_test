@@ -113,10 +113,24 @@ public:
 				return std::make_pair(this->message->getAddress(), Service::State::Ready);
 			};
 	}
+
+	auto setOutput45D20()
+	{
+		return [this]() {
+			this->out->outP = 6000.f;
+			this->out->meanP = 3000.f;
+			this->out->phaseP = 0.f;
+			this->out->outN = 6000.f;
+			this->out->meanN = 3000.f;
+			this->out->phaseN = M_PI;
+			this->out->freq = 400.f;
+			this->out->transmit(1, Service::Type::TransmitConfirmed);
+			return std::make_pair(this->out->getAddress(), Service::State::Ready); };
+	}
 	/**
 	 * @brief Настроить вывод
 	 */
-	auto setOutput()
+	auto setOutputSKT()
 	{
 		/*
 		* Ввод частоты и фазы в микроконтроллер
@@ -150,7 +164,7 @@ public:
 			break;
 		case processMeasure:
 			emit measureComplete();
-
+			Finished = true;
 			//board->Analyze();
 			break;
 		case processBackward:
@@ -238,18 +252,21 @@ public:
 			qDebug("Do not create serial port object");
 		}
 
-		//board = new BoardGraphicsItem(width, height);
-
 		processes.add(processMonitor, load());
-		processes.add(processMonitor, setOutput());
+
+		if (device == "45Д20-2")processes.add(processMonitor, setOutput45D20());
+		else processes.add(processMonitor, setOutputSKT());
+		
 		processes.add(processMonitor, [this]() {
 			this->control->command = controlService::startMonitor;
 			this->control->transmit(1, Service::Type::TransmitConfirmed);
 			return std::make_pair(this->control->getAddress(), Service::State::Ready);
 			});
-
 		processes.add(processMeasure, load());
-		processes.add(processMeasure, setOutput());
+
+		if (device == "45Д20-2")processes.add(processMeasure, setOutput45D20());
+		else processes.add(processMeasure, setOutputSKT());
+
 		processes.add(processMeasure, setStepper(stepDirection::Backward, stepRatio::_1, 1200U, 2700U));
 		processes.add(processMeasure, startStepper());
 		processes.add(processMeasure, [this]() {
@@ -280,13 +297,11 @@ public:
 		}
 	}
 
-
-
-	/*void setPos(qreal x, qreal y)
-	{
-		board->setPos(x, y);
-	}*/
-
+	/*
+	* @brief
+	* Метод подключения к com-порту
+	* @return true - подключен, false - не подключен
+	*/
 	bool Connect(QString portName)
 	{
 		if (!port->isOpen())
@@ -334,22 +349,16 @@ public:
 		return port->isOpen();
 	}
 
-	/*QGraphicsItem* getBoardItem()
-	{
-		return board;
-	}
-
-	QRectF getBoundingRect() const
-	{
-		return board->boundingRect();
-	}*/
-
-	void testCommand()
+	/*
+	* @brief
+	* Метод задающий процесс теста иизделия 
+	*/
+	void testSKT()
 	{
 		Finished = false;
 		processes.clear(processStart);
 		processes.add(processStart, load());
-		processes.add(processStart, setOutput());
+		processes.add(processStart, setOutputSKT());
 		processes.add(processStart, setStepper(stepDirection::Backward, stepRatio::_1, 1300, 600));
 		processes.add(processStart, startStepper());
 		processes.add(processStart, [this]() {
@@ -357,29 +366,57 @@ public:
 			this->control->transmit(1, Service::Type::TransmitConfirmed);
 			return std::make_pair(this->control->getAddress(), Service::State::Ready);
 			});
-		processes.add(processStart, setStepper(stepDirection::Forward, stepRatio::_1_2, 900, 125000));
-		//processes.add(processStart, setStepper(stepDirection::Forward, stepRatio::_1, 1300, 49000));
+		processes.add(processStart, setStepper(stepDirection::Forward, stepRatio::_1_2, 900, 100000));//125к 365град - 115к 280град
 		processes.add(processStart, startStepper());
-		//processes.add(processStart, setStepper(stepDirection::Backward, stepRatio::_1, 1300, 22000));
-		//processes.add(processStart, startStepper());
 	}
 
+	void test45D20()
+	{
+		Finished = false;
+		processes.clear(processStart);
+		processes.add(processStart, load());
+		processes.add(processStart, setOutput45D20());
+		processes.add(processStart, setStepper(stepDirection::Backward, stepRatio::_1, 1200, 2700));
+		processes.add(processStart, startStepper());
+		processes.add(processStart, [this]() {
+			this->control->command = controlService::startMeasuremnt;
+			this->control->transmit(1, Service::Type::TransmitConfirmed);
+			return std::make_pair(this->control->getAddress(), Service::State::Ready);
+			});
+		processes.add(processStart, setStepper(stepDirection::Forward, stepRatio::_1_32, 200, 172800));
+		processes.add(processStart, startStepper());
+		processes.add(processStart, setStepper(stepDirection::Backward, stepRatio::_1, 1200, 2700));
+		processes.add(processStart, startStepper());
+	}
+	/*
+	* @brief
+	* Метод возвращающий статус процесса тестирования изделия (truе - в процессе тестирования, false - процесс не запусщен)
+	*/
 	bool ProccesRunning()
 	{
 		return processes.getStatus(processStart);
 	}
-
+	/*
+	* @brief
+	* Метод возвращающий флаг заершения процесса тестирования изделия (truе - завершён, false - не завершён)
+	*/
 	bool ProccessStatus()
 	{
 		return Finished;
 	}
-
+	/*
+	* @brief
+	* Метод запускающий процесс тестирования изделия
+	*/
 	void processRun()
 	{
 		stage = Stage::Measurement;
 		processes.run(processStart);
 	}
-
+	/*
+	* @brief
+	* Метод запускающий процесс мониторинга напряжения и угла изделия
+	*/
 	void processRunMonitor()
 	{
 		stage = Stage::Monitoring;
@@ -450,7 +487,7 @@ public:
 		}
 
 		processes.add(processStart, load());
-		processes.add(processStart, setOutput());
+		processes.add(processStart, setOutputSKT());
 		processes.add(processStart, [this]() {
 			this->control->command = controlService::startMonitor;
 			this->control->transmit(1, Service::Type::TransmitConfirmed);
@@ -525,88 +562,7 @@ public:
 		}
 
 		processes.add(processStart, load());
-		processes.add(processStart, setOutput());
-		processes.add(processStart, [this]() {
-			this->control->command = controlService::startMeasuremnt;
-			this->control->transmit(1, Service::Type::TransmitConfirmed);
-			return std::make_pair(this->control->getAddress(), Service::State::Ready);
-			});
-		processes.add(processStart, setStepper(direction, ratio, Period, Count));
-		processes.add(processStart, startStepper());
-	}
-	/*@brief Метод подготовки процессов для тестирования прибора с отступом в начале
-	* @param Dir - направление вращения мотора
-	* @param StepRate - длинна шага мотора
-	* @param Period - период импульсов
-	* @param Count - количество шагов
-	* @param Offset - флаг отступа вначале
-	*/
-	void ReadyStart(int Dir, int StepRate, int Period, int Count, bool Offset)
-	{
-		stepDirection direction;
-		if (Dir == 0)
-			direction = stepDirection::Forward;
-		else
-			direction = stepDirection::Backward;
-		processes.clear(processStart);
-		stepRatio ratio;
-		switch (StepRate)
-		{
-		case 1:
-		{
-			ratio = stepRatio::_1;
-			break;
-		}
-		case 2:
-		{
-			ratio = stepRatio::_1_2;
-			break;
-		}
-		case 4:
-		{
-			ratio = stepRatio::_1_4;
-			break;
-		}
-		case 8:
-		{
-			ratio = stepRatio::_1_8;
-			break;
-		}
-		case 16:
-		{
-			ratio = stepRatio::_1_16;
-			break;
-		}
-		case 32:
-		{
-			ratio = stepRatio::_1_32;
-			break;
-		}
-		case 64:
-		{
-			ratio = stepRatio::_1_64;
-			break;
-		}
-		case 128:
-		{
-			ratio = stepRatio::_1_128;
-			break;
-		}
-		case 256:
-		{
-			ratio = stepRatio::_1_256;
-			break;
-		}
-		}
-		processes.add(processStart, load());
-		processes.add(processStart, setOutput());
-		if (Offset)
-		{
-			processes.add(processStart, setStepper(stepDirection::Backward, stepRatio::_1, 1300, 850));
-			processes.add(processStart, startStepper());
-		}
-
-
+		processes.add(processStart, setOutputSKT());
 		processes.add(processStart, [this]() {
 			this->control->command = controlService::startMeasuremnt;
 			this->control->transmit(1, Service::Type::TransmitConfirmed);
@@ -687,7 +643,10 @@ private slots:
 			msgBox.exec();
 		}
 	}
-
+	/*
+	* @brief
+	* Метод чтения данных с контроллера
+	*/
 	void readyRead()
 	{
 		auto data = port->readAll();
@@ -695,16 +654,16 @@ private slots:
 	}
 
 public:
-	bool Finished = false;
+	bool Finished = false;// флаг завершения процесса тестирования (true - завершёл, false - нет)
 	Stage              stage{ Stage::Idle };
 	QSerialPort* port;
 	//BoardGraphicsItem* board;
-	Processes                       processes{ std::bind(&Work::eventProcess, this, std::placeholders::_1) };
-	Dispatcher                      dispatcher;
-	std::shared_ptr<Transport>      transport = std::make_shared<Transport>(1, std::bind(&Work::Write, this, _1, _2));
-	std::shared_ptr<controlService> control = makeService<controlService>(this, &Work::notify, Services::Control);
-	std::shared_ptr<eventService>   message = makeService<eventService>(this, &Work::notify, Services::Event);
-	std::shared_ptr<stepService>    step = makeService<stepService>(this, &Work::notify, Services::Step);
-	std::shared_ptr<qOutput>        out = makeService<qOutput>(this, &Work::notify, Services::Output);
-	std::shared_ptr<measureService> measure = makeService<measureService>(this, &Work::notify, Services::Parameters);
+	Processes                       processes{ std::bind(&Work::eventProcess, this, std::placeholders::_1) };//буфер процессов
+	Dispatcher                      dispatcher;//диспетчер сервисов
+	std::shared_ptr<Transport>      transport = std::make_shared<Transport>(1, std::bind(&Work::Write, this, _1, _2));//транспортный уровень
+	std::shared_ptr<controlService> control = makeService<controlService>(this, &Work::notify, Services::Control);//контроллер команд
+	std::shared_ptr<eventService>   message = makeService<eventService>(this, &Work::notify, Services::Event);//эвент нажатия кнопок
+	std::shared_ptr<stepService>    step = makeService<stepService>(this, &Work::notify, Services::Step);//сервис с параметрами шага
+	std::shared_ptr<qOutput>        out = makeService<qOutput>(this, &Work::notify, Services::Output);//сервис с пользовательским интерфесом
+	std::shared_ptr<measureService> measure = makeService<measureService>(this, &Work::notify, Services::Parameters);//сервис с данными измерений
 };

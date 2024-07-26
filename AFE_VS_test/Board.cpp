@@ -29,9 +29,6 @@ auto convert(T val)
 	return QString(ss.str().c_str());
 }
 
-
-
-
 /*
 * @brief Установить параметры
 * @param agnel Угол
@@ -55,30 +52,11 @@ void BoardGraphicsItem::setParameters(float angle, const measures_t& res)
 	Data.push_back(DataAnalyze{ angle,res.V1.RMS,res.V2.RMS,res.V1.Phase,res.V2.Phase,res.I.Amp,res.I.Phase });
 
 	bufV1.push(res.V1.RMS);
-	plV1.push_back(Point_t{ angle, res.V1.RMS });
-	//plotV1->insert(angle, res.V1.RMS);
-
 	bufVPhase1.push(res.V1.Phase);
-	plVP1.push_back(Point_t{ angle,res.V1.Phase });
-	//plotVPhase1->insert(angle, res.V1.Phase);
-
 	bufV2.push(res.V2.RMS);
-	plV2.push_back(Point_t{ angle,res.V2.RMS });
-	//plotV2->insert(angle, res.V2.RMS);
-
 	bufVPhase2.push(res.V2.Phase);
-	plVP2.push_back(Point_t{ angle,res.V2.Phase });
-	//plotVPhase2->insert(angle, res.V2.Phase);
-
 	bufI1.push(res.I.Amp);
-	//plI.push_back(Point_t{ angle,res.I.Amp });
-	//pI.push_back(DataAnalyze{ angle,res.I.Amp });
-	//plotI1->insert(angle, res.I.Amp);
-	
 	bufIPhase1.push(res.I.Phase);
-	//plIP.push_back(Point_t{ angle,res.I.Phase });
-	//pIP.push_back(DataAnalyze{ angle,res.I.Phase });
-	//plotIPhase1->insert( angle, res.I.Phase );
 
 	textRef->setHtml(QString("<big><bold>&alpha;</bold></big>: %1˚ %2\' %3\"").arg(static_cast<uint32_t>(grad), 3).arg(static_cast<uint32_t>(min), 2).arg(static_cast<uint32_t>(sec), 2));
 	textI1->setHtml(QString("<bold>I</bold>: %1").arg(bufI1.apply(DSP::mean), 5, 'f', 3));
@@ -88,7 +66,122 @@ void BoardGraphicsItem::setParameters(float angle, const measures_t& res)
 
 void BoardGraphicsItem::DataScience()
 {
+	Data = Average();
+	Offset();
+	vector<float> AngleRes;
+	
+	float angleEx = FindAngle(-40);
+	float delta = angleEx / 8;
+	AngleRes.push_back(angleEx);
+	for (int i = 0; i < 8; i++)
+	{
+		AngleRes.push_back(angleEx - delta*(i+1));
+	}
 
+	for (int i = 0; i < 8; i++)
+	{
+		AngleRes.push_back(angleEx + delta * (i + 1));
+	}
+}
+
+float BoardGraphicsItem::FindAngle(int _angle)
+{
+	vector<float> temp;
+	for (int i = 0; i < Data.size(); i++)
+	{
+		if (Data[i].Angle() == _angle)
+		{
+			temp.push_back(Data[i].getRes());
+		}
+	}
+	float sum = 0;
+	for (int i = 0; i < temp.size(); i++)
+	{
+		sum += temp[i];
+	}
+	return sum/temp.size();
+}
+
+vector<DataAnalyze> BoardGraphicsItem::Average()
+{
+	vector<DataAnalyze> temp;
+	int* Angle = VectorInMass(false);
+	int* Min = VectorInMass(true);
+	float* V2 = VectorInMassV();
+
+	for (int i = 0; i < Data.size(); i++)
+	{
+		int currentMin = Min[i];
+		int currentAngle = Angle[i];
+		if (Contains(temp, currentAngle, currentMin))continue;
+		float sum = 0;
+		int k = 0;
+		for (int j = i; j < Data.size(); j++)
+		{
+			if (currentAngle == Angle[j] && currentMin == Min[j])
+			{
+				sum += V2[j];
+				k++;
+			}
+		}
+		sum /= k;
+		DataAnalyze dt;
+		dt.setAngleInt(currentAngle);
+		dt.setMin(currentMin);
+		dt.setRes(sum);
+		temp.push_back(dt);
+	}
+	return temp;
+	return vector<DataAnalyze>();
+}
+
+int* BoardGraphicsItem::VectorInMass(bool mins)
+{
+	int* temp = new int[Data.size()];
+	for (int i = 0; i < Data.size(); i++)
+	{
+		if (mins)
+			temp[i] = Data[i].getMin();
+		else
+			temp[i] = Data[i].Angle();
+	}
+	return temp;
+}
+
+float* BoardGraphicsItem::VectorInMassV()
+{
+	float* V = new float[Data.size()];
+	for (int i = 0; i < Data.size(); i++)
+	{
+		V[i] = Data[i].getRes();
+	}
+	return V;
+}
+
+bool BoardGraphicsItem::Contains(vector<DataAnalyze> cont, int _angle, int _min)
+{
+	for (int i = 0; i < cont.size(); i++)
+	{
+		if (cont[i].getMin() == _min)
+			if (cont[i].Angle() == _angle)
+				return true;
+	}
+	return false;
+}
+
+int BoardGraphicsItem::FindMinV()
+{
+	float min = Data[0].getRes();
+	int idx = 0;
+	for (int i = 0; i < Data.size(); i++)
+	{
+		if (Data[i].getRes() < min)
+		{
+			min = Data[i].getRes();
+			idx = i;
+		}
+	}
+	return idx;
 }
 
 /// @brief Анализ параметров изделия 45Д-20-2
@@ -338,4 +431,13 @@ void BoardGraphicsItem::Analyze()
 		(*tableResult)(9, 0) = std::make_pair(QString("Not currently"), Qt::yellow);
 		(*tableResult)(9, 1) = std::make_pair(QString("installed"), Qt::yellow);
 	}
-};
+}
+void BoardGraphicsItem::Offset()
+{
+	int indMin = FindMinV();
+	for (int i = 0; i < Data.size(); i++)
+	{
+		Data[i].setAngle(Data[i].getAngle() - Data[indMin].getAngle());
+	}
+}
+;

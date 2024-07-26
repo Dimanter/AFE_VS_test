@@ -68,68 +68,68 @@ private:
     //Калибровка входа
     void calIn(std::shared_ptr<coefInService>, char, float, float, float);
 
-    static constexpr std::size_t AVG = 225;
+    static constexpr std::size_t AVG = 225;//размер циклического буффера
 
-    static constexpr std::size_t N = 360;
+    static constexpr std::size_t N = 360;//размер буфера чистого сервиса
 
     Q_OBJECT
-        float Frequency() const;
+        float Frequency() const;//частота 
     //загрузить калибровку
     auto load()
     {
         return [this]() {
-            this->control->command = controlService::Load;
-            this->control->transmit(1, Service::Type::TransmitConfirmed);
+            this->control->command = controlService::Load;//задать команду загрузки
+            this->control->transmit(1, Service::Type::TransmitConfirmed);//подать команду на контролер
             return std::make_pair(this->control->getAddress(), Service::State::Ready); };
     }
     //сохранить калибровку
     auto save()
     {
         return [this]() {
-            this->control->command = controlService::Save;
-            this->control->transmit(1, Service::Type::TransmitConfirmed);
+            this->control->command = controlService::Save;//задать команду сохранения
+            this->control->transmit(1, Service::Type::TransmitConfirmed);//подать команду на контроллер
             return std::make_pair(this->control->getAddress(), Service::State::Ready); };
     }
     //отправить данные на выходной канал
     auto sendCoefOut()
     {
         return [this]() {
-            this->coefsOut->transmit(1, Service::Type::TransmitConfirmed);
+            this->coefsOut->transmit(1, Service::Type::TransmitConfirmed);//отправить выходной коэфицент на контроллер
             return std::make_pair(this->coefsOut->getAddress(), Service::State::Ready); };
     }
     //считать данные с выходного канала
     auto receiveCoefOut()
     {
         return [this]() {
-            this->coefsOut->transmit(1, Service::Type::ReceiveConfirmed);
+            this->coefsOut->transmit(1, Service::Type::ReceiveConfirmed);//принять выходной коэфицент с контроллера
             return std::make_pair(this->coefsOut->getAddress(), Service::State::Ready); };
     }
     //отправить данные на первый входной канал
     auto sendCoefIn1()
     {
         return [this]() {
-            this->coefsIn1->transmit(1, Service::Type::TransmitConfirmed);
+            this->coefsIn1->transmit(1, Service::Type::TransmitConfirmed);//отправить входной коэфицент на 1 канал контроллера 
             return std::make_pair(this->coefsIn1->getAddress(), Service::State::Ready); };
     }
     //отправить данные на второй входной канал
     auto sendCoefIn2()
     {
         return [this]() {
-            this->coefsIn2->transmit(1, Service::Type::TransmitConfirmed);
+            this->coefsIn2->transmit(1, Service::Type::TransmitConfirmed);//отправить входной коэфицент на 2 канал контроллера
             return std::make_pair(this->coefsIn2->getAddress(), Service::State::Ready); };
     }
     //считать данные с первого входного канала
     auto receiveCoefIn1()
     {
         return [this]() {
-            this->coefsIn1->transmit(1, Service::Type::ReceiveConfirmed);
+            this->coefsIn1->transmit(1, Service::Type::ReceiveConfirmed);//принять входной коэфицент с 1 канала контроллера
             return std::make_pair(this->coefsIn1->getAddress(), Service::State::Ready); };
     }
     //считать данные со второго входного канала
     auto receiveCoefIn2()
     {
         return [this]() {
-            this->coefsIn2->transmit(1, Service::Type::ReceiveConfirmed);
+            this->coefsIn2->transmit(1, Service::Type::ReceiveConfirmed);//принять входной коэфицент со 2 канала контроллера
             return std::make_pair(this->coefsIn2->getAddress(), Service::State::Ready); };
     }
     //записать Р
@@ -143,7 +143,7 @@ private:
             this->OutP->transmit(1, Service::Type::TransmitConfirmed);
             return std::make_pair(this->OutP->getAddress(), Service::State::Ready); };
     }
-    //записать напряжение
+    //записать N
     auto writeOutN(unsigned amp)
     {
         return [this, amp]() {
@@ -158,40 +158,40 @@ private:
     auto setFreqOut()
     {
         return [this]() {
-            this->out->freq = this->Frequency();
-            this->out->transmit(1, Service::Type::TransmitConfirmed);
+            this->out->freq = this->Frequency();//задать частоту в буфер коэфицентов
+            this->out->transmit(1, Service::Type::TransmitConfirmed);//отправить частоту на контроллер
             return std::make_pair(this->out->getAddress(), Service::State::Ready); };
     }
     //установить усиление выхода
     auto setGainOut(coefOutService::gain gain)
     {
         return [this, gain]() {
-            this->coefsOut->CurrentGain = gain;
-            this->coefsOut->transmit(1, Service::Type::TransmitConfirmed);
+            this->coefsOut->CurrentGain = gain;//задать усиление выхода в буфер коэфицентов
+            this->coefsOut->transmit(1, Service::Type::TransmitConfirmed);//отправить на котроллер
             return std::make_pair(this->coefsOut->getAddress(), Service::State::Ready); };
     }
     //установить усиление первого входного канала
     auto setGainIn1(coefInService::gain gain)
     {
         return [this, gain]() {
-            this->coefsIn1->CurrentGain = gain;
-            this->coefsIn1->transmit(1, Service::Type::TransmitConfirmed);
+            this->coefsIn1->CurrentGain = gain;//задать усиление 1 входного канала в буфер коэфицентов
+            this->coefsIn1->transmit(1, Service::Type::TransmitConfirmed);//отправить на контроллер
             return std::make_pair(this->coefsIn1->getAddress(), Service::State::Ready); };
     }
     //установить усиление второго входного канала
     auto setGainIn2(coefInService::gain gain)
     {
         return [this, gain]() {
-            this->coefsIn2->CurrentGain = gain;
-            this->coefsIn2->transmit(1, Service::Type::TransmitConfirmed);
+            this->coefsIn2->CurrentGain = gain;//задать усиление 2 выходного канала в буфер коэфицентов
+            this->coefsIn2->transmit(1, Service::Type::TransmitConfirmed);//отправить на контроллер
             return std::make_pair(this->coefsIn2->getAddress(), Service::State::Ready); };
     }
     //начать калибровку
     auto startCalibration()
     {
         return [this]() {
-            this->control->command = controlService::startCalibration;
-            this->control->transmit(1, Service::Type::TransmitStreaming);
+            this->control->command = controlService::startCalibration;//задать команду калибровки
+            this->control->transmit(1, Service::Type::TransmitStreaming);//отправить команду на контроллер
             return std::make_pair(this->control->getAddress(), Service::State::Ready); };
     }
     //добавление процессов на колибровку выхода(минимум\максимум)

@@ -1,4 +1,4 @@
-﻿//#include "MainWindow.hpp"
+﻿#include "MainWindow.hpp"
 #include "StepWindow.hpp"
 #include <QApplication>
 #include <QLocale>
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     parser.process(a);
 
     //MainWindow w{ parser.value(portOption) };
-    StepWindow w{ parser.value(portOption) };
+    StepWindow w{ "СКТ-232Б"};
     
     
 

@@ -20,6 +20,7 @@ private :
 	int sec;// Секунды угла
 	float V1;// Напряжение на первом канале
 	float V2;// Напряжение на втором канале
+public:	
 	float Phase1;// Фаза первого канала
 	float Phase2;// фаза второго канала
 	float I;// Сила тока
@@ -36,6 +37,7 @@ public:
 		IPhase = IP;
 		convertAngle();
 	}
+	DataAnalyze() {};
 	//конвертация угла в минуты, секунды 
 	void convertAngle()
 	{
@@ -47,10 +49,14 @@ public:
 	}
 	//возвраает угол
 	float getAngle() const { return angleGrad; }
+	int Angle() const { return angle; }
+	int getMin() const { return min; }
 	//возвращает напряжение
 	float getRes() const { return V1; }
 	//устанавливает угол
-	void setAngle(float value) { angleGrad = value; }
+	void setAngle(float value) { angleGrad = value; convertAngle();}
+	void setAngleInt(int value) { angle = value; }
+	void setMin(int value) { min = value; }
 	//устанавливает напряжение
 	void setRes(float value) { V1 = value; }
 
