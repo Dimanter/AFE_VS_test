@@ -171,8 +171,8 @@ public:
 	int FindMinV(vector<Data> cont);
 	/*@brief Метод поиска минимального напряжения
 	* @param cont - контенер данных измеренных прибором
-	* @param minAngle - угол от которого искать минимум
-	* @param maxAngle - угол до которого искать минимум
+	* @param minAngle - угол минимальый угол поиска
+	* @param maxAngle - угол максимальный угол поиска
 	* @returns Индекс минимального угла
 	*/
 	int FindMinV(vector<Data> cont, int minAngle, int maxAngle);

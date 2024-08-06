@@ -159,6 +159,7 @@
     <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="coefin.cpp" />
     <ClCompile Include="coefout.cpp" />
+    <ClCompile Include="Monitoring.cpp" />
     <ClCompile Include="output.cpp" />
     <ClCompile Include="StepWindow.cpp">
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
@@ -179,6 +180,7 @@
     <ClCompile Include="device.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="Monitoring.ui" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.hpp" />
@@ -199,6 +201,7 @@
     <ClInclude Include="FactoryWrapper.hpp" />
     <ClInclude Include="measureService.hpp" />
     <QtMoc Include="output.hpp" />
+    <QtMoc Include="Monitoring.h" />
     <ClInclude Include="rawService.hpp" />
     <ClInclude Include="Service.hpp" />
     <ClInclude Include="serviceRaw.hpp" />

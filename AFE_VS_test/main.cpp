@@ -1,5 +1,7 @@
-﻿#include "MainWindow.hpp"
+﻿#pragma once
+#include "MainWindow.hpp"
 #include "StepWindow.hpp"
+#include "Monitoring.h"
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
@@ -10,7 +12,7 @@
 * 2 Запуск шагового мотора Work.hpp
 * 3 Измерения угла/ перевод в секунды минуты Board.cpp
 * 4 Измерение фазы, наряжения, силы тока Board.cpp
-* 5 Анализ измерении? Board.cpp
+* 5 Анализ измерениЙ? Board.cpp
 */
 int main(int argc, char* argv[])
 {
@@ -27,14 +29,12 @@ int main(int argc, char* argv[])
     parser.addOption(portOption);
     parser.process(a);
 
-    //MainWindow w{ parser.value(portOption) };
-    StepWindow w{ "СКТ-232Б"};
-    
-    
+    //StepWindow w{ "45Д20-2"}; // измерения
+    Monitoring w{}; //Монитор с изменением параметров
 
-    //w.setWindowTitle(QCoreApplication::applicationName());
     w.show();
 
-    return 0;// a.exec();
+    return a.exec();// для монитора
+    //return 0;//для измерений
 }
 

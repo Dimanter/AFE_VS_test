@@ -42,6 +42,9 @@
     <Filter Include="StepWindow">
       <UniqueIdentifier>{f7e31e7a-70b9-4ae8-9b6a-4e54be6e9f6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Monitor">
+      <UniqueIdentifier>{c99ab1ed-461b-4a08-8475-0e4a7ac8fa62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="AFE_VS_test.qrc">
@@ -81,6 +84,9 @@
     </ClCompile>
     <ClCompile Include="StepWindow.cpp">
       <Filter>StepWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Monitoring.cpp">
+      <Filter>Monitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +194,9 @@
     <QtMoc Include="StepWindow.hpp">
       <Filter>StepWindow</Filter>
     </QtMoc>
+    <QtMoc Include="Monitoring.h">
+      <Filter>Monitor</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\..\AFE_Copy\Form\device.ui">
@@ -201,6 +210,9 @@
     </QtUic>
     <QtUic Include="..\..\AFE_Copy\Form\coefout.ui">
       <Filter>Form</Filter>
+    </QtUic>
+    <QtUic Include="Monitoring.ui">
+      <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>

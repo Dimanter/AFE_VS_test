@@ -252,7 +252,7 @@ void MainWindow::on_btnStart_clicked()
             }
             break;
         case 1: ///< Калибровка входа
-            if (ui->rbIn1->isChecked()) 
+            if (ui->rbIn1->isChecked()) //переключение по вкладкам 0 - 2 канал, 1 - 1 канал
             {
                 if (ui->rbInMin->isChecked()) 
                 {
@@ -287,7 +287,7 @@ void MainWindow::on_btnStop_clicked()
 {
     if (port->isOpen()) 
     {
-        control->command = controlService::Stop;//стоп всех процессов контроллера
+        control->command = controlService::Stop;//остановка всех процессов контроллера
         control->transmit(1, Service::Type::TransmitStreaming);
     }
     else {
@@ -298,7 +298,7 @@ void MainWindow::on_btnStop_clicked()
 void MainWindow::on_btnSave_clicked()
 {
     if (port->isOpen()) {
-        processes.run(processSave);
+        processes.run(processSave);//сохранить в контроллер входные и выходной коэфиценты
     }
     else {
         ui->textLog->appendPlainText("Port is not open!\n");
@@ -308,7 +308,7 @@ void MainWindow::on_btnSave_clicked()
 void MainWindow::on_btnLoad_clicked()
 {
     if (port->isOpen()) {
-        processes.run(processLoad);
+        processes.run(processLoad);//загрузить из контроллера входные и выходной коэфиценты
     }
     else {
         ui->textLog->appendPlainText("Port is not open!\n");

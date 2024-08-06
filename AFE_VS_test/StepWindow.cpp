@@ -90,12 +90,12 @@ void StepWindow::ConvertAngle(float _angle)
 	float grad, _min, _sec;
 	grad = std::trunc(_angle);
 	_min = _angle - grad;
-	_min = std::round(_min * 60.0);
+	_min = std::trunc(_min * 60.0);
 	_sec = (_angle - grad) * 60.0 - _min;
 	_sec = std::trunc(_sec * 60.0);
 	angle = grad;
 	min = _min;
-	sec = _sec + 30;
+	sec = _sec;
 }
 
 void StepWindow::TestComplete()
@@ -373,29 +373,28 @@ void StepWindow::TestComplete()
 void StepWindow::Test45D20Complete()
 {
 	work->Stop();
-	stringstream writer;
-	stringstream ss;
-	vector<float> AngleRes;
-	vector<Data> ErrRate;
+	stringstream writer;//потоковая запись результатов измерений в файл
+	vector<float> AngleRes;//расчётное напряжения на углах расчёта погрешности
+	vector<Data> ErrRate;//измеренные данные на углах расчёта погрешности
 	int k = 0;
 
 	Serialization("data1", data);
 	data = EraseErrors(data);
 	
-	int tempMin = FindMinV(data, 40, 50);
-	float tempMinData = data[tempMin].V1;
+	int tempMin = FindMinV(data, 40, 50);//индекс элемента с минимальным напряжением 
+	float tempMinData = data[tempMin].V1;//минимум напряжения 
 	
-	data = Average(data);
-	data = OffsetToZero(data);
+	data = Average(data);//усреднение данных
+	data = OffsetToZero(data);//сдвиг данных относительно минимального элемента
 	Serialization("offsetData", data);
 
-	float Isr = AverageI(data);
-	float angleEx = data[FindAngle(-40, 0, data)].V1;
-	float U40 = data[FindAngle(40, 0, data)].V1;
-	float Ucomp = data[FindAngle(40, 0, data)].V2;
+	float Isr = AverageI(data);//потребляемый ток
+	float angleEx = data[FindAngle(-40, 0, data)].V1;//
+	float U40 = data[FindAngle(40, 0, data)].V1;//выходное напряжение на 40 градусах
+	float Ucomp = data[FindAngle(40, 0, data)].V2;//компенсационное напряжения
 	float Ucm = Ucomp / U40;
-	float delta = angleEx / 8;
-	int clas = 4;
+	float delta = angleEx / 8;//сдвиг напряжения при изменении угла в 5 градусов
+	int clas = 4;//класс прибора
 	if (Ucm >= 0.0481 && Ucm <= 0.0485)clas = 1;
 	else if (Ucm >= 0.0479 && Ucm <= 0.0487)clas = 2;
 	else if (Ucm >= 0.0474 && Ucm <= 0.0491)clas = 3;
@@ -430,12 +429,11 @@ void StepWindow::Test45D20Complete()
 		k++;
 	}
 
-	float Uex = FindUex(ContMin);
-	float MinU = FindMinV(data);
+	float Uex = FindUex(ContMin);//максимальная погрешность
 
 	writer << "\n" << Isr << "\n" << tempMinData << "\n" << Uex 
 		<< "\n" << Ucm << "\n" << U40 << "\n" << clas << "\n" << NumberDevice.toStdString();
-
+	//цветные ячейки
 	QStandardItem* MinUText = new QStandardItem(QString::fromStdString(to_string(tempMinData)));
 	QStandardItem* UexText = new QStandardItem(QString::fromStdString(to_string(Uex)));
 	QStandardItem* UcmText = new QStandardItem(QString::fromStdString(to_string(Ucm)));
@@ -467,7 +465,7 @@ void StepWindow::Test45D20Complete()
 		ClasText->setBackground(red);
 	}
 	U40 > 3300 ? U40Text->setBackground(red) : U40 < 2700 ? U40Text->setBackground(red) : U40Text->setBackground(green);
-
+	//вывод данных в таблицу
 	model->setItem(loop, 0, IsrText);
 	model->setItem(loop, 1, MinUText);
 	model->setItem(loop, 18, UexText);
@@ -475,7 +473,7 @@ void StepWindow::Test45D20Complete()
 	model->setItem(loop, 20, ClasText);
 	model->setItem(loop, 21, U40Text);
 	model->setItem(loop, 22, new QStandardItem(NumberDevice));
-
+	//запись результатов измерения в файл
 	std::ofstream _file("test" + to_string(fileNum) + ".txt", std::ios_base::out);
 	if (_file)
 	{
@@ -520,7 +518,6 @@ void StepWindow::TestSKT232B()
 void StepWindow::Test45D20()
 {
 	if (work->ProccessStatus())Test45D20Complete();
-
 	float ref = work->measure->refAngle;
 	ConvertAngle(ref);
 	if (Contains(data, ref))return;

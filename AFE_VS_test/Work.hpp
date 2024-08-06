@@ -152,6 +152,29 @@ public:
 				return std::make_pair(this->out->getAddress(), Service::State::Ready);
 			};
 	}
+
+	auto setOutputSettings()
+	{
+		/*
+		* Ввод частоты и фазы в микроконтроллер
+		*/
+		return [this]()
+			{
+				//Положительный
+				this->out->outP = resist;
+				this->out->meanP = resist/2;
+				this->out->phaseP = 0.f;
+
+				//Отрицательный
+				this->out->outN = resist;
+				this->out->meanN = resist/2;
+				this->out->phaseN = M_PI;
+				//Частота и ввод
+				this->out->freq = frequency;
+				this->out->transmit(1, Service::Type::TransmitConfirmed);
+				return std::make_pair(this->out->getAddress(), Service::State::Ready);
+			};
+	}
 	/// @brief Метод обратного вызова, уведомления о завершении процесса
 	/// @param id идентификатор процесса
 	void eventProcess(const Processes::processID_t& id)
@@ -255,7 +278,8 @@ public:
 		processes.add(processMonitor, load());
 
 		if (device == "45Д20-2")processes.add(processMonitor, setOutput45D20());
-		else processes.add(processMonitor, setOutputSKT());
+		if (device == "СКТ-232Б") processes.add(processMonitor, setOutputSKT());
+		if (device == "Changed")processes.add(processMonitor, setOutputSettings());
 		
 		processes.add(processMonitor, [this]() {
 			this->control->command = controlService::startMonitor;
@@ -265,7 +289,8 @@ public:
 		processes.add(processMeasure, load());
 
 		if (device == "45Д20-2")processes.add(processMeasure, setOutput45D20());
-		else processes.add(processMeasure, setOutputSKT());
+		if (device == "СКТ-232Б") processes.add(processMeasure, setOutputSKT());
+		
 
 		processes.add(processMeasure, setStepper(stepDirection::Backward, stepRatio::_1, 1200U, 2700U));
 		processes.add(processMeasure, startStepper());
@@ -347,6 +372,24 @@ public:
 	bool isOpen()
 	{
 		return port->isOpen();
+	}
+
+	void ChangeSettings(float freq, float res)
+	{
+		frequency = freq;
+		resist = res;
+		processes.clear(processMonitor);
+		processes.add(processMonitor, load());
+		processes.add(processMonitor, setOutputSettings());
+		processes.add(processMonitor, [this]() {
+			this->control->command = controlService::startMonitor;
+			this->control->transmit(1, Service::Type::TransmitConfirmed);
+			return std::make_pair(this->control->getAddress(), Service::State::Ready);
+			});
+		processes.run(processMonitor);
+		QMessageBox msgBox;
+		msgBox.setText("Настройки успешно изменены!");
+		msgBox.exec();
 	}
 
 	/*
@@ -666,4 +709,6 @@ public:
 	std::shared_ptr<stepService>    step = makeService<stepService>(this, &Work::notify, Services::Step);//сервис с параметрами шага
 	std::shared_ptr<qOutput>        out = makeService<qOutput>(this, &Work::notify, Services::Output);//сервис с пользовательским интерфесом
 	std::shared_ptr<measureService> measure = makeService<measureService>(this, &Work::notify, Services::Parameters);//сервис с данными измерений
+	float frequency = 400;
+	float resist = 6000;
 };
