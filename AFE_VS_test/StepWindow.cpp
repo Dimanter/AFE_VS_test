@@ -528,6 +528,17 @@ void StepWindow::Update()
 {
 	StepThreading();
 	if (!work->port->isOpen())Disconnect();
+	if (DeviceName == "45Д20-2")
+	{
+		if (measures_t(work->measure->Result).V2.RMS > 250 || measures_t(work->measure->Result).V2.RMS < 50)
+		{
+			QMessageBox msgBox;
+			msgBox.setText("Проверьте правильность подключения в колодке");
+			msgBox.exec();
+			Stop();
+			timer->stop();
+		}
+	}
 }
 
 void StepWindow::StepThreading()

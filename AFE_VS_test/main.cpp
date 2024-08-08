@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "MainWindow.hpp"
-#include "StepWindow.hpp"
+//#include "StepWindow.hpp"
 #include "Monitoring.h"
 #include <QApplication>
 #include <QLocale>

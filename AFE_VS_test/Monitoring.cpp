@@ -1,7 +1,6 @@
 ﻿#include "Monitoring.h"
 
-Monitoring::Monitoring(QWidget *parent)
-	: QMainWindow(parent)
+Monitoring::Monitoring(QWidget *parent) : QMainWindow(parent)
 {
 	ui.setupUi(this);
 	connection = false;
@@ -9,8 +8,6 @@ Monitoring::Monitoring(QWidget *parent)
 	connect(work, &Work::portStatus, this, &Monitoring::StatusConnect);
 	Create();
 }
-
-
 
 Monitoring::~Monitoring()
 {}
@@ -30,8 +27,11 @@ void Monitoring::Create()
 	ui.btnStop->setEnabled(false);
 	ui.ChangeSettings->setEnabled(false);
 
-	timer->setInterval(100.f);
+	timer->setInterval(350.f);
 	connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
+
+	timerAverage->setInterval(1.f);
+	connect(timerAverage, SIGNAL(timeout()), this, SLOT(Average()));
 }
 
 void Monitoring::Refresh()
@@ -83,8 +83,6 @@ void Monitoring::StepThreading()
 	ConvertAngle(work->measure->refAngle);
 	ui.textAngle->setPlainText(QString::fromStdString(to_string(angle) + " " + to_string(min) + "' " + to_string(sec) + "'" + "'"));
 	ui.I->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).I.RMS)));
-	//ui.V2Phase->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).V2.Phase)));
-	//ui.V1Phase->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).V1.Phase)));
 	ui.V1->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).V1.RMS)));
 	ui.V2->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).V2.RMS)));
 	ui.IPhase->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).I.Phase)));
@@ -96,6 +94,9 @@ void Monitoring::Monitor()
 	timer->start();
 	work->Monitor();
 	ui.ChangeSettings->setEnabled(false);
+	angle = 0;
+	min = 0;
+	sec = 0;
 }
 
 void Monitoring::StatusConnect(bool connected)
@@ -129,11 +130,140 @@ void Monitoring::ChangeSettings()
 	{
 
 	}
-	
+}
+
+vector<Data> Monitoring::EraseErrors(vector<Data> cont)
+{
+	vector<Data> temp;
+	temp.push_back(cont[0]);
+	for (int i = 1; i < cont.size(); i++)
+	{
+		if (abs(temp[temp.size() - 1].V1 - cont[i].V1) < 60);
+		temp.push_back(cont[i]);
+	}
+	vector<Data> result;
+	for (int i = 3; i < temp.size() - 2; i++)
+	{
+
+		float val1 = (temp[i - 1].V1 + temp[i - 2].V1) / 2;
+		float val2 = (temp[i + 1].V1 + temp[i + 2].V1) / 2;
+		float delta = (val1 + val2) / 10;
+		if (val1 < 50)delta = 5;
+		if (abs(temp[i].V1 - val1) < delta || abs(temp[i].V1 - val2) < delta)
+			result.push_back(temp[i]);
+	}
+	return result;
+}
+
+Data Monitoring::Read()
+{
+	Data temp;
+
+	temp.angle = angle;
+	temp.min = min;
+	temp.sec = sec;
+	temp.angleGrad = work->measure->refAngle;
+	temp.V1 = measures_t(work->measure->Result).V1.RMS;
+	temp.V2 = measures_t(work->measure->Result).V2.RMS;
+	temp.Phase1 = measures_t(work->measure->Result).V1.Phase;
+	temp.Phase2 = measures_t(work->measure->Result).V2.Phase;
+	temp.I = measures_t(work->measure->Result).I.RMS;
+	temp.IPhase = measures_t(work->measure->Result).I.Phase;
+
+	return temp;
+}
+
+vector<Data> Monitoring::AverageData(vector<Data> cont)
+{
+	vector<Data> temp;
+	int* Angle = VectorInMass(cont, false);
+	int* Min = VectorInMass(cont, true);
+	float* V = VectorInMassV(cont, true);
+	float* V2 = VectorInMassV(cont, false);
+	for (int i = 0; i < cont.size(); i++)
+	{
+		int currentMin = Min[i];
+		int currentAngle = Angle[i];
+		if (Contains(temp, currentAngle, currentMin))continue;
+		float sum = 0;
+		float sum2 = 0;
+		float sumI = 0;
+		float sumIP = 0;
+		int k = 0;
+		for (int j = i; j < cont.size(); j++)
+		{
+			if (currentAngle == Angle[j] && currentMin == Min[j])
+			{
+				sum += V[j];
+				sum2 += V2[j];
+				sumI += cont[j].I;
+				sumIP += cont[j].IPhase;
+				k++;
+			}
+		}
+		sum /= k;
+		sum2 /= k;
+		sumI /= k;
+
+		Data dt;
+		dt.angle = currentAngle;
+		dt.min = currentMin;
+
+		dt.V1 = sum;
+		dt.V2 = sum2;
+		dt.I = sumI;
+		dt.IPhase = sumIP;
+
+		temp.push_back(dt);
+	}
+	return temp;
+}
+
+int* Monitoring::VectorInMass(vector<Data> cont, bool mins)
+{
+	int* temp = new int[cont.size()];
+	for (int i = 0; i < cont.size(); i++)
+	{
+		if (mins)
+			temp[i] = cont[i].min;
+		else
+			temp[i] = cont[i].angle;
+	}
+	return temp;
+}
+
+float* Monitoring::VectorInMassV(vector<Data> cont, bool V1)
+{
+	float* V = new float[cont.size()];
+	for (int i = 0; i < cont.size(); i++)
+	{
+		if (V1)V[i] = cont[i].V1;
+		else V[i] = cont[i].V2;
+	}
+	return V;
+}
+
+bool Monitoring::Contains(vector<Data> cont, int _angle, int _min)
+{
+	for (int i = 0; i < cont.size(); i++)
+	{
+		if (cont[i].min == _min)
+			if (cont[i].angle == _angle)
+				return true;
+	}
+	return false;
+}
+
+void Monitoring::Average()
+{
+	data.push_back(Read());
 }
 
 void Monitoring::Update()
 {
+	data = EraseErrors(data);
+	data = AverageData(data);
 	StepThreading();
 	if (!work->port->isOpen())Disconnect();
+	data.clear();
 }
