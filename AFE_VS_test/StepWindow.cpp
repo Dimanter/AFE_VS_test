@@ -275,7 +275,7 @@ void StepWindow::TestComplete()
 		neravRotor = abs(Grad[Punkts["и"]] - Grad[Punkts["в"]] / 2.f);//Нера-во коэф. Ротора
 		neravStator = abs(Grad[Punkts["к3"]] - (Grad[Punkts["к2"]] + Grad[Punkts["к1"]]) / 2.f);//Нера-во коэф. Статора
 		neravU = abs(Grad[Punkts["л"]] - (Grad[Punkts["г"]] / 2.f));//Нера-во сопротивления
-		elAssimetry = (abs(MinOffset(Grad)) + abs(MaxOffset(Grad))) / 2.f;//Электромаг. Ассиметрия
+		//elAssimetry = (abs(MinOffset(Grad)) + abs(MaxOffset(Grad))) / 2.f;//Электромаг. Ассиметрия
 	}
 	catch (...)
 	{
@@ -288,18 +288,24 @@ void StepWindow::TestComplete()
 	{
 		for (auto t : Punkts)
 		{
-			if (t.first <= "з" && t.first >= "б")
-				minmax.push_back(Grad[Punkts[t.first]]);
 			writer << tmpInd[IndT[k]] << ";";
 			model->setItem(loop, k + 2, new QStandardItem(QString::fromStdString(tmpInd[IndT[k]])));
 			k++;
 		}
+		minmax.push_back(Grad[Punkts["б"]]);
+		minmax.push_back(Grad[Punkts["в"]]);
+		minmax.push_back(Grad[Punkts["г"]]);
+		minmax.push_back(Grad[Punkts["д"]]);
+		minmax.push_back(Grad[Punkts["е"]]);
+		minmax.push_back(Grad[Punkts["ж"]]);
+		minmax.push_back(Grad[Punkts["з"]]);
 	}
 	catch (...)
 	{
 		QMessageBox::warning(window, "Error", "Не удалось вычислить коэфиценты");
 		return;
 	}
+
 
 	try
 	{
@@ -528,17 +534,6 @@ void StepWindow::Update()
 {
 	StepThreading();
 	if (!work->port->isOpen())Disconnect();
-	if (DeviceName == "45Д20-2")
-	{
-		if (measures_t(work->measure->Result).V2.RMS > 250 || measures_t(work->measure->Result).V2.RMS < 50)
-		{
-			QMessageBox msgBox;
-			msgBox.setText("Проверьте правильность подключения в колодке");
-			msgBox.exec();
-			Stop();
-			timer->stop();
-		}
-	}
 }
 
 void StepWindow::StepThreading()
@@ -845,6 +840,11 @@ void StepWindow::CreateWindowSKT()
 	lay->addWidget(view);
 	StatusCon = new QLabel(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
 
+	QToolBar* toolBar = new QToolBar("control tool bar");
+	QPushButton* aboutButton = new QPushButton("О программе");
+	QObject::connect(aboutButton, &QPushButton::clicked, this, &StepWindow::AboutProgramm);
+	toolBar->addWidget(aboutButton);
+
 	QVBoxLayout* PortV = new QVBoxLayout();
 	QVBoxLayout* StartV = new QVBoxLayout();
 	QVBoxLayout* ConnectV = new QVBoxLayout();
@@ -886,6 +886,7 @@ void StepWindow::CreateWindowSKT()
 	QHBoxLayout* layoutMainHor = new QHBoxLayout();
 	QVBoxLayout* layoutMainVer = new QVBoxLayout();
 
+	layoutMainVer->addWidget(toolBar);
 	layoutMainVer->addLayout(ConnectH);
 	layoutMainVer->addLayout(lay);
 	layoutMainVer->addWidget(StatusCon);
@@ -1183,6 +1184,11 @@ void StepWindow::CreateWindow45D20()
 	lay->addWidget(view);
 	StatusCon = new QLabel(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
 
+	QToolBar* toolBar = new QToolBar("control tool bar");
+	QPushButton* aboutButton = new QPushButton("О программе");
+	QObject::connect(aboutButton, &QPushButton::clicked, this, &StepWindow::AboutProgramm);
+	toolBar->addWidget(aboutButton);
+
 	QVBoxLayout* PortV = new QVBoxLayout();
 	QVBoxLayout* StartV = new QVBoxLayout();
 	QVBoxLayout* ConnectV = new QVBoxLayout();
@@ -1225,6 +1231,7 @@ void StepWindow::CreateWindow45D20()
 	QHBoxLayout* layoutMainHor = new QHBoxLayout();
 	QVBoxLayout* layoutMainVer = new QVBoxLayout();
 
+	layoutMainVer->addWidget(toolBar);
 	layoutMainVer->addLayout(ConnectH);
 	layoutMainVer->addLayout(lay);
 	layoutMainVer->addWidget(StatusCon);
@@ -1263,32 +1270,6 @@ void StepWindow::Stop()
 
 void StepWindow::StartSKT()
 {
-	/*for (int i = 1; i < 7; i++)
-	{
-		model->setItem(i, 0, new QStandardItem(QString::fromStdString("1.1")));
-		model->setItem(i, 1, new QStandardItem(QString::fromStdString("2087.23238")));
-		model->setItem(i, 2, new QStandardItem(QString::fromStdString("0")));
-		model->setItem(i, 3, new QStandardItem(QString::fromStdString("-9")));
-		model->setItem(i, 4, new QStandardItem(QString::fromStdString("0")));
-		model->setItem(i, 5, new QStandardItem(QString::fromStdString("-7")));
-		model->setItem(i, 6, new QStandardItem(QString::fromStdString("-2")));
-		model->setItem(i, 7, new QStandardItem(QString::fromStdString("-12")));
-		model->setItem(i, 8, new QStandardItem(QString::fromStdString("-3")));
-		model->setItem(i, 9, new QStandardItem(QString::fromStdString("-12")));
-		model->setItem(i, 10, new QStandardItem(QString::fromStdString("5")));
-		model->setItem(i, 11, new QStandardItem(QString::fromStdString("-6")));
-		model->setItem(i, 12, new QStandardItem(QString::fromStdString("1")));
-		model->setItem(i, 13, new QStandardItem(QString::fromStdString("-10")));
-		model->setItem(i, 14, new QStandardItem(QString::fromStdString("-6")));
-		model->setItem(i, 15, new QStandardItem(QString::fromStdString("6")));
-		model->setItem(i, 16, new QStandardItem(QString::fromStdString("5")));
-		model->setItem(i, 17, new QStandardItem(QString::fromStdString("1.5")));
-		model->setItem(i, 18, new QStandardItem(QString::fromStdString("2.5")));
-		model->setItem(i, 19, new QStandardItem(QString::fromStdString("40.7")));
-		model->setItem(i, 20, new QStandardItem(QString::fromStdString(to_string(i))));
-	}
-	fileNum = 6;
-	loop = 7;*/
 	if (fileNum > 48)
 	{
 		QMessageBox::warning(window, "Error", "Документ переполнен. Создайте отчёт.");
@@ -1555,6 +1536,13 @@ bool StepWindow::DialogDel()
 	return ok;
 }
 
+void StepWindow::AboutProgramm()
+{
+	QMessageBox box;
+	box.setText("Программа измерений программноаппаратного комплекса УПП-1 \nFirmware версия 1.0 \nИдентификационный номер (CRC32): 889DBC3C");
+	box.exec();
+}
+
 bool StepWindow::Contains(vector<Data> cont, float _agnle)
 {
 	for (int i = 0; i < cont.size(); i++)
@@ -1592,21 +1580,18 @@ bool StepWindow::Plus(vector<int> cont)
 {
 	for (int i = 0; i < cont.size(); i++)
 	{
-		if (cont[i] < 0)return false;
+		if (cont[i] > 0)return true;
 	}
-	return true;
+	return false;
 }
 
 bool StepWindow::Minus(vector<int> cont)
 {
 	for (int i = 0; i < cont.size(); i++)
 	{
-		if (cont[i] > 0)
-		{
-			return false;
-		}
+		if (cont[i] < 0)return true;
 	}
-	return true;
+	return false;
 }
 
 bool StepWindow::CheckDiap(int _angle, int _min)

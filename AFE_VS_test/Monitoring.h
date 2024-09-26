@@ -8,25 +8,25 @@
 #include <QtSerialPort/qserialport.h>
 #include <QtSerialPort/qserialportinfo.h>
 
-#include "Work.hpp"
+#include "StepWindow.hpp"
 #include "ui_Monitoring.h"
 
 /*@brief Класс для хранения данных
 */
-class Data
-{
-public:
-	float angleGrad;// Угол в градусах с плавающей запятой
-	int angle;// Угол в градусах целочисленный
-	int min;// Минуты угла
-	int sec;// Секунды угла
-	float V1;// Напряжение на первом канале
-	float V2;// Напряжение на втором канале
-	float Phase1;// Фаза первого канала
-	float Phase2;// фаза второго канала
-	float I;// Сила тока
-	float IPhase;// Фаза тока
-};
+//class Data
+//{
+//public:
+//	float angleGrad;// Угол в градусах с плавающей запятой
+//	int angle;// Угол в градусах целочисленный
+//	int min;// Минуты угла
+//	int sec;// Секунды угла
+//	float V1;// Напряжение на первом канале
+//	float V2;// Напряжение на втором канале
+//	float Phase1;// Фаза первого канала
+//	float Phase2;// фаза второго канала
+//	float I;// Сила тока
+//	float IPhase;// Фаза тока
+//};
 
 class Monitoring : public QMainWindow
 {
@@ -57,6 +57,7 @@ public:
 	void ConvertAngle(float _angle);
 	//@brief Метод изменяющий частоту и напряжение на контроллере
 	void ChangeSettings();
+	void AboutProgramm();
 	//@brief Метод считывающй данные с контроллера
 	//@return Структура данных
 	Data Read();

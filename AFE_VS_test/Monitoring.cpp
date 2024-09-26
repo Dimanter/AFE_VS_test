@@ -22,12 +22,17 @@ void Monitoring::Create()
 	QObject::connect(ui.btnStop, &QPushButton::clicked, this, &Monitoring::Stop);
 	QObject::connect(ui.ChangeSettings, &QPushButton::clicked, this, &Monitoring::ChangeSettings);
 
+	QPushButton *aboutButton = new QPushButton("О программе");
+	aboutButton->setShortcut(QKeySequence("CTRL + O"));
+	QObject::connect(aboutButton, &QPushButton::clicked, this, &Monitoring::AboutProgramm);
+	ui.toolBar->addWidget(aboutButton);// Программа монитор программноаппаратного комплекса УПП-1 (вер.. ид)
+
 	ui.btnDisconnect->setEnabled(false);
 	ui.btnMonitor->setEnabled(false);
 	ui.btnStop->setEnabled(false);
 	ui.ChangeSettings->setEnabled(false);
 
-	timer->setInterval(350.f);
+	timer->setInterval(1500.f);
 	connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
 
 	timerAverage->setInterval(1.f);
@@ -130,6 +135,13 @@ void Monitoring::ChangeSettings()
 	{
 
 	}
+}
+
+void Monitoring::AboutProgramm()
+{
+	QMessageBox box;
+	box.setText("Программа монитор программноаппаратного комплекса УПП-1 \nFirmware версия 1.0 \nИдентификационный номер (CRC32): 889DBC3C");
+	box.exec();
 }
 
 vector<Data> Monitoring::EraseErrors(vector<Data> cont)
@@ -261,7 +273,7 @@ void Monitoring::Average()
 
 void Monitoring::Update()
 {
-	data = EraseErrors(data);
+	//data = EraseErrors(data);
 	data = AverageData(data);
 	StepThreading();
 	if (!work->port->isOpen())Disconnect();
