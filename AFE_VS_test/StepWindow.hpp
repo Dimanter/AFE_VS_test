@@ -94,6 +94,8 @@ public:
 	void CreateWindow45D20();
 	/*@brief Метод покдлючения к com-порту
 	*/
+	void ActivateButton();
+	void DiactivateButton();
 	void Connect();
 	/*@brief Метод отключения от com-порта
 	*/
@@ -300,6 +302,7 @@ private:
 	QPushButton* btnTest;// Кнопка теста
 	QPushButton* btnRefreshPort;// Кнопка обновления com-портов
 	QPushButton* btnStop;// Кнопка остановки процессов
+	QPushButton* btnMonitor;
 
 	QTextEdit* textDir;// Текствоое окно для записи направления движения мотора
 	QTextEdit* textPeriod;// Текстовое окно для записи периода импульсов

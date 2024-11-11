@@ -57,6 +57,7 @@ public:
 	void ConvertAngle(float _angle);
 	//@brief Метод изменяющий частоту и напряжение на контроллере
 	void ChangeSettings();
+	//void Start();
 	void AboutProgramm();
 	//@brief Метод считывающй данные с контроллера
 	//@return Структура данных

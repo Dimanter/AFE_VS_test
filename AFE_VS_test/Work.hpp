@@ -548,64 +548,73 @@ public:
 	*/
 	void ReadyStart(int Dir, int StepRate, int Period, int Count)
 	{
+		processes.clear(processStart);
 		stepDirection direction;
 		if (Dir == 0)
 			direction = stepDirection::Forward;
 		else
 			direction = stepDirection::Backward;
-		processes.clear(processStart);
-		stepRatio ratio;
+		stepRatio ratio = stepRatio::_1;
 		switch (StepRate)
 		{
 		case 1:
 		{
 			ratio = stepRatio::_1;
+			Period = 1200;
 			break;
 		}
 		case 2:
 		{
 			ratio = stepRatio::_1_2;
+			Period = 1200;
 			break;
 		}
 		case 4:
 		{
 			ratio = stepRatio::_1_4;
+			Period = 600;
 			break;
 		}
 		case 8:
 		{
 			ratio = stepRatio::_1_8;
+			Period = 600;
 			break;
 		}
 		case 16:
 		{
-			ratio = stepRatio::_1_16;
+			ratio = stepRatio::_1_16; 
+			Period = 200;
 			break;
 		}
 		case 32:
 		{
 			ratio = stepRatio::_1_32;
+			Period = 200;
 			break;
 		}
 		case 64:
 		{
 			ratio = stepRatio::_1_64;
+			Period = 200;
 			break;
 		}
 		case 128:
 		{
 			ratio = stepRatio::_1_128;
+			Period = 200;
 			break;
 		}
 		case 256:
 		{
 			ratio = stepRatio::_1_256;
+			Period = 200;
 			break;
 		}
 		}
 
 		processes.add(processStart, load());
-		processes.add(processStart, setOutputSKT());
+		processes.add(processStart, setOutput45D20());
 		processes.add(processStart, [this]() {
 			this->control->command = controlService::startMeasuremnt;
 			this->control->transmit(1, Service::Type::TransmitConfirmed);

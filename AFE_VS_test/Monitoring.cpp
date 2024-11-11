@@ -21,6 +21,7 @@ void Monitoring::Create()
 	QObject::connect(ui.btnMonitor, &QPushButton::clicked, this, &Monitoring::Monitor);
 	QObject::connect(ui.btnStop, &QPushButton::clicked, this, &Monitoring::Stop);
 	QObject::connect(ui.ChangeSettings, &QPushButton::clicked, this, &Monitoring::ChangeSettings);
+	//QObject::connect(ui.btnStart, &QPushButton::clicked, this, &Monitoring::Start);
 
 	QPushButton *aboutButton = new QPushButton("О программе");
 	aboutButton->setShortcut(QKeySequence("CTRL + O"));
@@ -30,13 +31,14 @@ void Monitoring::Create()
 	ui.btnDisconnect->setEnabled(false);
 	ui.btnMonitor->setEnabled(false);
 	ui.btnStop->setEnabled(false);
+	//ui.btnStart->setEnabled(false);
 	ui.ChangeSettings->setEnabled(false);
 
-	timer->setInterval(1500.f);
+	timer->setInterval(1.f);
 	connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
 
-	timerAverage->setInterval(1.f);
-	connect(timerAverage, SIGNAL(timeout()), this, SLOT(Average()));
+	/*timerAverage->setInterval(1.f);
+	connect(timerAverage, SIGNAL(timeout()), this, SLOT(Average()));*/
 }
 
 void Monitoring::Refresh()
@@ -57,6 +59,7 @@ void Monitoring::Connect()
 	ui.btnDisconnect->setEnabled(true);
 	ui.btnMonitor->setEnabled(true);
 	ui.btnStop->setEnabled(true);
+	//ui.btnStart->setEnabled(true);
 	ui.ChangeSettings->setEnabled(true);
 	ui.StatusCon->setText(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
 
@@ -83,6 +86,17 @@ void Monitoring::Stop()
 	ui.ChangeSettings->setEnabled(true);
 }
 
+//void Monitoring::Start()
+//{
+//	if (!work->port->isOpen())return;
+//	int ratio = pow(2, ui.spd->currentIndex());
+//	int step = ui.step->toPlainText().toInt();
+//	work->ReadyStart(0, ratio, 200, step);
+//	timer->start();
+//	_sleep(10);
+//	work->processRun();
+//}
+
 void Monitoring::StepThreading()
 {
 	ConvertAngle(work->measure->refAngle);
@@ -99,9 +113,6 @@ void Monitoring::Monitor()
 	timer->start();
 	work->Monitor();
 	ui.ChangeSettings->setEnabled(false);
-	angle = 0;
-	min = 0;
-	sec = 0;
 }
 
 void Monitoring::StatusConnect(bool connected)
@@ -136,6 +147,7 @@ void Monitoring::ChangeSettings()
 
 	}
 }
+
 
 void Monitoring::AboutProgramm()
 {
@@ -268,14 +280,14 @@ bool Monitoring::Contains(vector<Data> cont, int _angle, int _min)
 
 void Monitoring::Average()
 {
-	data.push_back(Read());
+	//data.push_back(Read());
 }
 
 void Monitoring::Update()
 {
 	//data = EraseErrors(data);
-	data = AverageData(data);
+	//data = AverageData(data);
 	StepThreading();
 	if (!work->port->isOpen())Disconnect();
-	data.clear();
+	//data.clear();
 }

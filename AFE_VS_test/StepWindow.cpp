@@ -36,6 +36,10 @@ StepWindow::StepWindow(const QString& device, QWidget* parent)
 		CreateWindowSKT();
 		window->showMaximized();
 	}
+	else if (device == "СКТ-265Д")
+	{
+
+	}
 
 	timer->setInterval(1.f);
 	connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
@@ -194,9 +198,9 @@ void StepWindow::TestComplete()
 				temp.push_back(adt[i]);
 		}
 	}
-	catch (...)
+	catch (const std::exception&)
 	{
-		QMessageBox::warning(window, "Error", "Не удалось выполнить разделение данных");
+		QMessageBox::warning(window, "Error", "Не удалось выполнить разделение данных, проверьте правильность установки датчика.");
 		return;
 	}
 	//*
@@ -230,9 +234,9 @@ void StepWindow::TestComplete()
 			Serialization("av" + to_string(i), allData[i]);
 		}
 	}
-	catch (...)
+	catch (const std::exception&)
 	{
-		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных");
+		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных, проверьте правильность установки датчика.");
 		return;
 	}
 
@@ -257,19 +261,18 @@ void StepWindow::TestComplete()
 			tmpInd.push_back(tmp);
 		}
 	}
-	catch (...)
+	catch (const std::exception&)
 	{
-		QMessageBox::warning(window, "Error", "Не удалось вычислить отклонение роторов");
+		QMessageBox::warning(window, "Error", "Не удалось вычислить отклонение роторов, проверьте правильность установки датчика.");
 		return;
 	}
 	//*
 	vector<int> minmax;
-	float neravRotor;
-	float neravStator;
-	float neravU;
-	float elAssimetry;
+	float neravRotor;//неравенство ротора
+	float neravStator;//неравенство статора
+	float neravU;//неравенство напряжения
+	float elAssimetry;//электронная ассиметрия 
 
-	//*Заполнение таблицы
 	try
 	{
 		neravRotor = abs(Grad[Punkts["и"]] - Grad[Punkts["в"]] / 2.f);//Нера-во коэф. Ротора
@@ -277,12 +280,11 @@ void StepWindow::TestComplete()
 		neravU = abs(Grad[Punkts["л"]] - (Grad[Punkts["г"]] / 2.f));//Нера-во сопротивления
 		//elAssimetry = (abs(MinOffset(Grad)) + abs(MaxOffset(Grad))) / 2.f;//Электромаг. Ассиметрия
 	}
-	catch (...)
+	catch (const std::exception&)
 	{
-		QMessageBox::warning(window, "Error", "Не удалось вычислить коэфиценты");
+		QMessageBox::warning(window, "Error", "Не удалось вычислить коэфиценты, проверьте правильность установки датчика.");
 		return;
 	}
-
 
 	try
 	{
@@ -300,9 +302,9 @@ void StepWindow::TestComplete()
 		minmax.push_back(Grad[Punkts["ж"]]);
 		minmax.push_back(Grad[Punkts["з"]]);
 	}
-	catch (...)
+	catch (const std::exception&)
 	{
-		QMessageBox::warning(window, "Error", "Не удалось вычислить коэфиценты");
+		QMessageBox::warning(window, "Error", "Не удалось вычислить коэфиценты, проверьте правильность установки датчика.");
 		return;
 	}
 
@@ -316,9 +318,9 @@ void StepWindow::TestComplete()
 			elAssimetry = Plus(minmax) ? abs(MaxOffset(minmax)) / 2.f : abs(MinOffset(minmax)) / 2.f;
 		Isr *= 2;
 	}
-	catch (...)
+	catch (const std::exception&)
 	{
-		QMessageBox::warning(window, "Error", "Не удалось вычислить ассиметрию");
+		QMessageBox::warning(window, "Error", "Не удалось вычислить ассиметрию, проверьте правильность установки датчика.");
 		return;
 	}
 
@@ -382,57 +384,96 @@ void StepWindow::Test45D20Complete()
 	stringstream writer;//потоковая запись результатов измерений в файл
 	vector<float> AngleRes;//расчётное напряжения на углах расчёта погрешности
 	vector<Data> ErrRate;//измеренные данные на углах расчёта погрешности
+	float Isr;//потребляемый ток
+	float angleEx;//выходное напряжение на угле -40 градусов
+	float U40;//выходное напряжение  на угле 40 градусов
+	float Ucomp;//компенсационное напряжения
+	float Ucm;//коэфицент классности
+	float delta;//сдвиг напряжения при изменении угла в 5 градусов
+	int clas;//класс прибора
 	int k = 0;
 
 	Serialization("data1", data);
 	data = EraseErrors(data);
-	
+
 	int tempMin = FindMinV(data, 40, 50);//индекс элемента с минимальным напряжением 
 	float tempMinData = data[tempMin].V1;//минимум напряжения 
-	
-	data = Average(data);//усреднение данных
-	data = OffsetToZero(data);//сдвиг данных относительно минимального элемента
-	Serialization("offsetData", data);
-
-	float Isr = AverageI(data);//потребляемый ток
-	float angleEx = data[FindAngle(-40, 0, data)].V1;//
-	float U40 = data[FindAngle(40, 0, data)].V1;//выходное напряжение на 40 градусах
-	float Ucomp = data[FindAngle(40, 0, data)].V2;//компенсационное напряжения
-	float Ucm = Ucomp / U40;
-	float delta = angleEx / 8;//сдвиг напряжения при изменении угла в 5 градусов
-	int clas = 4;//класс прибора
-	if (Ucm >= 0.0481 && Ucm <= 0.0485)clas = 1;
-	else if (Ucm >= 0.0479 && Ucm <= 0.0487)clas = 2;
-	else if (Ucm >= 0.0474 && Ucm <= 0.0491)clas = 3;
+	try
+	{
+		data = Average(data);//усреднение данных
+		data = OffsetToZero(data);//сдвиг данных относительно минимального элемента
+		Serialization("offsetData", data);
+	}
+	catch (const std::exception&)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных, проверьте правильность установки датчика.");
+		return;
+	}
+	try
+	{
+		Isr = AverageI(data);
+		angleEx = data[FindAngle(-40, 0, data)].V1;
+		U40 = data[FindAngle(40, 0, data)].V1;
+		Ucomp = data[FindAngle(40, 0, data)].V2;
+		Ucm = Ucomp / U40;
+		delta = angleEx / 8;
+		clas = 4;
+		if (Ucm >= 0.0481 && Ucm <= 0.0485)clas = 1;
+		else if (Ucm >= 0.0479 && Ucm <= 0.0487)clas = 2;
+		else if (Ucm >= 0.0474 && Ucm <= 0.0491)clas = 3;
+	}
+	catch (const std::exception&)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных, проверьте правильность установки датчика.");
+		return;
+	}
 
 	AngleRes.push_back(angleEx);
 	ErrRate.push_back(FindNearestAngle(angleEx, -40, data));
 	k++;
 
 	int angleRef = -35;
-	for (int i = 0; i < 16; i++)
+	try
 	{
-		if (i == 7)continue;
-		AngleRes.push_back(abs(angleEx - delta * (i + 1)));
-		ErrRate.push_back(FindNearestAngle(AngleRes[k], angleRef, data));
-		angleRef += 5;
-		if (angleRef == 0)angleRef += 5;
-		k++;
+		for (int i = 0; i < 16; i++)
+		{
+			if (i == 7)continue;
+			AngleRes.push_back(abs(angleEx - delta * (i + 1)));
+			ErrRate.push_back(FindNearestAngle(AngleRes[k], angleRef, data));
+			angleRef += 5;
+			if (angleRef == 0)angleRef += 5;
+			k++;
+		}
+	}
+	catch (const std::exception&)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных, проверьте правильность установки датчика.");
+		return;
 	}
 
+
 	vector<int> ContMin;
-	angleRef = 40;
-	k = 2;
-	for (int i = 0; i < ErrRate.size(); i++)
+	try
 	{
-		int temp = abs(ErrRate[i].angle) - abs(angleRef);
-		int MinR = temp * 60 + ErrRate[i].min;
-		ContMin.push_back(MinR);
-		model->setItem(loop, k, new QStandardItem(QString::fromStdString(to_string(MinR) + "'")));
-		writer << MinR << "';";
-		angleRef -= 5;
-		if (angleRef == 0)angleRef -= 5;
-		k++;
+
+		angleRef = 40;
+		k = 2;
+		for (int i = 0; i < ErrRate.size(); i++)
+		{
+			int temp = abs(ErrRate[i].angle) - abs(angleRef);
+			int MinR = temp * 60 + ErrRate[i].min;
+			ContMin.push_back(MinR);
+			model->setItem(loop, k, new QStandardItem(QString::fromStdString(to_string(MinR) + "'")));
+			writer << MinR << "';";
+			angleRef -= 5;
+			if (angleRef == 0)angleRef -= 5;
+			k++;
+		}
+	}
+	catch (const std::exception&)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных, проверьте правильность установки датчика.");
+		return;
 	}
 
 	float Uex = FindUex(ContMin);//максимальная погрешность
@@ -679,17 +720,17 @@ void StepWindow::CreateWindowSKT()
 		"border-style: inset;"
 		"}");
 
-	QPushButton* btnMonitor = new QPushButton("Монитор");
+	btnMonitor = new QPushButton("Монитор");
 	QObject::connect(btnMonitor, &QPushButton::clicked, this, &StepWindow::StartMonitor);
 	btnMonitor->setMinimumWidth(200);
 	btnMonitor->setMinimumHeight(50);
 	btnMonitor->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
-		"color: #00C2DF;"
+		"color: #CCCCCC;"
 		"border-style: outset;"
 		"border-width: 2px;"
 		"border-radius: 10px;"
-		"border-color: #00C2DF;"
+		"border-color: #CCCCCC;"
 		"font: bold 14px;"
 		"min-width: 10em;"
 		"padding: 6px;"
@@ -702,11 +743,11 @@ void StepWindow::CreateWindowSKT()
 	btnStart = new QPushButton("Старт");
 	btnStart->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
-		"color: #66cc00;"
+		"color: #CCCCCC;"
 		"border-style: outset;"
 		"border-width: 2px;"
 		"border-radius: 10px;"
-		"border-color: #66cc00;"
+		"border-color: #CCCCCC;"
 		"font: bold 14px;"
 		"min-width: 10em;"
 		"padding: 6px;"
@@ -727,11 +768,11 @@ void StepWindow::CreateWindowSKT()
 	btnStop->setEnabled(false);
 	btnStop->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
-		"color: #F44336;"
+		"color: #CCCCCC;"
 		"border-style: outset;"
 		"border-width: 2px;"
 		"border-radius: 10px;"
-		"border-color: #F44336;"
+		"border-color: #CCCCCC;"
 		"font: bold 14px;"
 		"min-width: 10em;"
 		"padding: 6px;"
@@ -1020,17 +1061,17 @@ void StepWindow::CreateWindow45D20()
 		"border-style: inset;"
 		"}");
 
-	QPushButton* btnMonitor = new QPushButton("Монитор");
+	btnMonitor = new QPushButton("Монитор");
 	QObject::connect(btnMonitor, &QPushButton::clicked, this, &StepWindow::StartMonitor);
 	btnMonitor->setMinimumWidth(200);
 	btnMonitor->setMinimumHeight(50);
 	btnMonitor->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
-		"color: #00C2DF;"
+		"color: #CCCCCC;"
 		"border-style: outset;"
 		"border-width: 2px;"
 		"border-radius: 10px;"
-		"border-color: #00C2DF;"
+		"border-color: #CCCCCC;"
 		"font: bold 14px;"
 		"min-width: 10em;"
 		"padding: 6px;"
@@ -1043,11 +1084,11 @@ void StepWindow::CreateWindow45D20()
 	btnStart = new QPushButton("Старт");
 	btnStart->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
-		"color: #66cc00;"
+		"color: #CCCCCC;"
 		"border-style: outset;"
 		"border-width: 2px;"
 		"border-radius: 10px;"
-		"border-color: #66cc00;"
+		"border-color: #CCCCCC;"
 		"font: bold 14px;"
 		"min-width: 10em;"
 		"padding: 6px;"
@@ -1068,11 +1109,11 @@ void StepWindow::CreateWindow45D20()
 	btnStop->setEnabled(false);
 	btnStop->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
-		"color: #F44336;"
+		"color: #CCCCCC;"
 		"border-style: outset;"
 		"border-width: 2px;"
 		"border-radius: 10px;"
-		"border-color: #F44336;"
+		"border-color: #CCCCCC;"
 		"font: bold 14px;"
 		"min-width: 10em;"
 		"padding: 6px;"
@@ -1239,16 +1280,154 @@ void StepWindow::CreateWindow45D20()
 	window->setLayout(layoutMainVer);
 }
 
-void StepWindow::Connect()
+void StepWindow::ActivateButton()
 {
-	if (!work->Connect(comboPort1->currentText()))return;
-	connection = true;
 	btnConnect->setEnabled(false);
 	btnStart->setEnabled(true);
 	btnStop->setEnabled(true);
-	StatusCon->setText(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
+	btnConnect->setStyleSheet("QPushButton{"
+		"background-color: #323232;"
+		"color: #66cc00;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 10px;"
+		"border-color: #66cc00;"
+		"font: bold 14px;"
+		"min-width: 10em;"
+		"padding: 6px;"
+		"}"
+		"QPushButton::pressed{"
+		"background-color:  #666666;"
+		"border-style: inset;"
+		"}");
 
+	btnStart->setStyleSheet("QPushButton{"
+		"background-color: #323232;"
+		"color: #66cc00;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 10px;"
+		"border-color: #66cc00;"
+		"font: bold 14px;"
+		"min-width: 10em;"
+		"padding: 6px;"
+		"}"
+		"QPushButton::pressed{"
+		"background-color:  #666666;"
+		"border-style: inset;"
+		"}");
+
+	btnMonitor->setStyleSheet("QPushButton{"
+		"background-color: #323232;"
+		"color: #00C2DF;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 10px;"
+		"border-color: #00C2DF;"
+		"font: bold 14px;"
+		"min-width: 10em;"
+		"padding: 6px;"
+		"}"
+		"QPushButton::pressed{"
+		"background-color:  #666666;"
+		"border-style: inset;"
+		"}");
+
+	btnStop->setStyleSheet("QPushButton{"
+		"background-color: #323232;"
+		"color: #F44336;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 10px;"
+		"border-color: #F44336;"
+		"font: bold 14px;"
+		"min-width: 10em;"
+		"padding: 6px;"
+		"}"
+		"QPushButton::pressed{"
+		"background-color:  #666666;"
+		"border-style: inset;"
+		"}");
+}
+
+void StepWindow::DiactivateButton()
+{
+	btnConnect->setEnabled(true);
+	btnStart->setEnabled(false);
+	btnStop->setEnabled(false);
+
+	btnConnect->setStyleSheet("QPushButton{"
+		"background-color: #323232;"
+		"color: #CCCCCC;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 10px;"
+		"border-color: #CCCCCC;"
+		"font: bold 14px;"
+		"min-width: 10em;"
+		"padding: 6px;"
+		"}"
+		"QPushButton::pressed{"
+		"background-color:  #666666;"
+		"border-style: inset;"
+		"}");
+
+	btnStart->setStyleSheet("QPushButton{"
+		"background-color: #323232;"
+		"color: #CCCCCC;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 10px;"
+		"border-color: #CCCCCC;"
+		"font: bold 14px;"
+		"min-width: 10em;"
+		"padding: 6px;"
+		"}"
+		"QPushButton::pressed{"
+		"background-color:  #666666;"
+		"border-style: inset;"
+		"}");
+
+	btnMonitor->setStyleSheet("QPushButton{"
+		"background-color: #323232;"
+		"color: #CCCCCC;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 10px;"
+		"border-color: #CCCCCC;"
+		"font: bold 14px;"
+		"min-width: 10em;"
+		"padding: 6px;"
+		"}"
+		"QPushButton::pressed{"
+		"background-color:  #666666;"
+		"border-style: inset;"
+		"}");
+
+	btnStop->setStyleSheet("QPushButton{"
+		"background-color: #323232;"
+		"color: #CCCCCC;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 10px;"
+		"border-color: #CCCCCC;"
+		"font: bold 14px;"
+		"min-width: 10em;"
+		"padding: 6px;"
+		"}"
+		"QPushButton::pressed{"
+		"background-color:  #666666;"
+		"border-style: inset;"
+		"}");
+}
+
+void StepWindow::Connect()
+{
+	work->Connect(comboPort1->currentText());
 	work->Stop();
+	connection = true;
+	StatusCon->setText(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
+	ActivateButton();
 }
 
 void StepWindow::Disconnect()
@@ -1256,9 +1435,7 @@ void StepWindow::Disconnect()
 	work->Stop();
 	work->Disconnect();
 	connection = false;
-	btnConnect->setEnabled(true);
-	btnStart->setEnabled(false);
-	btnStop->setEnabled(false);
+	DiactivateButton();
 	StatusCon->setText(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
 	timer->stop();
 }
