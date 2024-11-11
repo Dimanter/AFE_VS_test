@@ -26,87 +26,25 @@ StepWindow::StepWindow(const QString& device, QWidget* parent)
 	StepRatio = 32;
 	Count = 172800;
 
-	if (device == "45Д20-2")
-	{
-		CreateWindow45D20();
-		window->showMaximized();	
-	}
-	else if (device == "СКТ-232Б")
-	{
-		CreateWindowSKT();
-		window->showMaximized();
-	}
-	else if (device == "СКТ-265Д")
-	{
-
-	}
-
+	CreateWindow(device);
+	window->showMaximized();
+	
 	timer->setInterval(1.f);
 	connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
 
 	testTimer->setInterval(1.f);
 	connect(testTimer, SIGNAL(timeout()), this, SLOT(Test45D20()));
-
-	testSktTimer->setInterval(1.f);
-	connect(testSktTimer, SIGNAL(timeout()), this, SLOT(TestSKT232B()));
 	
 	CreateTable();
 	qApp->setPalette(darkPalette);
 	QApplication::exec();
 }
 
-void StepWindow::SwapData(Data& val1, Data& val2)
-{
-	Data tmp;
-	tmp.angle = val1.angle;
-	tmp.I = val1.I;
-	tmp.IPhase = val1.IPhase;
-	tmp.min = val1.min;
-	tmp.sec = val1.sec;
-	tmp.Phase1 = val1.Phase1;
-	tmp.Phase2 = val1.Phase2;
-	tmp.V1 = val1.V1;
-	tmp.V2 = val1.V2;
-
-	val1.angle = val2.angle;
-	val1.I = val2.I;
-	val1.IPhase = val2.IPhase;
-	val1.min = val2.min;
-	val1.sec = val2.sec;
-	val1.Phase1 = val2.Phase1;
-	val1.Phase2 = val2.Phase2;
-	val1.V1 = val2.V1;
-	val1.V2 = val2.V2;
-
-	val2.angle = tmp.angle;
-	val2.I = tmp.I;
-	val2.IPhase = tmp.IPhase;
-	val2.min = tmp.min;
-	val2.sec = tmp.sec;
-	val2.Phase1 = tmp.Phase1;
-	val2.Phase2 = tmp.Phase2;
-	val2.V1 = tmp.V1;
-	val2.V2 = tmp.V2;
-}
-
-void StepWindow::ConvertAngle(float _angle)
-{
-	float grad, _min, _sec;
-	grad = std::trunc(_angle);
-	_min = _angle - grad;
-	_min = std::trunc(_min * 60.0);
-	_sec = (_angle - grad) * 60.0 - _min;
-	_sec = std::trunc(_sec * 60.0);
-	angle = grad;
-	min = _min;
-	sec = _sec;
-}
-
 void StepWindow::TestComplete()
 {
 	Stop();
 	stringstream writer;
-	testSktTimer->stop();
+	testTimer->stop();
 	//*Запись данных в файл
 	Serialization("Data0", data);
 	//*
@@ -531,40 +469,19 @@ void StepWindow::Test45D20Complete()
 	fileNum++;
 }
 
-void StepWindow::StartMonitor()
+void StepWindow::Test()
 {
-	if (!work->port->isOpen())return;
-	timer->start();
-	work->Monitor();
-}
-
-void StepWindow::StatusConnect(bool connected)
-{
-	btnConnect->setEnabled(!connected);
-}
-
-void StepWindow::RefreshComBox()
-{
-	comboPort1->clear();
-	const auto serialPortInfos = QSerialPortInfo::availablePorts();
-	for (const QSerialPortInfo& portInfo : serialPortInfos)
+	if (work->ProccessStatus())
 	{
-		comboPort1->insertItem(portInfo.productIdentifier(), portInfo.portName());
+		if (DeviceName == "СКТ-232Б")
+		{
+			TestComplete();
+		}
+		else if (DeviceName == "45Д20-2")
+		{
+			Test45D20Complete();
+		}
 	}
-}
-
-void StepWindow::TestSKT232B()
-{
-	if (work->ProccessStatus()) TestComplete();
-	float ref = work->measure->refAngle;
-	ConvertAngle(ref);
-	if (Contains(data, ref))return;
-	data.push_back(Read());
-}
-
-void StepWindow::Test45D20()
-{
-	if (work->ProccessStatus())Test45D20Complete();
 	float ref = work->measure->refAngle;
 	ConvertAngle(ref);
 	if (Contains(data, ref))return;
@@ -596,10 +513,11 @@ void StepWindow::StepThreading()
 	IPhase->setText(QString::fromStdString(to_string(measures_t(work->measure->Result).I.Phase)));
 }
 
-void StepWindow::CreateWindowSKT()
+void StepWindow::CreateWindow(QString device)
 {
 	//Main window ================================================================================
-	window->setWindowTitle("Meter СКТ-232Б");
+	QString title = "Meter ";
+	window->setWindowTitle(title + device);
 	label = new QLabel("Порт ");
 
 	QFont font = label->font();
@@ -621,7 +539,6 @@ void StepWindow::CreateWindowSKT()
 	RefreshComBox();
 
 	btnRefreshPort = new QPushButton("Обновить");
-	QObject::connect(btnRefreshPort, &QPushButton::clicked, this, &StepWindow::RefreshComBox);
 	btnRefreshPort->setMinimumWidth(200);
 	btnRefreshPort->setMinimumHeight(50);
 	btnRefreshPort->setStyleSheet("QPushButton{"
@@ -641,7 +558,6 @@ void StepWindow::CreateWindowSKT()
 		"}");
 
 	QPushButton* btnReport = new QPushButton("Создать отчёт");
-	QObject::connect(btnReport, &QPushButton::clicked, this, &StepWindow::StartUpConverter);
 	btnReport->setMinimumHeight(50);
 	btnReport->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
@@ -658,8 +574,8 @@ void StepWindow::CreateWindowSKT()
 		"background-color:  #666666;"
 		"border-style: inset;"
 		"}");
+
 	QPushButton* btnDelete = new QPushButton("Удалить строку");
-	QObject::connect(btnDelete, &QPushButton::clicked, this, &StepWindow::DeleteRow);
 	btnDelete->setMinimumHeight(50);
 	btnDelete->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
@@ -681,7 +597,6 @@ void StepWindow::CreateWindowSKT()
 	plainTextEdit->setReadOnly(true);
 
 	btnConnect = new QPushButton("Подключить");
-	QObject::connect(btnConnect, &QPushButton::clicked, this, &StepWindow::Connect);
 	btnConnect->setMinimumWidth(200);
 	btnConnect->setMinimumHeight(50);
 	btnConnect->setStyleSheet("QPushButton{"
@@ -701,7 +616,6 @@ void StepWindow::CreateWindowSKT()
 		"}");
 
 	btnDisconnect = new QPushButton("Отключить");
-	QObject::connect(btnDisconnect, &QPushButton::clicked, this, &StepWindow::Disconnect);
 	btnDisconnect->setMinimumWidth(200);
 	btnDisconnect->setMinimumHeight(50);
 	btnDisconnect->setStyleSheet("QPushButton{"
@@ -721,7 +635,6 @@ void StepWindow::CreateWindowSKT()
 		"}");
 
 	btnMonitor = new QPushButton("Монитор");
-	QObject::connect(btnMonitor, &QPushButton::clicked, this, &StepWindow::StartMonitor);
 	btnMonitor->setMinimumWidth(200);
 	btnMonitor->setMinimumHeight(50);
 	btnMonitor->setStyleSheet("QPushButton{"
@@ -741,6 +654,9 @@ void StepWindow::CreateWindowSKT()
 		"}");
 
 	btnStart = new QPushButton("Старт");
+	btnStart->setMinimumWidth(200);
+	btnStart->setMinimumHeight(50);
+	btnStart->setEnabled(false);
 	btnStart->setStyleSheet("QPushButton{"
 		"background-color: #323232;"
 		"color: #CCCCCC;"
@@ -755,14 +671,9 @@ void StepWindow::CreateWindowSKT()
 		"QPushButton::pressed{"
 		"background-color:  #666666;"
 		"border-style: inset;"
-		"}");
-	QObject::connect(btnStart, &QPushButton::clicked, this, &StepWindow::StartSKT);
-	btnStart->setMinimumWidth(200);
-	btnStart->setMinimumHeight(50);
-	btnStart->setEnabled(false);
+		"}");	
 
 	btnStop = new QPushButton("Стоп");
-	QObject::connect(btnStop, &QPushButton::clicked, this, &StepWindow::Stop);
 	btnStop->setMinimumWidth(200);
 	btnStop->setMinimumHeight(50);
 	btnStop->setEnabled(false);
@@ -883,7 +794,7 @@ void StepWindow::CreateWindowSKT()
 
 	QToolBar* toolBar = new QToolBar("control tool bar");
 	QPushButton* aboutButton = new QPushButton("О программе");
-	QObject::connect(aboutButton, &QPushButton::clicked, this, &StepWindow::AboutProgramm);
+	
 	toolBar->addWidget(aboutButton);
 
 	QVBoxLayout* PortV = new QVBoxLayout();
@@ -932,350 +843,15 @@ void StepWindow::CreateWindowSKT()
 	layoutMainVer->addLayout(lay);
 	layoutMainVer->addWidget(StatusCon);
 
-	window->setLayout(layoutMainVer);
-}
-
-void StepWindow::CreateWindow45D20()
-{
-	//Main window ================================================================================
-	window->setWindowTitle("Meter 45Д20-2");
-	label = new QLabel("Порт ");
-
-	QFont font = label->font();
-	font.setPixelSize(40);
-
-	comboPort1 = new QComboBox;
-	comboPort1->setStyleSheet("QComboBox{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 5px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"}"
-		"QComboBox:editable{"
-		"background: #CCCCCC;"
-		"}");
-	RefreshComBox();
-
-
-	btnRefreshPort = new QPushButton("Обновить");
 	QObject::connect(btnRefreshPort, &QPushButton::clicked, this, &StepWindow::RefreshComBox);
-	btnRefreshPort->setMinimumWidth(200);
-	btnRefreshPort->setMinimumHeight(50);
-
-	btnRefreshPort->setStyleSheet("QPushButton{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-
-	QPushButton* btnReport = new QPushButton("Создать отчёт");
 	QObject::connect(btnReport, &QPushButton::clicked, this, &StepWindow::StartUpConverter);
-	btnReport->setMinimumHeight(50);
-	btnReport->setStyleSheet("QPushButton{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-	QPushButton* btnDelete = new QPushButton("Удалить строку");
 	QObject::connect(btnDelete, &QPushButton::clicked, this, &StepWindow::DeleteRow);
-	btnDelete->setMinimumHeight(50);
-	btnDelete->setStyleSheet("QPushButton{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-
-	plainTextEdit = new QPlainTextEdit("");
-	plainTextEdit->setReadOnly(true);
-
-	btnConnect = new QPushButton("Подключить");
 	QObject::connect(btnConnect, &QPushButton::clicked, this, &StepWindow::Connect);
-	btnConnect->setMinimumWidth(200);
-	btnConnect->setMinimumHeight(50);
-	btnConnect->setStyleSheet("QPushButton{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-
-	btnDisconnect = new QPushButton("Отключить");
 	QObject::connect(btnDisconnect, &QPushButton::clicked, this, &StepWindow::Disconnect);
-	btnDisconnect->setMinimumWidth(200);
-	btnDisconnect->setMinimumHeight(50);
-	btnDisconnect->setStyleSheet("QPushButton{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-
-	btnMonitor = new QPushButton("Монитор");
 	QObject::connect(btnMonitor, &QPushButton::clicked, this, &StepWindow::StartMonitor);
-	btnMonitor->setMinimumWidth(200);
-	btnMonitor->setMinimumHeight(50);
-	btnMonitor->setStyleSheet("QPushButton{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-
-	btnStart = new QPushButton("Старт");
-	btnStart->setStyleSheet("QPushButton{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-	QObject::connect(btnStart, &QPushButton::clicked, this, &StepWindow::Start45D20);
-	btnStart->setMinimumWidth(200);
-	btnStart->setMinimumHeight(50);
-	//btnStart->setEnabled(false);
-
-	btnStop = new QPushButton("Стоп");
 	QObject::connect(btnStop, &QPushButton::clicked, this, &StepWindow::Stop);
-	btnStop->setMinimumWidth(200);
-	btnStop->setMinimumHeight(50);
-	btnStop->setEnabled(false);
-	btnStop->setStyleSheet("QPushButton{"
-		"background-color: #323232;"
-		"color: #CCCCCC;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: bold 14px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-
-	//Option stepper window ================================================================================
-	textDir = new QTextEdit("");
-	QLabel* labelD = new QLabel("Направление");
-	DirBox = new QComboBox();
-	DirBox->addItem("Forward");
-	DirBox->addItem("Backward");
-	DirBox->setMaximumWidth(200);
-
-	QLabel* labelS = new QLabel("Step ratio");
-	Steps = new QComboBox();
-	Steps->addItem("1"); Steps->addItem("2"); Steps->addItem("4"); Steps->addItem("8");
-	Steps->addItem("16"); Steps->addItem("32"); Steps->addItem("64"); Steps->addItem("128"); Steps->addItem("256");
-	Steps->setMaximumWidth(200);
-
-	textPeriod = new QTextEdit("1300");
-	QLabel* labelP = new QLabel("Period (number)");
-
-	textCount = new QTextEdit("70000");
-	QLabel* labelC = new QLabel("Count (number)");
-
-	//Data output window ================================================================================
-	QLabel* label1 = new QLabel("Угол");
-	label1->setFont(font);
-	textAngle->setReadOnly(true);
-	textAngle->zoomIn(30);
-	textAngle->setStyleSheet("QTextEdit{"
-		"background-color: #323232;"
-		"color: white;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: 50px;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-
-	QLabel* label2 = new QLabel("Rms V1 (mV)");
-	RmsV1->setReadOnly(true);
-
-
-	QLabel* label3 = new QLabel("Напряжение (мВ)");
-	label3->setFont(font);
-	RmsV2->setReadOnly(true);
-	RmsV2->setStyleSheet("QTextEdit{"
-		"background-color: #323232;"
-		"color: white;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: 50px;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-
-	QLabel* label4 = new QLabel("Фаза V1");
-	PhaseV1->setReadOnly(true);
-
-	QLabel* label5 = new QLabel("Фаза V2");
-	PhaseV2->setReadOnly(true);
-
-	QLabel* label6 = new QLabel("I (mA)");
-	label6->setFont(font);
-	I->setReadOnly(true);
-	I->zoomIn(30);
-	I->setMaximumHeight(200);
-
-	QLabel* label7 = new QLabel("Фаза I");
-	IPhase->setReadOnly(true);
-
-	QVBoxLayout* lay = new QVBoxLayout;
-	QTableView* view = new QTableView(window);
-	view->setModel(model);
-	view->setStyleSheet("QTableView{"
-		"background-color: #323232;"
-		"gridline-color: #434343;"
-		"color: white;"
-		"border-style: outset;"
-		"border-width: 2px;"
-		"border-radius: 10px;"
-		"border-color: #CCCCCC;"
-		"font: 18px;"
-		"min-width: 10em;"
-		"padding: 6px;"
-		"}"
-		"QPushButton::pressed{"
-		"background-color:  #666666;"
-		"border-style: inset;"
-		"}");
-	view->setMinimumHeight(400);
-	view->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeMode::ResizeToContents);
-
-	lay->addWidget(view);
-	StatusCon = new QLabel(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
-
-	QToolBar* toolBar = new QToolBar("control tool bar");
-	QPushButton* aboutButton = new QPushButton("О программе");
 	QObject::connect(aboutButton, &QPushButton::clicked, this, &StepWindow::AboutProgramm);
-	toolBar->addWidget(aboutButton);
-
-	QVBoxLayout* PortV = new QVBoxLayout();
-	QVBoxLayout* StartV = new QVBoxLayout();
-	QVBoxLayout* ConnectV = new QVBoxLayout();
-	QVBoxLayout* AngleV = new QVBoxLayout();
-	QVBoxLayout* RmsV = new QVBoxLayout();
-	QVBoxLayout* IV = new QVBoxLayout();
-
-	QHBoxLayout* PortH = new QHBoxLayout();
-	QHBoxLayout* MeasureH = new QHBoxLayout();
-	QHBoxLayout* ConnectH = new QHBoxLayout();
-
-	StartV->addWidget(btnMonitor);
-	StartV->addWidget(btnStart);
-	StartV->addWidget(btnStop);
-	ConnectV->addWidget(btnRefreshPort);
-	ConnectV->addWidget(btnConnect);
-	ConnectV->addWidget(btnDisconnect);
-	PortH->addLayout(ConnectV);
-	PortH->addLayout(StartV);
-
-	AngleV->addWidget(label1);
-	AngleV->addWidget(textAngle);
-	RmsV->addWidget(label3);
-	RmsV->addWidget(RmsV2);
-
-	MeasureH->addLayout(AngleV);
-	MeasureH->addLayout(RmsV);
-
-
-	PortV->addWidget(label);
-	PortV->addWidget(comboPort1);
-	PortV->addLayout(PortH);
-	PortV->addWidget(btnReport);
-	PortV->addWidget(btnDelete);
-	PortV->addStretch(20);
-
-	ConnectH->addLayout(PortV);
-	ConnectH->addLayout(MeasureH);
-
-	QHBoxLayout* layoutMainHor = new QHBoxLayout();
-	QVBoxLayout* layoutMainVer = new QVBoxLayout();
-
-	layoutMainVer->addWidget(toolBar);
-	layoutMainVer->addLayout(ConnectH);
-	layoutMainVer->addLayout(lay);
-	layoutMainVer->addWidget(StatusCon);
+	QObject::connect(btnStart, &QPushButton::clicked, this, &StepWindow::Start);
 
 	window->setLayout(layoutMainVer);
 }
@@ -1445,7 +1021,7 @@ void StepWindow::Stop()
 	work->Stop();
 }
 
-void StepWindow::StartSKT()
+void StepWindow::Start()
 {
 	if (fileNum > 48)
 	{
@@ -1453,25 +1029,27 @@ void StepWindow::StartSKT()
 		return;
 	}
 	if (work->stage != Work::Stage::Idle)return;
-	if (!Dialog())return;
-	work->testSKT();
-	work->processRun();
 	
 
-	testSktTimer->start();
-	data.clear();
-	allData.clear();
-	MinV.clear();
-	//TestComplete();
-}
-
-void StepWindow::Start45D20()
-{
-	if (!Dialog())return;
-	work->test45D20();
-	work->processRun();
-	testTimer->start();
-	data.clear();
+	if (DeviceName == "45Д20-2")
+	{
+		if (!Dialog())return;
+		work->test45D20();
+		work->processRun();
+		testTimer->start();
+		data.clear();
+	}
+	else if (DeviceName == "СКТ-232Б")
+	{
+		if (!Dialog())return;
+		work->testSKT();
+		work->processRun();
+		testTimer->start();
+		data.clear();
+		allData.clear();
+		MinV.clear();
+		//TestComplete();
+	}
 }
 
 void StepWindow::StartUpConverter()
@@ -1687,6 +1265,75 @@ void StepWindow::Serialization(string file, vector<Data> cont)
 		_file << ss.str();
 	}
 	_file.close();
+}
+
+void StepWindow::StartMonitor()
+{
+	if (!work->port->isOpen())return;
+	timer->start();
+	work->Monitor();
+}
+
+void StepWindow::StatusConnect(bool connected)
+{
+	btnConnect->setEnabled(!connected);
+}
+
+void StepWindow::RefreshComBox()
+{
+	comboPort1->clear();
+	const auto serialPortInfos = QSerialPortInfo::availablePorts();
+	for (const QSerialPortInfo& portInfo : serialPortInfos)
+	{
+		comboPort1->insertItem(portInfo.productIdentifier(), portInfo.portName());
+	}
+}
+
+void StepWindow::SwapData(Data& val1, Data& val2)
+{
+	Data tmp;
+	tmp.angle = val1.angle;
+	tmp.I = val1.I;
+	tmp.IPhase = val1.IPhase;
+	tmp.min = val1.min;
+	tmp.sec = val1.sec;
+	tmp.Phase1 = val1.Phase1;
+	tmp.Phase2 = val1.Phase2;
+	tmp.V1 = val1.V1;
+	tmp.V2 = val1.V2;
+
+	val1.angle = val2.angle;
+	val1.I = val2.I;
+	val1.IPhase = val2.IPhase;
+	val1.min = val2.min;
+	val1.sec = val2.sec;
+	val1.Phase1 = val2.Phase1;
+	val1.Phase2 = val2.Phase2;
+	val1.V1 = val2.V1;
+	val1.V2 = val2.V2;
+
+	val2.angle = tmp.angle;
+	val2.I = tmp.I;
+	val2.IPhase = tmp.IPhase;
+	val2.min = tmp.min;
+	val2.sec = tmp.sec;
+	val2.Phase1 = tmp.Phase1;
+	val2.Phase2 = tmp.Phase2;
+	val2.V1 = tmp.V1;
+	val2.V2 = tmp.V2;
+}
+
+void StepWindow::ConvertAngle(float _angle)
+{
+	float grad, _min, _sec;
+	grad = std::trunc(_angle);
+	_min = _angle - grad;
+	_min = std::trunc(_min * 60.0);
+	_sec = (_angle - grad) * 60.0 - _min;
+	_sec = std::trunc(_sec * 60.0);
+	angle = grad;
+	min = _min;
+	sec = _sec;
 }
 
 bool StepWindow::Dialog()
