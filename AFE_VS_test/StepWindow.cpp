@@ -33,14 +33,14 @@ StepWindow::StepWindow(const QString& device, QWidget* parent)
 	connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
 
 	testTimer->setInterval(1.f);
-	connect(testTimer, SIGNAL(timeout()), this, SLOT(Test45D20()));
+	connect(testTimer, SIGNAL(timeout()), this, SLOT(Test()));
 	
 	CreateTable();
 	qApp->setPalette(darkPalette);
 	QApplication::exec();
 }
 
-void StepWindow::TestComplete()
+void StepWindow::Test232BComplete()
 {
 	Stop();
 	stringstream writer;
@@ -330,9 +330,16 @@ void StepWindow::Test45D20Complete()
 	float delta;//сдвиг напряжения при изменении угла в 5 градусов
 	int clas;//класс прибора
 	int k = 0;
-
-	Serialization("data1", data);
-	data = EraseErrors(data);
+	try
+	{
+		Serialization("data1", data);
+		data = EraseErrors(data);
+	}
+	catch (const std::exception&)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных, проверьте правильность установки датчика.");
+		return;
+	}
 
 	int tempMin = FindMinV(data, 40, 50);//индекс элемента с минимальным напряжением 
 	float tempMinData = data[tempMin].V1;//минимум напряжения 
@@ -359,16 +366,16 @@ void StepWindow::Test45D20Complete()
 		if (Ucm >= 0.0481 && Ucm <= 0.0485)clas = 1;
 		else if (Ucm >= 0.0479 && Ucm <= 0.0487)clas = 2;
 		else if (Ucm >= 0.0474 && Ucm <= 0.0491)clas = 3;
+
+		AngleRes.push_back(angleEx);
+		ErrRate.push_back(FindNearestAngle(angleEx, -40, data));
+		k++;
 	}
 	catch (const std::exception&)
 	{
 		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных, проверьте правильность установки датчика.");
 		return;
 	}
-
-	AngleRes.push_back(angleEx);
-	ErrRate.push_back(FindNearestAngle(angleEx, -40, data));
-	k++;
 
 	int angleRef = -35;
 	try
@@ -469,23 +476,43 @@ void StepWindow::Test45D20Complete()
 	fileNum++;
 }
 
+void StepWindow::Test265DComplete()
+{
+	Stop();
+	stringstream writer;
+	testTimer->stop();
+	//*Запись данных в файл
+	Serialization("Data0", data);
+	QMessageBox::warning(window, "Okay", "Test Compliete.");
+}
+
 void StepWindow::Test()
 {
 	if (work->ProccessStatus())
 	{
 		if (DeviceName == "СКТ-232Б")
 		{
-			TestComplete();
+			Test232BComplete();
 		}
 		else if (DeviceName == "45Д20-2")
 		{
 			Test45D20Complete();
+		}
+		else if (DeviceName == "СКТ-265Д")
+		{
+			Test265DComplete();
 		}
 	}
 	float ref = work->measure->refAngle;
 	ConvertAngle(ref);
 	if (Contains(data, ref))return;
 	data.push_back(Read());
+}
+
+void StepWindow::SwitchDevice()
+{
+	DeviceName = CurrentDevice->itemText(CurrentDevice->currentIndex());
+	CreateTable();
 }
 
 void StepWindow::Update()
@@ -517,7 +544,7 @@ void StepWindow::CreateWindow(QString device)
 {
 	//Main window ================================================================================
 	QString title = "Meter ";
-	window->setWindowTitle(title + device);
+	window->setWindowTitle(title);
 	label = new QLabel("Порт ");
 
 	QFont font = label->font();
@@ -536,6 +563,23 @@ void StepWindow::CreateWindow(QString device)
 		"QComboBox:editable{"
 		"background: #CCCCCC;"
 		"}");
+
+	CurrentDevice = new QComboBox;
+	CurrentDevice->setStyleSheet("QComboBox{"
+		"background-color: #323232;"
+		"color: #CCCCCC;"
+		"border-style: outset;"
+		"border-width: 2px;"
+		"border-radius: 5px;"
+		"border-color: #CCCCCC;"
+		"font: bold 14px;"
+		"}"
+		"QComboBox:editable{"
+		"background: #CCCCCC;"
+		"}");
+	CurrentDevice->addItem("45Д20-2");
+	CurrentDevice->addItem("СКТ-232Б");
+	CurrentDevice->addItem("СКТ-265Д");
 	RefreshComBox();
 
 	btnRefreshPort = new QPushButton("Обновить");
@@ -805,6 +849,7 @@ void StepWindow::CreateWindow(QString device)
 	QVBoxLayout* IV = new QVBoxLayout();
 
 	QHBoxLayout* PortH = new QHBoxLayout();
+	QHBoxLayout* ComboBoxes = new QHBoxLayout();
 	QHBoxLayout* MeasureH = new QHBoxLayout();
 	QHBoxLayout* ConnectH = new QHBoxLayout();
 
@@ -826,7 +871,9 @@ void StepWindow::CreateWindow(QString device)
 	MeasureH->addLayout(RmsV);
 
 	PortV->addWidget(label);
-	PortV->addWidget(comboPort1);
+	ComboBoxes->addWidget(comboPort1);
+	ComboBoxes->addWidget(CurrentDevice);
+	PortV->addLayout(ComboBoxes);
 	PortV->addLayout(PortH);
 	PortV->addWidget(btnReport);
 	PortV->addWidget(btnDelete);
@@ -843,6 +890,7 @@ void StepWindow::CreateWindow(QString device)
 	layoutMainVer->addLayout(lay);
 	layoutMainVer->addWidget(StatusCon);
 
+	QObject::connect(CurrentDevice, &QComboBox::currentIndexChanged, this, &StepWindow::SwitchDevice);
 	QObject::connect(btnRefreshPort, &QPushButton::clicked, this, &StepWindow::RefreshComBox);
 	QObject::connect(btnReport, &QPushButton::clicked, this, &StepWindow::StartUpConverter);
 	QObject::connect(btnDelete, &QPushButton::clicked, this, &StepWindow::DeleteRow);
@@ -1036,20 +1084,26 @@ void StepWindow::Start()
 		if (!Dialog())return;
 		work->test45D20();
 		work->processRun();
-		testTimer->start();
-		data.clear();
+		testTimer->start();	
 	}
 	else if (DeviceName == "СКТ-232Б")
 	{
 		if (!Dialog())return;
-		work->testSKT();
+		work->testSKT232B();
 		work->processRun();
-		testTimer->start();
-		data.clear();
-		allData.clear();
-		MinV.clear();
+		testTimer->start();	
 		//TestComplete();
 	}
+	else if (DeviceName == "СКТ-265Д")
+	{
+		if (!Dialog())return;
+		work->testSKT265D();
+		work->processRun();
+		testTimer->start();
+	}
+	data.clear();
+	allData.clear();
+	MinV.clear();
 }
 
 void StepWindow::StartUpConverter()

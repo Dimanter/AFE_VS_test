@@ -87,12 +87,17 @@ public:
 	*/
 	void StepThreading();
 	/*@brief Метод создания пользовательского интерфейса
+	* @param device - наименование прибора
 	*/
 	void CreateWindow(QString device);
-	/*@brief Метод покдлючения к com-порту
+	/*@brief Метод активации кнопок при подключении к порту
 	*/
 	void ActivateButton();
+	/*@brief Метод деактивации кнопок при отключении от порта
+	*/
 	void DiactivateButton();
+	/*@brief Метод покдлючения к com-порту
+	*/
 	void Connect();
 	/*@brief Метод отключения от com-порта
 	*/
@@ -109,10 +114,13 @@ public:
 	void ConvertAngle(float angle);
 	/*@brief Метод обработки данных после завершения измерений на СКТ-232Б
 	*/
-	void TestComplete();
+	void Test232BComplete();
 	/*@brief Метод обработки данных после завершения измерений на 45Д-20-2
 	*/
 	void Test45D20Complete();
+	/*@brief Метод обработки данных после завершения измерений на СКТ-265Д
+	*/
+	void Test265DComplete();
 	/*@brief Метод старта мониторинга данных
 	*/
 	void StartMonitor();
@@ -278,6 +286,7 @@ private:
 
 	QStandardItemModel* model = new QStandardItemModel(15, 23);//Таблица расчёта данных
 	QComboBox* comboPort1;// Раскрывающшийся список с доступными com-портами
+	QComboBox* CurrentDevice;// Выбор текущего прибора
 	QComboBox* DirBox;//Направление движения
 	QComboBox* Steps;//Длинна шага
 	QLabel* label;// Заголовок
@@ -309,7 +318,7 @@ private:
 	QTextEdit* IPhase = new QTextEdit("");// Текстовое окно для вывода фазы тока
 
 	QString NumberDevice = "";// Номер изделия
-	QString DeviceName;
+	QString DeviceName;// Наименование прибора
 	int rowDel = 0;// Номер строки для удаления
 	int loop = 1;// Текущий круг измерений
 	int fileNum = 0;//Кол-во файлов для конвертации макс 44
@@ -343,6 +352,7 @@ private slots:
 	*@brief Тест прибора
 	*/
 	void Test();
+	void SwitchDevice();
 };
 //туду
 //if v2 > 250 - проверить подключение в колодке

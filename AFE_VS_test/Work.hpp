@@ -153,6 +153,29 @@ public:
 			};
 	}
 
+	auto setOutputSKT265()
+	{
+		/*
+		* Ввод частоты и фазы в микроконтроллер
+		*/
+		return [this]()
+			{
+				//Положительный
+				this->out->outP = 3850.f;
+				this->out->meanP = 1925.f;
+				this->out->phaseP = 0.f;
+
+				//Отрицательный
+				this->out->outN = 3850.f;
+				this->out->meanN = 1925.f;
+				this->out->phaseN = M_PI;
+				//Частота и ввод
+				this->out->freq = 12000.f;
+				this->out->transmit(1, Service::Type::TransmitConfirmed);
+				return std::make_pair(this->out->getAddress(), Service::State::Ready);
+			};
+	}
+
 	auto setOutputSettings()
 	{
 		/*
@@ -396,12 +419,29 @@ public:
 	* @brief
 	* Метод задающий процесс теста иизделия 
 	*/
-	void testSKT()
+	void testSKT232B()
 	{
 		Finished = false;
 		processes.clear(processStart);
 		processes.add(processStart, load());
 		processes.add(processStart, setOutputSKT());
+		processes.add(processStart, setStepper(stepDirection::Backward, stepRatio::_1, 1300, 600));
+		processes.add(processStart, startStepper());
+		processes.add(processStart, [this]() {
+			this->control->command = controlService::startMeasuremnt;
+			this->control->transmit(1, Service::Type::TransmitConfirmed);
+			return std::make_pair(this->control->getAddress(), Service::State::Ready);
+			});
+		processes.add(processStart, setStepper(stepDirection::Forward, stepRatio::_1_2, 900, 100000));//125к 365град - 115к 280град
+		processes.add(processStart, startStepper());
+	}
+
+	void testSKT265D()
+	{
+		Finished = false;
+		processes.clear(processStart);
+		processes.add(processStart, load());
+		processes.add(processStart, setOutputSKT265());
 		processes.add(processStart, setStepper(stepDirection::Backward, stepRatio::_1, 1300, 600));
 		processes.add(processStart, startStepper());
 		processes.add(processStart, [this]() {

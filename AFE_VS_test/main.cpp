@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
     return a.exec();*/
 
     //включить для программы измерений
-    StepWindow s{ "45Д20-2" }; // 45Д20-2; СКТ-232Б; СКТ-265Д
+    StepWindow s{ "СКТ-265Д" }; // 45Д20-2; СКТ-232Б; СКТ-265Д
     QCoreApplication::setApplicationName("Метер");
     s.show();
     return 0;
