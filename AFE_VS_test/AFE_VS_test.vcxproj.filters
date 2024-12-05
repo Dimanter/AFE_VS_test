@@ -53,34 +53,13 @@
     <QtUic Include="AFE_VS_test.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="MainWindow.hpp">
-      <Filter>Meter</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Meter</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Meter</Filter>
-    </ClCompile>
-    <ClCompile Include="Board.cpp">
       <Filter>Meter</Filter>
     </ClCompile>
     <ClCompile Include="Buffer.cpp">
       <Filter>Exchange\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="device.cpp">
-      <Filter>Form</Filter>
-    </ClCompile>
-    <ClCompile Include="output.cpp">
-      <Filter>Form</Filter>
-    </ClCompile>
-    <ClCompile Include="coefin.cpp">
-      <Filter>Form</Filter>
-    </ClCompile>
-    <ClCompile Include="coefout.cpp">
-      <Filter>Form</Filter>
     </ClCompile>
     <ClCompile Include="StepWindow.cpp">
       <Filter>StepWindow</Filter>
@@ -90,9 +69,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Board.hpp">
-      <Filter>Meter</Filter>
-    </ClInclude>
     <ClInclude Include="qTable.hpp">
       <Filter>Components</Filter>
     </ClInclude>
@@ -176,18 +152,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="device.hpp">
-      <Filter>Form</Filter>
-    </QtMoc>
-    <QtMoc Include="output.hpp">
-      <Filter>Form</Filter>
-    </QtMoc>
-    <QtMoc Include="coefin.hpp">
-      <Filter>Form</Filter>
-    </QtMoc>
-    <QtMoc Include="coefout.hpp">
-      <Filter>Form</Filter>
-    </QtMoc>
     <QtMoc Include="Work.hpp">
       <Filter>Meter</Filter>
     </QtMoc>
@@ -199,18 +163,6 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="..\..\AFE_Copy\Form\device.ui">
-      <Filter>Form</Filter>
-    </QtUic>
-    <QtUic Include="..\..\AFE_Copy\Form\output.ui">
-      <Filter>Form</Filter>
-    </QtUic>
-    <QtUic Include="..\..\AFE_Copy\Form\coefin.ui">
-      <Filter>Form</Filter>
-    </QtUic>
-    <QtUic Include="..\..\AFE_Copy\Form\coefout.ui">
-      <Filter>Form</Filter>
-    </QtUic>
     <QtUic Include="Monitoring.ui">
       <Filter>Form Files</Filter>
     </QtUic>

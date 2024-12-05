@@ -1,0 +1,1982 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ASCIIEncoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\AbstractObserver.cpp">
+      <Filter>Notifications\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ActiveDispatcher.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ActiveThreadPool.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ArchiveStrategy.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Ascii.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\AsyncChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\AtomicCounter.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\AtomicFlag.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Base32Decoder.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Base32Encoder.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Base64Decoder.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Base64Encoder.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\BinaryReader.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\BinaryWriter.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Bugcheck.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ByteOrder.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Channel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Checksum.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Clock.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Condition.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Configurable.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ConsoleChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\CountingStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DataURIStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DataURIStreamFactory.cpp">
+      <Filter>URI\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DateTime.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DateTimeFormat.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DateTimeFormatter.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DateTimeParser.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Debugger.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DeflatingStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DigestEngine.cpp">
+      <Filter>Crypt\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DigestStream.cpp">
+      <Filter>Crypt\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DirectoryIterator.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DirectoryIteratorStrategy.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DirectoryWatcher.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Environment.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Error.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ErrorHandler.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Event.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\EventArgs.cpp">
+      <Filter>Events\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\EventChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\EventLogChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Exception.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FIFOBufferStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FPEnvironment.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\File.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FileChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FileStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FileStreamFactory.cpp">
+      <Filter>URI\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Format.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Formatter.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FormattingChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Glob.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Hash.cpp">
+      <Filter>Hashing\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\HashStatistic.cpp">
+      <Filter>Hashing\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\HexBinaryDecoder.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\HexBinaryEncoder.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\InflatingStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\JSONString.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Latin1Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Latin2Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Latin9Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\LineEndingConverter.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\LocalDateTime.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\LogFile.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\LogStream.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Logger.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\LoggingFactory.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\LoggingRegistry.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\MD4Engine.cpp">
+      <Filter>Crypt\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\MD5Engine.cpp">
+      <Filter>Crypt\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Manifest.cpp">
+      <Filter>SharedLibrary\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\MemoryPool.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\MemoryStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Message.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Mutex.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NamedEvent.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NamedMutex.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NestedDiagnosticContext.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Notification.cpp">
+      <Filter>Notifications\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NotificationCenter.cpp">
+      <Filter>Notifications\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NotificationQueue.cpp">
+      <Filter>Notifications\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NullChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NullStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NumberFormatter.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NumberParser.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NumericString.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PIDFile.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Path.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PatternFormatter.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Pipe.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PipeImpl.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PipeStream.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PriorityNotificationQueue.cpp">
+      <Filter>Notifications\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Process.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ProcessRunner.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PurgeStrategy.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RWLock.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Random.cpp">
+      <Filter>Crypt\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RandomStream.cpp">
+      <Filter>Crypt\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RefCountedObject.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RegularExpression.cpp">
+      <Filter>RegExp\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RotateStrategy.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Runnable.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SHA1Engine.cpp">
+      <Filter>Crypt\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SHA2Engine.cpp">
+      <Filter>Crypt\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Semaphore.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedLibrary.cpp">
+      <Filter>SharedLibrary\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedMemory.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SignalHandler.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SimpleFileChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SortedDirectoryIterator.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SplitterChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Stopwatch.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\StreamChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\StreamConverter.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\StreamCopier.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\StreamTokenizer.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\String.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\StringTokenizer.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SynchronizedObject.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Task.cpp">
+      <Filter>Tasks\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TaskManager.cpp">
+      <Filter>Tasks\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TaskNotification.cpp">
+      <Filter>Tasks\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TeeStream.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TemporaryFile.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TextBufferIterator.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TextConverter.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TextEncoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TextIterator.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Thread.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ThreadLocal.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ThreadPool.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\ThreadTarget.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\TimedNotificationQueue.cpp">
+      <Filter>Notifications\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Timer.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Timespan.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Timestamp.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Timezone.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Token.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\URI.cpp">
+      <Filter>URI\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\URIStreamFactory.cpp">
+      <Filter>URI\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\URIStreamOpener.cpp">
+      <Filter>URI\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\UTF16Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\UTF32Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\UTF8Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\UTF8String.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\UUID.cpp">
+      <Filter>UUID\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\UUIDGenerator.cpp">
+      <Filter>UUID\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Unicode.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\UnicodeConverter.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Var.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\VarHolder.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\VarIterator.cpp">
+      <Filter>Dynamic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\VarVisitor.cpp">
+      <Filter>Dynamic\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Void.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Windows1250Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Windows1251Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Windows1252Encoding.cpp">
+      <Filter>Text\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\WindowsConsoleChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_auto_possess.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_chartables.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_compile.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_config.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_context.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_convert.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_dfa_match.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_error.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_extuni.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_find_bracket.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_jit_compile.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_maketables.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_match.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_match_data.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_newline.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_ord2utf.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_pattern_info.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_script_run.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_serialize.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_string_utils.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_study.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_substitute.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_substring.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_tables.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_ucd.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_valid_utf.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pcre2_xclass.c">
+      <Filter>pcre2\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\adler32.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\compress.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\crc32.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\deflate.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\infback.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\inffast.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\inflate.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\inftrees.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\trees.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\zutil.c">
+      <Filter>zlib\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DirectoryIterator_UNIX.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\DirectoryIterator_WIN32U.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Environment_UNIX.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Environment_VX.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Environment_WIN32U.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Event_POSIX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Event_VX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Event_WIN32.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FPEnvironment_C99.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FPEnvironment_DEC.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FPEnvironment_DUMMY.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FPEnvironment_QNX.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FPEnvironment_SUN.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FPEnvironment_WIN32.cpp">
+      <Filter>Core\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FileStream_POSIX.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\FileStream_WIN32.cpp">
+      <Filter>Streams\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\File_UNIX.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\File_VX.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\File_WIN32U.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\LogFile_STD.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\LogFile_WIN32U.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Mutex_POSIX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Mutex_STD.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Mutex_VX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Mutex_WIN32.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NamedEvent_Android.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NamedEvent_UNIX.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NamedEvent_WIN32U.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NamedMutex_Android.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NamedMutex_UNIX.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\NamedMutex_WIN32U.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Path_UNIX.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Path_WIN32U.cpp">
+      <Filter>Filesystem\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PipeImpl_DUMMY.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PipeImpl_POSIX.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\PipeImpl_WIN32.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Process_UNIX.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Process_VX.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Process_WIN32U.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RWLock_Android.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RWLock_POSIX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RWLock_VX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\RWLock_WIN32.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Semaphore_POSIX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Semaphore_VX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Semaphore_WIN32.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedLibrary_HPUX.cpp">
+      <Filter>SharedLibrary\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedLibrary_UNIX.cpp">
+      <Filter>SharedLibrary\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedLibrary_VX.cpp">
+      <Filter>SharedLibrary\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedLibrary_WIN32U.cpp">
+      <Filter>SharedLibrary\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedMemory_DUMMY.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedMemory_POSIX.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SharedMemory_WIN32.cpp">
+      <Filter>Processes\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\SyslogChannel.cpp">
+      <Filter>Logging\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Thread_POSIX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Thread_VX.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Thread_WIN32.cpp">
+      <Filter>Threading\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Timezone_UNIX.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Timezone_VX.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\Timezone_WIN32.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ASCIIEncoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AbstractCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AbstractDelegate.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AbstractEvent.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AbstractObserver.h">
+      <Filter>Notifications\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AbstractPriorityDelegate.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AbstractStrategy.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AccessExpirationDecorator.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AccessExpireCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AccessExpireLRUCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AccessExpireStrategy.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ActiveDispatcher.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ActiveMethod.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ActiveResult.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ActiveRunnable.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ActiveStarter.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ActiveThreadPool.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Activity.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Alignment.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Any.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ArchiveStrategy.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Array.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Ascii.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AsyncChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AtomicCounter.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AtomicFlag.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AutoPtr.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\AutoReleasePool.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Base32Decoder.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Base32Encoder.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Base64Decoder.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Base64Encoder.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\BasicEvent.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\BinaryReader.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\BinaryWriter.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Buffer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\BufferAllocator.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\BufferedBidirectionalStreamBuf.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\BufferedStreamBuf.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Bugcheck.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ByteOrder.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Channel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Checksum.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ClassLibrary.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ClassLoader.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Clock.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Condition.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Config.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Configurable.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ConsoleChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\CountingStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DataURIStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DataURIStreamFactory.h">
+      <Filter>URI\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DateTime.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DateTimeFormat.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DateTimeFormatter.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DateTimeParser.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Debugger.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DefaultStrategy.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DeflatingStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Delegate.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DigestEngine.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DigestStream.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DirectoryIterator.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DirectoryIteratorStrategy.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DirectoryIterator_UNIX.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DirectoryIterator_WIN32U.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DirectoryWatcher.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Dynamic\Pair.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Dynamic\Struct.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Dynamic\Var.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Dynamic\VarHolder.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Dynamic\VarIterator.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Dynamic\VarVisitor.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DynamicAny.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DynamicAnyHolder.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DynamicFactory.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\DynamicStruct.h">
+      <Filter>Dynamic\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Environment.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Environment_UNIX.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Environment_VX.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Environment_WIN32U.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Error.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ErrorHandler.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Event.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\EventArgs.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\EventChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\EventLogChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Event_POSIX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Event_VX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Event_WIN32.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Exception.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ExpirationDecorator.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Expire.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ExpireCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ExpireLRUCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ExpireStrategy.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FIFOBuffer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FIFOBufferStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FIFOEvent.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FIFOStrategy.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FPEnvironment.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FPEnvironment_C99.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FPEnvironment_DEC.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FPEnvironment_DUMMY.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FPEnvironment_QNX.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FPEnvironment_SUN.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FPEnvironment_WIN32.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\File.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FileChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FileStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FileStreamFactory.h">
+      <Filter>URI\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FileStream_POSIX.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FileStream_WIN32.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\File_UNIX.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\File_VX.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\File_WIN32U.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Format.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Formatter.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FormattingChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Foundation.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FunctionDelegate.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\FunctionPriorityDelegate.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Glob.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\HMACEngine.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Hash.h">
+      <Filter>Hashing\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\HashFunction.h">
+      <Filter>Hashing\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\HashMap.h">
+      <Filter>Hashing\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\HashSet.h">
+      <Filter>Hashing\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\HashStatistic.h">
+      <Filter>Hashing\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\HashTable.h">
+      <Filter>Hashing\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\HexBinaryDecoder.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\HexBinaryEncoder.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\InflatingStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Instantiator.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\JSONString.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\KeyValueArgs.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LRUCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LRUStrategy.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Latin1Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Latin2Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Latin9Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LineEndingConverter.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LinearHashTable.h">
+      <Filter>Hashing\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ListMap.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LocalDateTime.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LogFile.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LogFile_STD.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LogFile_WIN32U.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LogStream.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Logger.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LoggingFactory.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\LoggingRegistry.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\MD4Engine.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\MD5Engine.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Manifest.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\MemoryPool.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\MemoryStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Message.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\MetaObject.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\MetaProgramming.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Mutex.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Mutex_POSIX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Mutex_STD.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Mutex_VX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Mutex_WIN32.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NObserver.h">
+      <Filter>Notifications\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedEvent.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedEvent_Android.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedEvent_UNIX.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedEvent_WIN32U.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedMutex.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedMutex_Android.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedMutex_UNIX.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedMutex_WIN32U.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NamedTuple.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NestedDiagnosticContext.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Notification.h">
+      <Filter>Notifications\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NotificationCenter.h">
+      <Filter>Notifications\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NotificationQueue.h">
+      <Filter>Notifications\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NotificationStrategy.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NullChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NullStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Nullable.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NumberFormatter.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NumberParser.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\NumericString.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ObjectPool.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Observer.h">
+      <Filter>Notifications\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Optional.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\OrderedMap.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\OrderedSet.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PBKDF2Engine.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PIDFile.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Path.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Path_UNIX.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Path_WIN32U.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PatternFormatter.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Pipe.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PipeImpl.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PipeImpl_DUMMY.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PipeImpl_POSIX.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PipeImpl_WIN32.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PipeStream.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Platform.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Platform_POSIX.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Platform_VX.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Platform_WIN32.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Poco.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PriorityDelegate.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PriorityEvent.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PriorityExpire.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PriorityNotificationQueue.h">
+      <Filter>Notifications\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PriorityStrategy.h">
+      <Filter>Events\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Process.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ProcessOptions.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ProcessRunner.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Process_UNIX.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Process_VX.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Process_WIN32U.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\PurgeStrategy.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RWLock.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RWLock_Android.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RWLock_POSIX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RWLock_VX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RWLock_WIN32.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Random.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RandomStream.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RecursiveDirectoryIterator.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RecursiveDirectoryIteratorImpl.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RefCountedObject.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RegularExpression.h">
+      <Filter>RegExp\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RotateStrategy.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Runnable.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\RunnableAdapter.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SHA1Engine.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SHA2Engine.h">
+      <Filter>Crypt\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ScopedLock.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ScopedUnlock.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Semaphore.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Semaphore_POSIX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Semaphore_VX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Semaphore_WIN32.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedLibrary.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedLibrary_HPUX.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedLibrary_UNIX.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedLibrary_VX.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedLibrary_WIN32U.h">
+      <Filter>SharedLibrary\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedMemory.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedMemory_DUMMY.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedMemory_POSIX.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedMemory_WIN32.h">
+      <Filter>Processes\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SharedPtr.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SignalHandler.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SimpleFileChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SimpleHashTable.h">
+      <Filter>Hashing\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SingletonHolder.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SortedDirectoryIterator.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SplitterChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Stopwatch.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\StrategyCollection.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\StreamChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\StreamConverter.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\StreamCopier.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\StreamTokenizer.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\StreamUtil.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\String.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\StringTokenizer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SynchronizedObject.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\SyslogChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Task.h">
+      <Filter>Tasks\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TaskManager.h">
+      <Filter>Tasks\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TaskNotification.h">
+      <Filter>Tasks\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TeeStream.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TemporaryFile.h">
+      <Filter>Filesystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TextBufferIterator.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TextConverter.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TextEncoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TextIterator.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Thread.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ThreadLocal.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ThreadPool.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ThreadTarget.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Thread_POSIX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Thread_VX.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Thread_WIN32.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TimedNotificationQueue.h">
+      <Filter>Notifications\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Timer.h">
+      <Filter>Threading\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Timespan.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Timestamp.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Timezone.h">
+      <Filter>DateTime\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Token.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Tuple.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\TypeList.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Types.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\URI.h">
+      <Filter>URI\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\URIStreamFactory.h">
+      <Filter>URI\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\URIStreamOpener.h">
+      <Filter>URI\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UTF16Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UTF32Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UTF8Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UTF8String.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UTFString.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UUID.h">
+      <Filter>UUID\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UUIDGenerator.h">
+      <Filter>UUID\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UnWindows.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UnbufferedStreamBuf.h">
+      <Filter>Streams\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Unicode.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UnicodeConverter.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UniqueAccessExpireCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UniqueAccessExpireLRUCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UniqueAccessExpireStrategy.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UniqueExpireCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UniqueExpireLRUCache.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\UniqueExpireStrategy.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ValidArgs.h">
+      <Filter>Cache\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Version.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Void.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Windows1250Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Windows1251Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\Windows1252Encoding.h">
+      <Filter>Text\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\WindowsConsoleChannel.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ordered_hash.h">
+      <Filter>Unknown\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ordered_map.h">
+      <Filter>Unknown\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\ordered_set.h">
+      <Filter>Unknown\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\zconf.h">
+      <Filter>zlib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include\Poco\zlib.h">
+      <Filter>zlib\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\build\Foundation\pocomsg.h">
+      <Filter>Logging\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\src\pocomsg.mc">
+      <Filter>Logging\Message Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\work\AFE_VS_test\build\CMakeFiles\29c22144a4e6c5b895da83eda6f88646\pocomsg.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\DLLVersion.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DC6748FC-96EF-3A77-A8E4-2E6EDF73583C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cache">
+      <UniqueIdentifier>{6EF2999A-B4B1-39D1-912D-8FA788D71B38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cache\Header Files">
+      <UniqueIdentifier>{EA89AF87-D803-3E11-BCCA-F630A461F183}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{F20D2AFE-EAFA-3F26-BAF1-4F95BD65390E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Header Files">
+      <UniqueIdentifier>{0969C802-5B17-38EB-B0B4-F3C757E979A7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Source Files">
+      <UniqueIdentifier>{9A4E6744-B8CB-3FC4-A80E-C8A5BAF9573F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crypt">
+      <UniqueIdentifier>{B67FA261-AC98-368A-B5C7-1A90A70C92B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crypt\Header Files">
+      <UniqueIdentifier>{AF249279-D8E6-32C8-BF92-8B491C0B209B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crypt\Source Files">
+      <UniqueIdentifier>{65DF624C-EC6D-3A68-9153-7D165C4E435E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DateTime">
+      <UniqueIdentifier>{D0604816-3A81-3373-85BD-BC354AF30445}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DateTime\Header Files">
+      <UniqueIdentifier>{D128FF1B-282B-3838-AA60-ADEC535A16C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DateTime\Source Files">
+      <UniqueIdentifier>{E5664084-9350-30B6-8206-615DD1EB41BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dynamic">
+      <UniqueIdentifier>{AAB91093-4624-3018-A5D5-EBF655AFD38B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dynamic\Header Files">
+      <UniqueIdentifier>{D8D03266-0AE3-3AB0-AB31-5B9C58E59603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dynamic\Source Files">
+      <UniqueIdentifier>{57154566-5A77-3472-8716-7248E16369EC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{45B3F0EC-1C28-3D4B-AD05-1956B1C03C19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events\Header Files">
+      <UniqueIdentifier>{F47F72B9-7935-3DD3-A1F0-B87E6254DF5D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events\Source Files">
+      <UniqueIdentifier>{B3664225-F694-3CFB-934D-BB589F4E9899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filesystem">
+      <UniqueIdentifier>{28752027-A3E4-37EF-A54E-DF6854A2A2B5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filesystem\Header Files">
+      <UniqueIdentifier>{44F45798-0204-3B39-9288-E6CAD11872D8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filesystem\Source Files">
+      <UniqueIdentifier>{569F4922-6E58-3D08-A5A3-4FC21CFC63B8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hashing">
+      <UniqueIdentifier>{F163E434-F89C-32A8-B153-EA20610D3F07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hashing\Header Files">
+      <UniqueIdentifier>{48D48EBE-1D87-3FF8-A52F-FAE5EF5CE254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hashing\Source Files">
+      <UniqueIdentifier>{63862229-773A-3754-925A-E939B8160184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{51D8C487-B146-37F4-A969-48A7E7A6AF44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging\Header Files">
+      <UniqueIdentifier>{9A41368C-C261-302B-9B97-0FCEBC38E9A7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging\Message Files">
+      <UniqueIdentifier>{F8B07C18-5079-3848-8FF6-F89FFA7651DA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging\Source Files">
+      <UniqueIdentifier>{FA940720-AA43-3237-A932-5874EEED052F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Notifications">
+      <UniqueIdentifier>{CA78CC3E-363E-37E4-AFFD-48380E04980E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Notifications\Header Files">
+      <UniqueIdentifier>{F1570305-B08A-3DAB-91D6-8F876FCB4232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Notifications\Source Files">
+      <UniqueIdentifier>{31F95A60-A61C-321B-BE1C-2B878227E57E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Processes">
+      <UniqueIdentifier>{884B663B-3669-34FA-8C5E-087865E077AC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Processes\Header Files">
+      <UniqueIdentifier>{7DEB110B-8AA5-3F3B-AC34-21D8A1A6F778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Processes\Source Files">
+      <UniqueIdentifier>{CB7B016F-34BD-38C2-95A7-B9E0F705E45A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RegExp">
+      <UniqueIdentifier>{17862331-8B33-3C84-8A25-B4BB171B8416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RegExp\Header Files">
+      <UniqueIdentifier>{DD38F70F-74AA-3B65-B7A7-FEC2E6D924B1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RegExp\Source Files">
+      <UniqueIdentifier>{4D6A27DA-1A72-31AA-9655-0187B1183D96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{2AFF5B43-B61B-33B4-A1AE-ACC12E8E6D0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SharedLibrary">
+      <UniqueIdentifier>{39D8B87D-C2DC-33DB-BA71-07B2158008E3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SharedLibrary\Header Files">
+      <UniqueIdentifier>{B7E0269C-D354-32AB-B62E-5DAAA17D22E5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SharedLibrary\Source Files">
+      <UniqueIdentifier>{2F21FDF8-25CE-3600-B9DA-8BAE9E5F26F9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Streams">
+      <UniqueIdentifier>{52396455-093F-3EC0-A3A9-3B65069864B2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Streams\Header Files">
+      <UniqueIdentifier>{7A8B3F09-B976-3626-A7CA-F1A4B2B7005B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Streams\Source Files">
+      <UniqueIdentifier>{151FDA2F-4A80-3B1E-8AFF-A1964A9E5D5E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tasks">
+      <UniqueIdentifier>{D22D4974-2799-3209-B68B-214264B2E428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tasks\Header Files">
+      <UniqueIdentifier>{C19A5511-D9BB-3097-83F2-9A7AE97C2600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tasks\Source Files">
+      <UniqueIdentifier>{319A607E-6D10-3A19-8F00-66BD93D2AE9A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Text">
+      <UniqueIdentifier>{A4269EC2-AA99-340B-8D57-9433541D2EFA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Text\Header Files">
+      <UniqueIdentifier>{1599804B-A746-3C19-B461-8C2CAC6AC6B5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Text\Source Files">
+      <UniqueIdentifier>{7A900CA7-35CF-3518-9D8A-FBE0AE027D9F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading">
+      <UniqueIdentifier>{0201CF65-CD92-3F9D-A770-AB51866920E3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading\Header Files">
+      <UniqueIdentifier>{BBD6DF12-BA17-30D4-8552-333A9755F0C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Threading\Source Files">
+      <UniqueIdentifier>{3D93FBA6-F517-3A0C-9D11-3AEBE4EF4E1F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="URI">
+      <UniqueIdentifier>{DEC36E47-3546-3487-9E41-F847C81A3224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="URI\Header Files">
+      <UniqueIdentifier>{DE6B96BC-4D10-3AC7-A664-4077637EB5F7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="URI\Source Files">
+      <UniqueIdentifier>{53284838-D0DB-3838-AD15-721D956317C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UUID">
+      <UniqueIdentifier>{5070FA94-AEB0-3C1B-8EDB-122102F97185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UUID\Header Files">
+      <UniqueIdentifier>{20712B17-700A-38D9-AFE9-2231EB7D570E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UUID\Source Files">
+      <UniqueIdentifier>{070D70D0-7F6D-30E6-BDD5-7E0CEB098E12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unknown">
+      <UniqueIdentifier>{F4F83241-9FBF-3FCC-B111-34A28F427ACE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Unknown\Header Files">
+      <UniqueIdentifier>{6C1C94DF-A8CE-3CFC-A953-6711165DD4C0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pcre2">
+      <UniqueIdentifier>{AD14FC1A-D5A8-3A7C-95B9-DEAD6D6D56E8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pcre2\Source Files">
+      <UniqueIdentifier>{F551CE4B-5E39-356C-80BA-0312EE92419B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zlib">
+      <UniqueIdentifier>{400BED9F-AF4E-323E-931F-837C510737D5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zlib\Header Files">
+      <UniqueIdentifier>{5D87BA93-55AD-3C52-AB68-79CD23B44590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zlib\Source Files">
+      <UniqueIdentifier>{4D63E241-BAD8-3F87-B4E6-5C47E83524C7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

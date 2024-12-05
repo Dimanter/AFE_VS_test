@@ -1,0 +1,154 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"POCO_INSTALL",
+			"POCO_INSTALL_PDB",
+			"POCO_GENERATE_PACKAGE"
+		],
+		"files" : 
+		[
+			"cmake/PocoMacros.cmake",
+			"Encodings/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 32,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 272,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 279,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 290,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 305,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 246,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 253,
+				"parent" : 6
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Devel",
+			"destination" : "include",
+			"paths" : 
+			[
+				"Encodings/include/Poco"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/PocoEncodingsd.lib"
+			],
+			"targetId" : "Encodings::@2096c9d1a9143ac87f4c",
+			"targetIndex" : 1,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/PocoEncodingsd.dll"
+			],
+			"targetId" : "Encodings::@2096c9d1a9143ac87f4c",
+			"targetIndex" : 1,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Devel",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"C:/work/AFE_VS_test/build/bin/PocoEncodingsd.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "cmake",
+			"exportName" : "EncodingsTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "Encodings::@2096c9d1a9143ac87f4c",
+					"index" : 1
+				}
+			],
+			"paths" : 
+			[
+				"Encodings/CMakeFiles/Export/272ceadb8458515b2ae4b5630a6029cc/PocoEncodingsTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Devel",
+			"destination" : "cmake",
+			"paths" : 
+			[
+				"C:/work/AFE_VS_test/build/Poco/PocoEncodingsConfig.cmake",
+				"C:/work/AFE_VS_test/build/Poco/PocoEncodingsConfigVersion.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "Encodings",
+		"source" : "Encodings"
+	}
+}

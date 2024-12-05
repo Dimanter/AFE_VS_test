@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\DoubleByteEncoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Encodings.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_10Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_11Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_13Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_14Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_16Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_3Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_4Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_5Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_6Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_7Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_8Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\ISO8859_9Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\MacCentralEurRomanEncoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\MacChineseSimpEncoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\MacChineseTradEncoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\MacCyrillicEncoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\MacJapaneseEncoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\MacKoreanEncoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\MacRomanEncoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows1253Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows1254Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows1255Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows1256Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows1257Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows1258Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows874Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows932Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows936Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows949Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\src\Windows950Encoding.cpp">
+      <Filter>Encodings\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\DoubleByteEncoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Encodings.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_10Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_11Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_13Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_14Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_16Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_3Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_4Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_5Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_6Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_7Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_8Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\ISO8859_9Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\MacCentralEurRomanEncoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\MacChineseSimpEncoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\MacChineseTradEncoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\MacCyrillicEncoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\MacJapaneseEncoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\MacKoreanEncoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\MacRomanEncoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows1253Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows1254Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows1255Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows1256Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows1257Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows1258Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows874Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows932Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows936Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows949Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\include\Poco\Windows950Encoding.h">
+      <Filter>Encodings\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Encodings\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\DLLVersion.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Encodings">
+      <UniqueIdentifier>{57589CD6-0A6F-3EEE-8ED6-0B319A44D573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encodings\Header Files">
+      <UniqueIdentifier>{B17474FF-1A2F-3A64-93DC-AD4A761B18D3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Encodings\Source Files">
+      <UniqueIdentifier>{52629709-3F4E-348B-8001-4101F7296F8C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{2AFF5B43-B61B-33B4-A1AE-ACC12E8E6D0A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6F72A47C-6A73-303F-BE2E-D248328B0BD5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>Util</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\work\AFE_VS_test\build\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Util.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PocoUtild</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\work\AFE_VS_test\build\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Util.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PocoUtil</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\work\AFE_VS_test\build\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Util.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">PocoUtil</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\work\AFE_VS_test\build\bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Util.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">PocoUtil</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Zc:__cplusplus</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_DEBUG;POCO_ENABLE_CPP14;POCO_ENABLE_CPP11;POCO_OS_FAMILY_WINDOWS;UNICODE;_UNICODE;XML_STATIC;XML_DTD;XML_GE;CMAKE_INTDIR="Debug";Util_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;POCO_ENABLE_CPP14;POCO_ENABLE_CPP11;POCO_OS_FAMILY_WINDOWS;UNICODE;_UNICODE;XML_STATIC;XML_DTD;XML_GE;CMAKE_INTDIR=\"Debug\";Util_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\PocoXMLd.lib;..\lib\PocoJSONd.lib;..\lib\PocoFoundationd.lib;iphlpapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/work/AFE_VS_test/build/lib/PocoUtild.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/work/AFE_VS_test/build/bin/PocoUtild.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Zc:__cplusplus</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;POCO_ENABLE_CPP14;POCO_ENABLE_CPP11;POCO_OS_FAMILY_WINDOWS;UNICODE;_UNICODE;XML_STATIC;XML_DTD;XML_GE;CMAKE_INTDIR="Release";Util_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;POCO_ENABLE_CPP14;POCO_ENABLE_CPP11;POCO_OS_FAMILY_WINDOWS;UNICODE;_UNICODE;XML_STATIC;XML_DTD;XML_GE;CMAKE_INTDIR=\"Release\";Util_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\PocoXML.lib;..\lib\PocoJSON.lib;..\lib\PocoFoundation.lib;iphlpapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/work/AFE_VS_test/build/lib/PocoUtil.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/work/AFE_VS_test/build/bin/PocoUtil.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Zc:__cplusplus</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;POCO_ENABLE_CPP14;POCO_ENABLE_CPP11;POCO_OS_FAMILY_WINDOWS;UNICODE;_UNICODE;XML_STATIC;XML_DTD;XML_GE;CMAKE_INTDIR="MinSizeRel";Util_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;POCO_ENABLE_CPP14;POCO_ENABLE_CPP11;POCO_OS_FAMILY_WINDOWS;UNICODE;_UNICODE;XML_STATIC;XML_DTD;XML_GE;CMAKE_INTDIR=\"MinSizeRel\";Util_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\PocoXML.lib;..\lib\PocoJSON.lib;..\lib\PocoFoundation.lib;iphlpapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/work/AFE_VS_test/build/lib/PocoUtil.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/work/AFE_VS_test/build/bin/PocoUtil.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Zc:__cplusplus</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;POCO_ENABLE_CPP14;POCO_ENABLE_CPP11;POCO_OS_FAMILY_WINDOWS;UNICODE;_UNICODE;XML_STATIC;XML_DTD;XML_GE;CMAKE_INTDIR="RelWithDebInfo";Util_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;POCO_ENABLE_CPP14;POCO_ENABLE_CPP11;POCO_OS_FAMILY_WINDOWS;UNICODE;_UNICODE;XML_STATIC;XML_DTD;XML_GE;CMAKE_INTDIR=\"RelWithDebInfo\";Util_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\XML\include;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\JSON\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\PocoXML.lib;..\lib\PocoJSON.lib;..\lib\PocoFoundation.lib;iphlpapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/work/AFE_VS_test/build/lib/PocoUtil.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/work/AFE_VS_test/build/bin/PocoUtil.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/work/AFE_VS_test/vcpkg/poco-1.13.2/Util/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/work/AFE_VS_test/vcpkg/poco-1.13.2 -BC:/work/AFE_VS_test/build --check-stamp-file C:/work/AFE_VS_test/build/Util/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\WriteBasicConfigVersionFile.cmake;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\cmake\PocoUtilConfig.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\work\AFE_VS_test\build\Util\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/work/AFE_VS_test/vcpkg/poco-1.13.2/Util/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/work/AFE_VS_test/vcpkg/poco-1.13.2 -BC:/work/AFE_VS_test/build --check-stamp-file C:/work/AFE_VS_test/build/Util/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\WriteBasicConfigVersionFile.cmake;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\cmake\PocoUtilConfig.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\work\AFE_VS_test\build\Util\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/work/AFE_VS_test/vcpkg/poco-1.13.2/Util/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/work/AFE_VS_test/vcpkg/poco-1.13.2 -BC:/work/AFE_VS_test/build --check-stamp-file C:/work/AFE_VS_test/build/Util/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\WriteBasicConfigVersionFile.cmake;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\cmake\PocoUtilConfig.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\work\AFE_VS_test\build\Util\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/work/AFE_VS_test/vcpkg/poco-1.13.2/Util/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/work/AFE_VS_test/vcpkg/poco-1.13.2 -BC:/work/AFE_VS_test/build --check-stamp-file C:/work/AFE_VS_test/build/Util/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\BasicConfigVersion-AnyNewerVersion.cmake.in;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\CMakePackageConfigHelpers.cmake;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.28\Modules\WriteBasicConfigVersionFile.cmake;C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\cmake\PocoUtilConfig.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\work\AFE_VS_test\build\Util\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\AbstractConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\Application.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\ConfigurationMapper.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\ConfigurationView.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\FilesystemConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\HelpFormatter.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\IniFileConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\IntValidator.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\JSONConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\LayeredConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\LocalConfigurationView.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\LoggingConfigurator.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\LoggingSubsystem.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\MapConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\Option.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\OptionCallback.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\OptionException.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\OptionProcessor.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\OptionSet.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\PropertyFileConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\RegExpValidator.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\ServerApplication.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\Subsystem.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\SystemConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\Timer.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\TimerTask.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\Validator.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\WinRegistryConfiguration.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\WinRegistryKey.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\WinService.cpp" />
+    <ClCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\src\XMLConfiguration.cpp" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\AbstractConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\Application.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\ConfigurationMapper.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\ConfigurationView.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\FilesystemConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\HelpFormatter.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\IniFileConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\IntValidator.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\JSONConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\LayeredConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\LocalConfigurationView.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\LoggingConfigurator.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\LoggingSubsystem.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\MapConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\Option.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\OptionCallback.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\OptionException.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\OptionProcessor.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\OptionSet.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\PropertyFileConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\RegExpValidator.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\ServerApplication.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\Subsystem.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\SystemConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\Timer.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\TimerTask.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\TimerTaskAdapter.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\Units.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\Util.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\Validator.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\WinRegistryConfiguration.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\WinRegistryKey.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\WinService.h" />
+    <ClInclude Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Util\include\Poco\Util\XMLConfiguration.h" />
+    <ResourceCompile Include="C:\work\AFE_VS_test\vcpkg\poco-1.13.2\DLLVersion.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\work\AFE_VS_test\build\ZERO_CHECK.vcxproj">
+      <Project>{4ACA7957-DB50-3E0F-9D08-375F1EC0AA9D}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\work\AFE_VS_test\build\Foundation\Foundation.vcxproj">
+      <Project>{5C5EE099-BB79-3A1B-9743-B6D8400B773D}</Project>
+      <Name>Foundation</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\work\AFE_VS_test\build\JSON\JSON.vcxproj">
+      <Project>{32881403-1BFF-393A-A750-6863B8C5B62C}</Project>
+      <Name>JSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\work\AFE_VS_test\build\XML\XML.vcxproj">
+      <Project>{7FC43675-BAAD-325C-93AB-F43624B5E841}</Project>
+      <Name>XML</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

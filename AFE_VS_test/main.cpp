@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "MainWindow.hpp"
 #include "Monitoring.h"
 #include <QApplication>
 #include <QLocale>

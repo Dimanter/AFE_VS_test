@@ -1,0 +1,154 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"POCO_INSTALL",
+			"POCO_INSTALL_PDB",
+			"POCO_GENERATE_PACKAGE"
+		],
+		"files" : 
+		[
+			"cmake/PocoMacros.cmake",
+			"XML/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 65,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 272,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 279,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 290,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 305,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 66,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 246,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 253,
+				"parent" : 6
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Devel",
+			"destination" : "include",
+			"paths" : 
+			[
+				"XML/include/Poco"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/PocoXMLd.lib"
+			],
+			"targetId" : "XML::@576c21ba30797c603355",
+			"targetIndex" : 6,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/PocoXMLd.dll"
+			],
+			"targetId" : "XML::@576c21ba30797c603355",
+			"targetIndex" : 6,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Devel",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"C:/work/AFE_VS_test/build/bin/PocoXMLd.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "cmake",
+			"exportName" : "XMLTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "XML::@576c21ba30797c603355",
+					"index" : 6
+				}
+			],
+			"paths" : 
+			[
+				"XML/CMakeFiles/Export/272ceadb8458515b2ae4b5630a6029cc/PocoXMLTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Devel",
+			"destination" : "cmake",
+			"paths" : 
+			[
+				"C:/work/AFE_VS_test/build/Poco/PocoXMLConfig.cmake",
+				"C:/work/AFE_VS_test/build/Poco/PocoXMLConfigVersion.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "XML",
+		"source" : "XML"
+	}
+}

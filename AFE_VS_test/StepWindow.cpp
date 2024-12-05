@@ -10,7 +10,7 @@ StepWindow::StepWindow(const QString& device, QWidget* parent)
 	darkPalette.setColor(QPalette::ToolTipBase, QColor(75, 75, 75));
 	darkPalette.setColor(QPalette::ToolTipText, QColor(255, 255, 255));
 	darkPalette.setColor(QPalette::Text, QColor(255, 255, 255));
-	darkPalette.setColor(QPalette::Button, QColor(50, 50, 50));
+	darkPalette.setColor(QPalette::Button, QColor(50, 50, 50));	
 	darkPalette.setColor(QPalette::ButtonText, QColor(255, 255, 255));
 	darkPalette.setColor(QPalette::BrightText, QColor(80, 80, 80));
 	darkPalette.setColor(QPalette::Link, QColor(75, 75, 75));

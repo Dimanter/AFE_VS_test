@@ -1,0 +1,154 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"POCO_INSTALL",
+			"POCO_INSTALL_PDB",
+			"POCO_GENERATE_PACKAGE"
+		],
+		"files" : 
+		[
+			"cmake/PocoMacros.cmake",
+			"Util/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 49,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 272,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 279,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 290,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 305,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 50,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 246,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 253,
+				"parent" : 6
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Devel",
+			"destination" : "include",
+			"paths" : 
+			[
+				"Util/include/Poco"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/PocoUtil.lib"
+			],
+			"targetId" : "Util::@985804b4fac11ee930c3",
+			"targetIndex" : 5,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/PocoUtil.dll"
+			],
+			"targetId" : "Util::@985804b4fac11ee930c3",
+			"targetIndex" : 5,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Devel",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"C:/work/AFE_VS_test/build/bin/PocoUtil.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "cmake",
+			"exportName" : "UtilTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "Util::@985804b4fac11ee930c3",
+					"index" : 5
+				}
+			],
+			"paths" : 
+			[
+				"Util/CMakeFiles/Export/272ceadb8458515b2ae4b5630a6029cc/PocoUtilTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Devel",
+			"destination" : "cmake",
+			"paths" : 
+			[
+				"C:/work/AFE_VS_test/build/Poco/PocoUtilConfig.cmake",
+				"C:/work/AFE_VS_test/build/Poco/PocoUtilConfigVersion.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "Util",
+		"source" : "Util"
+	}
+}

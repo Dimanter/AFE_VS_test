@@ -103,7 +103,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\work\vcpkg\poco-1.13.2\Foundation\include;C:\qt\creator\6.8.0\msvc2019_64\include\QtSerialPort;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\work\AFE_VS_test\vcpkg\poco-1.13.2\Foundation\include;C:\qt\creator\6.8.0\msvc2019_64\include\QtSerialPort;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(Qt_DEFINES_);%(PreprocessorDefinitions);QT_SERIALPORT_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -157,10 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Buffer.cpp" />
-    <ClCompile Include="coefin.cpp" />
-    <ClCompile Include="coefout.cpp" />
     <ClCompile Include="Monitoring.cpp" />
-    <ClCompile Include="output.cpp" />
     <ClCompile Include="StepWindow.cpp">
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
@@ -170,28 +167,17 @@
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
     </ClCompile>
     <QtRcc Include="AFE_VS_test.qrc" />
-    <QtUic Include="..\..\AFE_Copy\Form\coefin.ui" />
-    <QtUic Include="..\..\AFE_Copy\Form\coefout.ui" />
-    <QtUic Include="..\..\AFE_Copy\Form\device.ui" />
-    <QtUic Include="..\..\AFE_Copy\Form\output.ui" />
     <QtUic Include="AFE_VS_test.ui" />
-    <QtMoc Include="MainWindow.hpp" />
-    <ClCompile Include="Board.cpp" />
-    <ClCompile Include="device.cpp" />
-    <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="Monitoring.ui" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Board.hpp" />
     <ClInclude Include="Buffer.hpp" />
     <ClInclude Include="BufferAllocator.hpp" />
     <ClInclude Include="BufferIterator.hpp" />
     <ClInclude Include="BufferWrapper.hpp" />
     <QtMoc Include="Work.hpp" />
-    <QtMoc Include="coefin.hpp" />
     <ClInclude Include="coefinService.hpp" />
-    <QtMoc Include="coefout.hpp" />
     <ClInclude Include="coefOutService.hpp" />
     <ClInclude Include="controlService.hpp" />
     <ClInclude Include="cyclebuff.hpp" />
@@ -200,7 +186,6 @@
     <ClInclude Include="eventService.hpp" />
     <ClInclude Include="FactoryWrapper.hpp" />
     <ClInclude Include="measureService.hpp" />
-    <QtMoc Include="output.hpp" />
     <QtMoc Include="Monitoring.h" />
     <ClInclude Include="rawService.hpp" />
     <ClInclude Include="Service.hpp" />
@@ -209,7 +194,6 @@
     <QtMoc Include="StepWindow.hpp" />
     <ClInclude Include="Transport.hpp" />
     <ClInclude Include="Typedef.hpp" />
-    <QtMoc Include="device.hpp" />
     <ClInclude Include="Limb.hpp" />
     <ClInclude Include="outService.hpp" />
     <ClInclude Include="parameterService.hpp" />

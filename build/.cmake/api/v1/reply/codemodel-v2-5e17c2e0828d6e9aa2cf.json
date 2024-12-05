@@ -1,0 +1,904 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-32ff752c0c5e078c4d93.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						7,
+						8
+					]
+				},
+				{
+					"build" : "Foundation",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Foundation-Debug-4393285e3f61f9be0f0d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Foundation",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "Encodings",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Encodings-Debug-d43de7f80309376f9933.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Encodings",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "XML",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-XML-Debug-6924f1f6efa733a9e126.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "XML",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "JSON",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-JSON-Debug-b13bce258a18ccb212c3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "JSON",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "Util",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Util-Debug-ac95fe1f2bb5178da5c5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Util",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "Net",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Net-Debug-abc90ba75093fc2371e1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Net",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"name" : "Poco",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-9c817233fa3f2fda51e0.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Encodings::@2096c9d1a9143ac87f4c",
+					"jsonFile" : "target-Encodings-Debug-651c3add97611532ef08.json",
+					"name" : "Encodings",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Foundation::@03697081e5612e2e24a8",
+					"jsonFile" : "target-Foundation-Debug-803a5bd5742046b76628.json",
+					"name" : "Foundation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "JSON::@7c7af9cb500bf9a067da",
+					"jsonFile" : "target-JSON-Debug-32ec58a70b16a31f0928.json",
+					"name" : "JSON",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "Net::@55a7020f216620e671f3",
+					"jsonFile" : "target-Net-Debug-2390de82058976e7b3f0.json",
+					"name" : "Net",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "Util::@985804b4fac11ee930c3",
+					"jsonFile" : "target-Util-Debug-1c57f88fa7022ceed8c3.json",
+					"name" : "Util",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "XML::@576c21ba30797c603355",
+					"jsonFile" : "target-XML-Debug-adcbf1d9342b0f1f5f29.json",
+					"name" : "XML",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-f23ecdf794cebb82d9ca.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-Debug-37d04e05c0ac8dad0561.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-32ff752c0c5e078c4d93.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						7,
+						8
+					]
+				},
+				{
+					"build" : "Foundation",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Foundation-Release-d381c9c652059ee2e079.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Foundation",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "Encodings",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Encodings-Release-37122259ffa9f4f50327.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Encodings",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "XML",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-XML-Release-6f74768af332672c414f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "XML",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "JSON",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-JSON-Release-a766060e9dcd8666c686.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "JSON",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "Util",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Util-Release-1663a2bfae8970ff324d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Util",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "Net",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Net-Release-0d0ab45842577dab0d1a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Net",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"name" : "Poco",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Release-9c817233fa3f2fda51e0.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Encodings::@2096c9d1a9143ac87f4c",
+					"jsonFile" : "target-Encodings-Release-2e5ee5d55d1fecac9a3f.json",
+					"name" : "Encodings",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Foundation::@03697081e5612e2e24a8",
+					"jsonFile" : "target-Foundation-Release-fadf3790c2c5b8c0d764.json",
+					"name" : "Foundation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "JSON::@7c7af9cb500bf9a067da",
+					"jsonFile" : "target-JSON-Release-efa56422d767a416b5d5.json",
+					"name" : "JSON",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "Net::@55a7020f216620e671f3",
+					"jsonFile" : "target-Net-Release-1482fabd1a3d75619b42.json",
+					"name" : "Net",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "Util::@985804b4fac11ee930c3",
+					"jsonFile" : "target-Util-Release-68e60d22a31ebc390f17.json",
+					"name" : "Util",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "XML::@576c21ba30797c603355",
+					"jsonFile" : "target-XML-Release-431af1af6220a427e95a.json",
+					"name" : "XML",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Release-f23ecdf794cebb82d9ca.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-Release-37d04e05c0ac8dad0561.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-MinSizeRel-32ff752c0c5e078c4d93.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						7,
+						8
+					]
+				},
+				{
+					"build" : "Foundation",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Foundation-MinSizeRel-d381c9c652059ee2e079.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Foundation",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "Encodings",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Encodings-MinSizeRel-37122259ffa9f4f50327.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Encodings",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "XML",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-XML-MinSizeRel-6f74768af332672c414f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "XML",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "JSON",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-JSON-MinSizeRel-a766060e9dcd8666c686.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "JSON",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "Util",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Util-MinSizeRel-1663a2bfae8970ff324d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Util",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "Net",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Net-MinSizeRel-0d0ab45842577dab0d1a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Net",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"name" : "Poco",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-9c817233fa3f2fda51e0.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Encodings::@2096c9d1a9143ac87f4c",
+					"jsonFile" : "target-Encodings-MinSizeRel-2ce23d5aa3f3790d97bb.json",
+					"name" : "Encodings",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Foundation::@03697081e5612e2e24a8",
+					"jsonFile" : "target-Foundation-MinSizeRel-a7fcdc02130a5d2193b9.json",
+					"name" : "Foundation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "JSON::@7c7af9cb500bf9a067da",
+					"jsonFile" : "target-JSON-MinSizeRel-411421ddf4eee6b97958.json",
+					"name" : "JSON",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "Net::@55a7020f216620e671f3",
+					"jsonFile" : "target-Net-MinSizeRel-2c146e50106c85cf10d9.json",
+					"name" : "Net",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "Util::@985804b4fac11ee930c3",
+					"jsonFile" : "target-Util-MinSizeRel-d75cbbef9ff75abfcbe5.json",
+					"name" : "Util",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "XML::@576c21ba30797c603355",
+					"jsonFile" : "target-XML-MinSizeRel-54ef92265c35c38438d4.json",
+					"name" : "XML",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-MinSizeRel-f23ecdf794cebb82d9ca.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-MinSizeRel-37d04e05c0ac8dad0561.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-32ff752c0c5e078c4d93.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						7,
+						8
+					]
+				},
+				{
+					"build" : "Foundation",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Foundation-RelWithDebInfo-d381c9c652059ee2e079.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Foundation",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "Encodings",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Encodings-RelWithDebInfo-37122259ffa9f4f50327.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Encodings",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "XML",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-XML-RelWithDebInfo-6f74768af332672c414f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "XML",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "JSON",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-JSON-RelWithDebInfo-a766060e9dcd8666c686.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "JSON",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "Util",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Util-RelWithDebInfo-1663a2bfae8970ff324d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Util",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "Net",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-Net-RelWithDebInfo-0d0ab45842577dab0d1a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "Net",
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"name" : "Poco",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-9c817233fa3f2fda51e0.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "Encodings::@2096c9d1a9143ac87f4c",
+					"jsonFile" : "target-Encodings-RelWithDebInfo-71a1c9efa84af7a6877b.json",
+					"name" : "Encodings",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "Foundation::@03697081e5612e2e24a8",
+					"jsonFile" : "target-Foundation-RelWithDebInfo-ed0386cfafabb48d1639.json",
+					"name" : "Foundation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "JSON::@7c7af9cb500bf9a067da",
+					"jsonFile" : "target-JSON-RelWithDebInfo-e8f0e5c9adc37fcb9345.json",
+					"name" : "JSON",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "Net::@55a7020f216620e671f3",
+					"jsonFile" : "target-Net-RelWithDebInfo-7ee57163090974f360d1.json",
+					"name" : "Net",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "Util::@985804b4fac11ee930c3",
+					"jsonFile" : "target-Util-RelWithDebInfo-41c85e2183c9aa117487.json",
+					"name" : "Util",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "XML::@576c21ba30797c603355",
+					"jsonFile" : "target-XML-RelWithDebInfo-44fc9871314692df1262.json",
+					"name" : "XML",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-f23ecdf794cebb82d9ca.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-RelWithDebInfo-37d04e05c0ac8dad0561.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/work/AFE_VS_test/build",
+		"source" : "C:/work/AFE_VS_test/vcpkg/poco-1.13.2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

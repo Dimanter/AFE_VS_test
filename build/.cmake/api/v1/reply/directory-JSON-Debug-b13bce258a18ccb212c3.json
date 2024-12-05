@@ -1,0 +1,154 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"POCO_INSTALL",
+			"POCO_INSTALL_PDB",
+			"POCO_GENERATE_PACKAGE"
+		],
+		"files" : 
+		[
+			"cmake/PocoMacros.cmake",
+			"JSON/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 272,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 279,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 290,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 305,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 42,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 246,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 253,
+				"parent" : 6
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Devel",
+			"destination" : "include",
+			"paths" : 
+			[
+				"JSON/include/Poco"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/PocoJSONd.lib"
+			],
+			"targetId" : "JSON::@7c7af9cb500bf9a067da",
+			"targetIndex" : 3,
+			"targetIsImportLibrary" : true,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"bin/PocoJSONd.dll"
+			],
+			"targetId" : "JSON::@7c7af9cb500bf9a067da",
+			"targetIndex" : 3,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Devel",
+			"destination" : "bin",
+			"isOptional" : true,
+			"paths" : 
+			[
+				"C:/work/AFE_VS_test/build/bin/PocoJSONd.pdb"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "cmake",
+			"exportName" : "JSONTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "JSON::@7c7af9cb500bf9a067da",
+					"index" : 3
+				}
+			],
+			"paths" : 
+			[
+				"JSON/CMakeFiles/Export/272ceadb8458515b2ae4b5630a6029cc/PocoJSONTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Devel",
+			"destination" : "cmake",
+			"paths" : 
+			[
+				"C:/work/AFE_VS_test/build/Poco/PocoJSONConfig.cmake",
+				"C:/work/AFE_VS_test/build/Poco/PocoJSONConfigVersion.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "JSON",
+		"source" : "JSON"
+	}
+}

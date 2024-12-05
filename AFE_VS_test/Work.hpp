@@ -18,26 +18,18 @@
 #include <map>
 #include <ranges>
 #include <tuple>
-
-#include "cyclebuff.hpp"
-#include "measureService.hpp"
-
-//#include "device.hpp"
-//#include "qAxis.hpp"
-//#include "qTable.hpp"
-//#include "DataAnalyze.hpp"
-
 #include <set>
 
-#include "output.hpp"
 #include "protocol.hpp"
-
 #include "Dispatcher.hpp"
 #include "Process.hpp"
 #include "controlService.hpp"
 #include "eventService.hpp"
 #include "measureService.hpp"
 #include "stepService.hpp"
+#include "cyclebuff.hpp"
+#include "outService.hpp"
+
 
 /**
  * @brief Work класс отображения результатов измерения датчика угал
@@ -756,7 +748,7 @@ public:
 	std::shared_ptr<controlService> control = makeService<controlService>(this, &Work::notify, Services::Control);//контроллер команд
 	std::shared_ptr<eventService>   message = makeService<eventService>(this, &Work::notify, Services::Event);//эвент нажатия кнопок
 	std::shared_ptr<stepService>    step = makeService<stepService>(this, &Work::notify, Services::Step);//сервис с параметрами шага
-	std::shared_ptr<qOutput>        out = makeService<qOutput>(this, &Work::notify, Services::Output);//сервис с пользовательским интерфесом
+	std::shared_ptr<outService>        out = makeService<outService>(this, &Work::notify, Services::Output);//сервис с пользовательским интерфесом
 	std::shared_ptr<measureService> measure = makeService<measureService>(this, &Work::notify, Services::Parameters);//сервис с данными измерений
 	float frequency = 400;
 	float resist = 6000;
