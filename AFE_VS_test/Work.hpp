@@ -130,16 +130,16 @@ public:
 		return [this]()
 			{
 				//Положительный
-				this->out->outP = 3850.f;
-				this->out->meanP = 1925.f;
+				this->out->outP = 5800.f;
+				this->out->meanP = 2900.f;
 				this->out->phaseP = 0.f;
 
 				//Отрицательный
-				this->out->outN = 3850.f;
-				this->out->meanN = 1925.f;
+				this->out->outN = 5800.f;
+				this->out->meanN = 2900.f;
 				this->out->phaseN = M_PI;
 				//Частота и ввод
-				this->out->freq = 12000.f;
+				this->out->freq = 12200.f;
 				this->out->transmit(1, Service::Type::TransmitConfirmed);
 				return std::make_pair(this->out->getAddress(), Service::State::Ready);
 			};
@@ -153,16 +153,16 @@ public:
 		return [this]()
 			{
 				//Положительный
-				this->out->outP = 3850.f;
-				this->out->meanP = 1925.f;
+				this->out->outP = 3000.f;
+				this->out->meanP = 1500.f;
 				this->out->phaseP = 0.f;
 
 				//Отрицательный
-				this->out->outN = 3850.f;
-				this->out->meanN = 1925.f;
+				this->out->outN = 3000.f;
+				this->out->meanN = 1500.f;
 				this->out->phaseN = M_PI;
 				//Частота и ввод
-				this->out->freq = 12000.f;
+				this->out->freq = 400.f;
 				this->out->transmit(1, Service::Type::TransmitConfirmed);
 				return std::make_pair(this->out->getAddress(), Service::State::Ready);
 			};
@@ -248,6 +248,7 @@ public:
 	 */
 	uint8_t Write(std::unique_ptr<addressing_t[]> data, std::size_t size)
 	{
+		auto t = data.get();
 		return port->write(reinterpret_cast<const char*>(data.get()), size);
 	}
 
@@ -294,6 +295,7 @@ public:
 
 		if (device == "45Д20-2")processes.add(processMonitor, setOutput45D20());
 		if (device == "СКТ-232Б") processes.add(processMonitor, setOutputSKT());
+		if (device == "СКТ-265Д")processes.add(processMonitor, setOutputSKT265());
 		if (device == "Changed")processes.add(processMonitor, setOutputSettings());
 		
 		processes.add(processMonitor, [this]() {
@@ -305,6 +307,7 @@ public:
 
 		if (device == "45Д20-2")processes.add(processMeasure, setOutput45D20());
 		if (device == "СКТ-232Б") processes.add(processMeasure, setOutputSKT());
+		if (device == "СКТ-265Д")processes.add(processMonitor, setOutputSKT265());
 		
 
 		processes.add(processMeasure, setStepper(stepDirection::Backward, stepRatio::_1, 1200U, 2700U));

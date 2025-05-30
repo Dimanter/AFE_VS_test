@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <algorithm>
 #include <queue>
@@ -20,7 +20,7 @@ class Dispatcher final
 public:
     Dispatcher() = default;
 
-    Dispatcher(std::function<void(void)> call) : callbackDeffered{ call } {}
+    Dispatcher(std::function<void(void)> call) : callbackDeffered{call} {}
 
     /**
      * \brief Регистрация функции приёма пакета по транспортному каналу
@@ -29,7 +29,7 @@ public:
      */
     void registerTransport(std::shared_ptr<Transport> transport)
     {
-        const auto addr = transport->getAddress();
+        const auto addr  = transport->getAddress();
         transports[addr] = transport;
         transport->registerReceiver(std::bind(&Dispatcher::receive, this, addr, _1, _2, _3));
     }
@@ -51,7 +51,7 @@ public:
     void registerService(std::shared_ptr<Service> service)
     {
         const auto addr = service->getAddress();
-        services[addr] = service;
+        services[addr]  = service;
         service->registerTransmitter(std::bind(&Dispatcher::transmit, this, _1, addr, _2, _3));
     }
 
@@ -70,7 +70,7 @@ public:
      */
     void resetService()
     {
-        for (auto& [addr, service] : services) {
+        for (auto &[addr, service] : services) {
             if (service->getStatus() != Service::State::Ready) {
                 process.erase(addr);
                 service->Ack(Service::State::Cancel);
@@ -99,7 +99,7 @@ public:
      */
     void clock()
     {
-        for (auto& [addrService, time] : process) {
+        for (auto &[addrService, time] : process) {
             time--;
             if (time == 0) {
                 auto it = services.find(addrService);
@@ -109,19 +109,19 @@ public:
                 }
             }
         }
-        std::erase_if(process, [](const decltype(process)::value_type& task) { return task.second == 0; });
+        std::erase_if(process, [](const decltype(process)::value_type &task) { return task.second == 0; });
     }
 
     ~Dispatcher()
     {
-        for (auto& [addr, time] : process) {
+        for (auto &[addr, time] : process) {
             services[addr]->Ack(Service::State::Cancel);
             services[addr]->Ack(Service::State::Ready);
         }
-        for (auto& [addr, transport] : transports) {
+        for (auto &[addr, transport] : transports) {
             transport->unregisterReceiver();
         }
-        for (auto& [addr, service] : services) {
+        for (auto &[addr, service] : services) {
             service->unregisterTransmitter();
         }
     }
@@ -136,11 +136,11 @@ private:
     \retval статус отправки пакета через транспортный уровень (в случае неудачи, сервис запросивший передачу переводится в исходное состояние)
     \detail Функция вызывается с сервисного уровня
     */
-    Status transmit(addressing_t pipe, addressing_t addrService, Service::Type typeTransfer, const Data_t& dataService)
+    Status transmit(addressing_t pipe, addressing_t addrService, Service::Type typeTransfer, const Data_t &dataService)
     {
         auto it = transports.find(pipe);
         if (it != transports.end()) {
-            auto& [addr, transport] = *it;
+            auto &[addr, transport] = *it;
             services[addrService]->Ack(Service::State::Busy);
             switch (typeTransfer) {
             case Service::Type::TransmitConfirmed:
@@ -185,11 +185,11 @@ private:
     \param dataService - полезные данные
     \detail Функция вызывается с транспортного уровня
     */
-    Status receive(addressing_t pipe, addressing_t addrService, Transport::typePacket type, Data_t&& dataService)
+    Status receive(addressing_t pipe, addressing_t addrService, Transport::typePacket type, Data_t &&dataService)
     {
         auto it = services.find(addrService);
         if (it != services.end()) {
-            auto& [addr, service] = *it;
+            auto &[addr, service] = *it;
             switch (type) {
             case Transport::typePacket::Ack:
                 service->Ack(Service::State::AckComplete);

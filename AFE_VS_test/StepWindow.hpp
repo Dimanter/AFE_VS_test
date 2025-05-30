@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QTime>
 #include <map>
+#include <sstream>
 
 #include <QtSerialPort/qserialport.h>
 #include <QtSerialPort/qserialportinfo.h>
@@ -18,7 +19,21 @@
 */
 class Data
 {
+	
 public:
+	Data()
+	{
+		angleGrad = 0;
+		angle = 0;
+		min = 0;
+		sec = 0;
+		V1 = 0;
+		V2 = 0;
+		Phase1 = 0;
+		Phase2 = 0;
+		I = 0;
+		IPhase = 0;
+	}
 	float angleGrad;// Угол в градусах с плавающей запятой
 	int angle;// Угол в градусах целочисленный
 	int min;// Минуты угла
@@ -99,6 +114,7 @@ public:
 	/*@brief Метод покдлючения к com-порту
 	*/
 	void Connect();
+	void LoadWindow(QString device);
 	/*@brief Метод отключения от com-порта
 	*/
 	void Disconnect();
@@ -148,6 +164,22 @@ public:
 	*/
 	bool DialogDel();
 	void AboutProgramm();
+	/*@brief Функция для установки заголовков модели
+	*/
+	void setModelHeaders(QStandardItemModel* model, const QStringList& headers);
+	/*@brief Функция для заполнения модели для устройства "45Д20-2"
+	*/
+	void setupDevice45D20(QStandardItemModel* model);
+	/*@brief Функция для заполнения модели для устройства "СКТ-232Б"
+	*/
+	void setupDeviceSKT232B(QStandardItemModel* model);
+	void setupDeviceSKT265D(QStandardItemModel* model);
+	/*@brief Функция удаления старого файла конвертации
+	*/
+	void deleteOldFiles();
+	/*@brief Функция записи данных в файл конвертации
+	*/
+	void writeDataToFile(QStandardItemModel* model, int fileIndex);
 	/*@brief Метод обмена данными мужду двумя параметрами
 	* @param val1 - первый параметр
 	* @param val2 - второй параметр
@@ -325,6 +357,7 @@ private:
 	int angle = 0;// Угол в градусах целочисленный
 	int min = 0;// Минуты угла
 	int sec = 0;// Секунды Угла
+	float secDec = 0;
 	int Dir;// Направление вращения мотора
 	int StepRatio;// Длинна шага
 	int Period;// Период импульсов

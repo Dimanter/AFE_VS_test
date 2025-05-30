@@ -45,6 +45,9 @@
     <Filter Include="Monitor">
       <UniqueIdentifier>{c99ab1ed-461b-4a08-8475-0e4a7ac8fa62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainWindow">
+      <UniqueIdentifier>{605e78a7-ae80-4c06-add4-e9000f8cbe62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="AFE_VS_test.qrc">
@@ -66,6 +69,9 @@
     </ClCompile>
     <ClCompile Include="Monitoring.cpp">
       <Filter>Monitor</Filter>
+    </ClCompile>
+    <ClCompile Include="StartWindow.cpp">
+      <Filter>MainWindow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="stepService.hpp">
       <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="StartWindow.hpp">
+      <Filter>MainWindow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>653</width>
+    <width>700</width>
     <height>470</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>653</width>
+    <width>700</width>
     <height>470</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>653</width>
+    <width>700</width>
     <height>470</height>
    </size>
   </property>
@@ -36,7 +36,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>410</y>
+      <y>390</y>
       <width>401</width>
       <height>21</height>
      </rect>
@@ -50,7 +50,7 @@
      <rect>
       <x>10</x>
       <y>210</y>
-      <width>281</width>
+      <width>341</width>
       <height>101</height>
      </rect>
     </property>
@@ -81,7 +81,7 @@
      <rect>
       <x>360</x>
       <y>80</y>
-      <width>281</width>
+      <width>331</width>
       <height>101</height>
      </rect>
     </property>
@@ -99,7 +99,7 @@
      <rect>
       <x>360</x>
       <y>210</y>
-      <width>281</width>
+      <width>331</width>
       <height>101</height>
      </rect>
     </property>
@@ -142,9 +142,9 @@
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>10</y>
-      <width>141</width>
-      <height>41</height>
+      <y>0</y>
+      <width>191</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -246,7 +246,7 @@
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>281</width>
+      <width>341</width>
       <height>101</height>
      </rect>
     </property>
@@ -264,7 +264,7 @@
      <rect>
       <x>550</x>
       <y>340</y>
-      <width>91</width>
+      <width>141</width>
       <height>51</height>
      </rect>
     </property>
@@ -283,7 +283,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Частота (гЦ)</string>
+     <string>Частота (Hz)</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_9">
@@ -314,7 +314,7 @@
      </font>
     </property>
     <property name="maximum">
-     <number>12000</number>
+     <number>16000</number>
     </property>
     <property name="value">
      <number>400</number>
@@ -335,7 +335,7 @@
      </font>
     </property>
     <property name="maximum">
-     <number>12000</number>
+     <number>16000</number>
     </property>
     <property name="value">
      <number>6000</number>

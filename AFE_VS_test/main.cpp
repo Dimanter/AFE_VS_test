@@ -1,16 +1,12 @@
 ﻿#pragma once
-#include "Monitoring.h"
-#include <QApplication>
-#include <QLocale>
-#include <QTranslator>
-#include <QCommandLineParser>
+#include "StartWindow.hpp"
 
 /*
 * 1 Загрузка данных (частоты и фазы) Work.hpp
 * 2 Запуск шагового мотора Work.hpp
 * 3 Измерения угла/ перевод в секунды минуты Stepwindow.cpp
 * 4 Измерение фазы, наряжения, силы тока StepWindow.cpp
-* 5 Анализ измерениЙ? Stepwindow.cpp
+* 5 Анализ измерений Stepwindow.cpp
 */
 int main(int argc, char* argv[])
 {
@@ -33,9 +29,8 @@ int main(int argc, char* argv[])
     w.show();
     return a.exec();*/
 
-    //включить для программы измерений
-    StepWindow s{ "СКТ-265Д" }; // 45Д20-2; СКТ-232Б; СКТ-265Д
-    QCoreApplication::setApplicationName("Метер");
-    s.show();
+    StartWindow main{};
+    main.show();
     return 0;
 }
+//TODO: <17 a He 20 :<

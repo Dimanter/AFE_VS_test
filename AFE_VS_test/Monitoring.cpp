@@ -34,11 +34,12 @@ void Monitoring::Create()
 	//ui.btnStart->setEnabled(false);
 	ui.ChangeSettings->setEnabled(false);
 
-	timer->setInterval(1.f);
+	timer->setInterval(10.f);
 	connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
 
-	/*timerAverage->setInterval(1.f);
-	connect(timerAverage, SIGNAL(timeout()), this, SLOT(Average()));*/
+	timerAverage->setInterval(1000.f);
+	connect(timerAverage, SIGNAL(timeout()), this, SLOT(Average()));
+	//QApplication::exec();
 }
 
 void Monitoring::Refresh()
@@ -78,11 +79,14 @@ void Monitoring::Disconnect()
 	ui.ChangeSettings->setEnabled(false);
 	ui.StatusCon->setText(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
 	timer->stop();
+	timerAverage->stop();
 }
 
 void Monitoring::Stop()
 {
 	work->Stop();
+	timer->stop();
+	timerAverage->stop();
 	ui.ChangeSettings->setEnabled(true);
 }
 
@@ -100,17 +104,37 @@ void Monitoring::Stop()
 void Monitoring::StepThreading()
 {
 	ConvertAngle(work->measure->refAngle);
-	ui.textAngle->setPlainText(QString::fromStdString(to_string(angle) + " " + to_string(min) + "' " + to_string(sec) + "'" + "'"));
-	ui.I->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).I.RMS)));
-	ui.V1->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).V1.RMS)));
-	ui.V2->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).V2.RMS)));
-	ui.IPhase->setPlainText(QString::fromStdString(to_string(measures_t(work->measure->Result).I.Phase)));
+	std::ostringstream stream;
+	stream << std::fixed << std::setprecision(1) << secDec;
+	std::string roundedString = stream.str();
+	ui.textAngle->setPlainText(QString::fromStdString(to_string(angle) + " " + to_string(min) + "' " + roundedString + "'" + "'"));
+
+	std::ostringstream stream1;
+	stream1 << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).I.RMS;
+	roundedString = stream1.str();
+	ui.I->setPlainText(QString::fromStdString(roundedString));
+
+	std::ostringstream stream2;
+	stream2 << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).V1.RMS;
+	roundedString = stream2.str();
+	ui.V1->setPlainText(QString::fromStdString(roundedString));
+
+	std::ostringstream stream3;
+	stream3 << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).V2.RMS;
+	roundedString = stream3.str();
+	ui.V2->setPlainText(QString::fromStdString(roundedString));
+
+	std::ostringstream stream4;
+	stream4 << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).I.Phase;
+	roundedString = stream4.str();
+	ui.IPhase->setPlainText(QString::fromStdString(roundedString));
 }
 
 void Monitoring::Monitor()
 {
 	if (!work->port->isOpen())return;
 	timer->start();
+	timerAverage->start();
 	work->Monitor();
 	ui.ChangeSettings->setEnabled(false);
 }
@@ -127,10 +151,11 @@ void Monitoring::ConvertAngle(float _angle)
 	_min = _angle - grad;
 	_min = std::trunc(_min * 60.0);
 	_sec = (_angle - grad) * 60.0 - _min;
-	_sec = std::trunc(_sec * 60.0);
+	_sec = _sec * 60.0;//std::trunc(_sec * 60.0);
 	angle = grad;
 	min = _min;
 	sec = _sec;
+	secDec = std::round(_sec * 10.0f) / 10.0f;
 }
 
 void Monitoring::ChangeSettings()
@@ -156,26 +181,34 @@ void Monitoring::AboutProgramm()
 	box.exec();
 }
 
+int Monitoring::FindMinV(vector<Data> cont)
+{
+	float min = cont[0].V2;
+	int idx = 0;
+	for (int i = 0; i < cont.size(); i++)
+	{
+		float tmp;
+		if (tmp < min)
+		{
+			min = tmp;
+			idx = i;
+		}
+	}
+	return idx;
+}
 vector<Data> Monitoring::EraseErrors(vector<Data> cont)
 {
-	vector<Data> temp;
-	temp.push_back(cont[0]);
-	for (int i = 1; i < cont.size(); i++)
-	{
-		if (abs(temp[temp.size() - 1].V1 - cont[i].V1) < 60);
-		temp.push_back(cont[i]);
-	}
 	vector<Data> result;
-	for (int i = 3; i < temp.size() - 2; i++)
-	{
+	int temp = FindMinV(cont);
 
-		float val1 = (temp[i - 1].V1 + temp[i - 2].V1) / 2;
-		float val2 = (temp[i + 1].V1 + temp[i + 2].V1) / 2;
-		float delta = (val1 + val2) / 10;
-		if (val1 < 50)delta = 5;
-		if (abs(temp[i].V1 - val1) < delta || abs(temp[i].V1 - val2) < delta)
-			result.push_back(temp[i]);
+	for (int i = 0; i < cont.size(); i++)
+	{
+		if (cont[i].V2 < cont[temp].V2 + 100)
+		{
+			result.push_back(cont[i]);
+		}
 	}
+
 	return result;
 }
 
@@ -197,50 +230,31 @@ Data Monitoring::Read()
 	return temp;
 }
 
-vector<Data> Monitoring::AverageData(vector<Data> cont)
+Data Monitoring::AverageData(vector<Data> &dataVector)
 {
-	vector<Data> temp;
-	int* Angle = VectorInMass(cont, false);
-	int* Min = VectorInMass(cont, true);
-	float* V = VectorInMassV(cont, true);
-	float* V2 = VectorInMassV(cont, false);
-	for (int i = 0; i < cont.size(); i++)
+	Data result{};
+	float U1 = 0;
+	float U2 = 0;
+	float I1 = 0;
+	float I2 = 0;
+	for (int i = 0; i < dataVector.size(); i++)
 	{
-		int currentMin = Min[i];
-		int currentAngle = Angle[i];
-		if (Contains(temp, currentAngle, currentMin))continue;
-		float sum = 0;
-		float sum2 = 0;
-		float sumI = 0;
-		float sumIP = 0;
-		int k = 0;
-		for (int j = i; j < cont.size(); j++)
-		{
-			if (currentAngle == Angle[j] && currentMin == Min[j])
-			{
-				sum += V[j];
-				sum2 += V2[j];
-				sumI += cont[j].I;
-				sumIP += cont[j].IPhase;
-				k++;
-			}
-		}
-		sum /= k;
-		sum2 /= k;
-		sumI /= k;
-
-		Data dt;
-		dt.angle = currentAngle;
-		dt.min = currentMin;
-
-		dt.V1 = sum;
-		dt.V2 = sum2;
-		dt.I = sumI;
-		dt.IPhase = sumIP;
-
-		temp.push_back(dt);
+		U1 += dataVector[i].V1;
+		U2 += dataVector[i].V2;
+		I1 += dataVector[i].I;
+		I2 += dataVector[i].IPhase;
 	}
-	return temp;
+	if (dataVector.size() > 1)
+	{
+		result.V1 = U1 / dataVector.size();
+		result.V2 = U2 / dataVector.size();
+		result.I = I1 / dataVector.size();
+		result.IPhase = I2 / dataVector.size();
+		result.angleGrad = dataVector[dataVector.size() - 1].angleGrad;
+		result.angle = dataVector[dataVector.size() - 1].angle;
+	}
+
+	return result;
 }
 
 int* Monitoring::VectorInMass(vector<Data> cont, bool mins)
@@ -278,16 +292,57 @@ bool Monitoring::Contains(vector<Data> cont, int _angle, int _min)
 	return false;
 }
 
+void Monitoring::Serialization(string file, vector<Data> cont)
+{
+	std::ofstream outFile(file + ".txt");
+	if (!outFile) return; // Проверка открытия файла
+
+	for (const auto& item : cont)
+	{
+		outFile << item.angle << " " << item.min << "'\t\t" << item.V2 << "\n";
+	}
+	outFile.close();
+}
+
 void Monitoring::Average()
 {
-	//data.push_back(Read());
+	Serialization("data", data);
+	
+	data = EraseErrors(data);
+	Data temp = AverageData(data);
+	data.clear();
+
+	
+	ConvertAngle(temp.angleGrad);
+	std::ostringstream stream;
+	stream << std::fixed << std::setprecision(1) << secDec;
+	std::string roundedString = stream.str();
+	ui.textAngle->setPlainText(QString::fromStdString(to_string(angle) + " " + to_string(min) + "' " + roundedString + "'" + "'"));
+
+	std::ostringstream stream1;
+	stream1 << std::fixed << std::setprecision(1) << temp.I;
+	roundedString = stream1.str();
+	ui.I->setPlainText(QString::fromStdString(roundedString));
+
+	std::ostringstream stream2;
+	stream2 << std::fixed << std::setprecision(1) << temp.V1;
+	roundedString = stream2.str();
+	ui.V1->setPlainText(QString::fromStdString(roundedString));
+
+	std::ostringstream stream3;
+	stream3 << std::fixed << std::setprecision(1) << temp.V2;
+	roundedString = stream3.str();
+	ui.V2->setPlainText(QString::fromStdString(roundedString));
+
+	std::ostringstream stream4;
+	stream4 << std::fixed << std::setprecision(1) << temp.IPhase;
+	roundedString = stream4.str();
+	ui.IPhase->setPlainText(QString::fromStdString(roundedString));
 }
 
 void Monitoring::Update()
 {
-	//data = EraseErrors(data);
-	//data = AverageData(data);
-	StepThreading();
+	data.push_back(Read());
+	//StepThreading();
 	if (!work->port->isOpen())Disconnect();
-	//data.clear();
 }

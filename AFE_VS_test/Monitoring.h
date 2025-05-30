@@ -11,23 +11,6 @@
 #include "StepWindow.hpp"
 #include "ui_Monitoring.h"
 
-/*@brief Класс для хранения данных
-*/
-//class Data
-//{
-//public:
-//	float angleGrad;// Угол в градусах с плавающей запятой
-//	int angle;// Угол в градусах целочисленный
-//	int min;// Минуты угла
-//	int sec;// Секунды угла
-//	float V1;// Напряжение на первом канале
-//	float V2;// Напряжение на втором канале
-//	float Phase1;// Фаза первого канала
-//	float Phase2;// фаза второго канала
-//	float I;// Сила тока
-//	float IPhase;// Фаза тока
-//};
-
 class Monitoring : public QMainWindow
 {
 	Q_OBJECT
@@ -62,11 +45,21 @@ public:
 	//@brief Метод считывающй данные с контроллера
 	//@return Структура данных
 	Data Read();
+	/*@brief Метод поиска минимального напряжения
+	* @param cont - контенер данных измеренных прибором
+	* @returns Индекс минимального угла
+	*/
+	int FindMinV(vector<Data> cont);
+	/*@brief Метод записи данных в файл
+	* @param file - имя фалйа для записи
+	* @param cont - контенер данных измеренных прибором
+	*/
+	void Serialization(string file, vector<Data> cont);
 	/*@brief Метод усреднения данных по минутам угла
 	* @param cont - контенер данных измеренных прибором
 	* @returns Изменённый контенер данных
 	*/
-	vector<Data> AverageData(vector<Data> cont);
+	Data AverageData(vector<Data> &dataVector);
 	/*@brief Метод удаления ошибочных данных
 	* @param cont - контенер данных измеренных прибором
 	* @returns Изменённый контенер данных
@@ -107,6 +100,7 @@ private:
 	int angle = 0;// Угол в градусах целочисленный
 	int min = 0;// Минуты угла
 	int sec = 0;// Секунды Угла
+	float secDec = 0;
 	vector<Data> data;//контенер измеренных данных
 	QTimer* timer = new QTimer(this);// Таймер для вывода данных на интерфейс
 	QTimer* timerAverage = new QTimer(this);// Таймер для усреднения данных

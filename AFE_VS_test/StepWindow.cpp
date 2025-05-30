@@ -28,7 +28,7 @@ StepWindow::StepWindow(const QString& device, QWidget* parent)
 
 	CreateWindow(device);
 	window->showMaximized();
-	
+
 	timer->setInterval(1.f);
 	connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
 
@@ -36,6 +36,7 @@ StepWindow::StepWindow(const QString& device, QWidget* parent)
 	connect(testTimer, SIGNAL(timeout()), this, SLOT(Test()));
 	
 	CreateTable();
+	LoadWindow(device);
 	qApp->setPalette(darkPalette);
 	QApplication::exec();
 }
@@ -278,7 +279,7 @@ void StepWindow::Test232BComplete()
 	Isr > 15 ? IsrText->setBackground(red) : IsrText->setBackground(green);
 	(MaxU[maxU].V2 / 1000) < 7 ? UMaxText->setBackground(red) : UMaxText->setBackground(green);
 	neravU <= 10 ? UText->setBackground(green) : (neravU <= 20 ? UText->setBackground(yellow) : UText->setBackground(red));
-	elAssimetry <= 10 ? elText->setBackground(green) : (elAssimetry <= 20 ? elText->setBackground(yellow) : elText->setBackground(red));
+	elAssimetry <= 10 ? elText->setBackground(green) : (elAssimetry <= 17 ? elText->setBackground(yellow) : elText->setBackground(red));
 	neravRotor <= 10 ? RotorText->setBackground(green) : (neravRotor <= 20 ? RotorText->setBackground(yellow) : RotorText->setBackground(red));
 	neravStator <= 10 ? StatorText->setBackground(green) : (neravStator <= 20 ? StatorText->setBackground(yellow) : StatorText->setBackground(red));
 	Quad[QuadM].V2 <= 150 ? QuadText->setBackground(green) : (Quad[QuadM].V2 <= 200 ? QuadText->setBackground(yellow) : QuadText->setBackground(red));
@@ -304,7 +305,7 @@ void StepWindow::Test232BComplete()
 	k++;
 
 	writer << NumberDevice.toStdString();
-	string file1 = "test" + to_string(fileNum);
+	string file1 = "232B" + to_string(fileNum);
 	std::ofstream _file1(file1 + ".txt", std::ios_base::out);
 	if (_file1)
 	{
@@ -466,7 +467,7 @@ void StepWindow::Test45D20Complete()
 	model->setItem(loop, 21, U40Text);
 	model->setItem(loop, 22, new QStandardItem(NumberDevice));
 	//запись результатов измерения в файл
-	std::ofstream _file("test" + to_string(fileNum) + ".txt", std::ios_base::out);
+	std::ofstream _file("45D20" + to_string(fileNum) + ".txt", std::ios_base::out);
 	if (_file)
 	{
 		_file << writer.str();
@@ -524,18 +525,34 @@ void StepWindow::Update()
 void StepWindow::StepThreading()
 {
 	ConvertAngle(work->measure->refAngle);
-	textAngle->setText(QString::fromStdString(to_string(angle) + " " + to_string(min) + "' " + to_string(sec) + "'" + "'"));
+	std::ostringstream stream;
+	stream << std::fixed << std::setprecision(1) << secDec;
+	std::string roundedString = stream.str();
+	textAngle->setText(QString::fromStdString(to_string(angle) + " " + to_string(min) + "' " + roundedString + "'" + "'"));
 	I->setText(QString::fromStdString(to_string(measures_t(work->measure->Result).I.RMS)));
 	PhaseV2->setText(QString::fromStdString(to_string(measures_t(work->measure->Result).V2.Phase)));
 	PhaseV1->setText(QString::fromStdString(to_string(measures_t(work->measure->Result).V1.Phase)));
 	RmsV1->setText(QString::fromStdString(to_string(measures_t(work->measure->Result).V1.RMS)));
 	if (DeviceName == "45Д20-2")
 	{
-		RmsV2->setText(QString::fromStdString(to_string(measures_t(work->measure->Result).V1.RMS)));
+		std::ostringstream U;
+		U << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).V1.RMS;
+		std::string roundedString = U.str();
+		RmsV2->setText(QString::fromStdString(roundedString));
 	}
-	else
+	if (DeviceName == "СКТ-232Б")
 	{
-		RmsV2->setText(QString::fromStdString(to_string(measures_t(work->measure->Result).V2.RMS)));
+		std::ostringstream U;
+		U << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).V2.RMS;
+		std::string roundedString = U.str();
+		RmsV2->setText(QString::fromStdString(roundedString));
+	}
+	if(DeviceName == "СКТ-265Д")
+	{
+		std::ostringstream U;
+		U << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).V2.RMS;
+		std::string roundedString = U.str();
+		RmsV2->setText(QString::fromStdString(roundedString));
 	}
 	IPhase->setText(QString::fromStdString(to_string(measures_t(work->measure->Result).I.Phase)));
 }
@@ -543,7 +560,7 @@ void StepWindow::StepThreading()
 void StepWindow::CreateWindow(QString device)
 {
 	//Main window ================================================================================
-	QString title = "Meter ";
+	QString title = "Meter " + device;
 	window->setWindowTitle(title);
 	label = new QLabel("Порт ");
 
@@ -872,7 +889,6 @@ void StepWindow::CreateWindow(QString device)
 
 	PortV->addWidget(label);
 	ComboBoxes->addWidget(comboPort1);
-	ComboBoxes->addWidget(CurrentDevice);
 	PortV->addLayout(ComboBoxes);
 	PortV->addLayout(PortH);
 	PortV->addWidget(btnReport);
@@ -890,7 +906,6 @@ void StepWindow::CreateWindow(QString device)
 	layoutMainVer->addLayout(lay);
 	layoutMainVer->addWidget(StatusCon);
 
-	QObject::connect(CurrentDevice, &QComboBox::currentIndexChanged, this, &StepWindow::SwitchDevice);
 	QObject::connect(btnRefreshPort, &QPushButton::clicked, this, &StepWindow::RefreshComBox);
 	QObject::connect(btnReport, &QPushButton::clicked, this, &StepWindow::StartUpConverter);
 	QObject::connect(btnDelete, &QPushButton::clicked, this, &StepWindow::DeleteRow);
@@ -1048,10 +1063,128 @@ void StepWindow::DiactivateButton()
 void StepWindow::Connect()
 {
 	work->Connect(comboPort1->currentText());
+	if (!work->isOpen())
+	{
+		DiactivateButton();
+		return;
+	}
 	work->Stop();
 	connection = true;
 	StatusCon->setText(QString::fromStdString(connection == true ? "Статус : подключено" : "Статус : отключено"));
 	ActivateButton();
+}
+
+void StepWindow::LoadWindow(QString device)
+{
+	int i = 0;
+	if (device == "СКТ-232Б")
+	{
+
+		while (1)
+		{
+			std::ifstream _file("232B" + to_string(i) + ".txt");
+			if (_file.is_open())
+			{
+				int k = 2;
+				string tmp = "";
+				string text;
+
+				getline(_file, text);
+				for (int j = 0; j < text.size(); j++)
+				{
+					if (text[j] == ';')
+					{
+						model->setItem(i, k, new QStandardItem(QString::fromStdString(tmp)));
+						k++;
+						tmp = "";
+					}
+					else
+					{
+						tmp += text[j];
+					}
+				}
+				getline(_file, text);
+				model->setItem(i, 0, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 1, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 15, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 16, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 17, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 18, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 19, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 20, new QStandardItem(QString::fromStdString("СТУ")));
+				model->setItem(i, 21, new QStandardItem(QString::fromStdString(text)));
+			}
+			else
+			{
+				_file.close();
+				fileNum = i;
+				return;
+			}
+			i++;
+		}
+		return;
+	}
+	else if (device == "45Д20-2")
+	{
+		while (1)
+		{
+			std::ifstream _file("45D20" + to_string(i) + ".txt");
+			if (_file.is_open())
+			{
+				int k = 2;
+				string tmp = "";
+				string text;
+
+				getline(_file, text);
+				for (int j = 0; j < text.size(); j++)
+				{
+					if (text[j] == ';')
+					{
+						model->setItem(i, k, new QStandardItem(QString::fromStdString(tmp)));
+						k++;
+						tmp = "";
+					}
+					else
+					{
+						tmp += text[j];
+					}
+				}
+				getline(_file, text);
+				model->setItem(i, 0, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 1, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 18, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 19, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 21, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 20, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 22, new QStandardItem(QString::fromStdString(text)));
+			}
+			else
+			{
+				_file.close();
+				fileNum = i;
+				return;
+			}
+			i++;
+		}
+		return;
+	}
+	else if (device == "СКТ-265Д")
+	{
+
+	}
 }
 
 void StepWindow::Disconnect()
@@ -1077,121 +1210,68 @@ void StepWindow::Start()
 		return;
 	}
 	if (work->stage != Work::Stage::Idle)return;
-	
-
+	if (!Dialog())return;
 	if (DeviceName == "45Д20-2")
 	{
-		if (!Dialog())return;
 		work->test45D20();
-		work->processRun();
-		testTimer->start();	
 	}
 	else if (DeviceName == "СКТ-232Б")
 	{
-		if (!Dialog())return;
 		work->testSKT232B();
-		work->processRun();
-		testTimer->start();	
-		//TestComplete();
 	}
 	else if (DeviceName == "СКТ-265Д")
 	{
-		if (!Dialog())return;
 		work->testSKT265D();
-		work->processRun();
-		testTimer->start();
 	}
+	work->processRun();
+	testTimer->start();
 	data.clear();
 	allData.clear();
 	MinV.clear();
 }
 
+void StepWindow::deleteOldFiles()
+{
+	system("del test*.txt");
+}
+
+void StepWindow::writeDataToFile(QStandardItemModel* model, int fileIndex)
+{
+	std::stringstream writer;
+	// Заполнение данных из модели
+	for (int j = 2; j <= 14; j++) 
+	{
+		writer << model->item(fileIndex, j)->data(Qt::DisplayRole).toString().toStdString() + ";";
+	}
+	for (int j = 0; j <= 1; j++) 
+	{
+		writer << model->item(fileIndex, j)->data(Qt::DisplayRole).toString().toStdString() + "\n";
+	}
+	for (int j = 15; j <= 22; j++) 
+	{
+		writer << model->item(fileIndex, j)->data(Qt::DisplayRole).toString().toStdString() + "\n";
+	}
+	// Запись в файл
+	std::string fileName = "test" + std::to_string(fileIndex - 1) + ".txt";
+	std::ofstream outFile(fileName, std::ios_base::out);
+	if (outFile) 
+	{
+		outFile << writer.str();
+	}
+	outFile.close();
+}
+
 void StepWindow::StartUpConverter()
 {
-	if (fileNum != 0 && DeviceName == "СКТ-232Б")
-	{
-		system("del test*.txt");
-		string t;
-		for (int i = 1; i < fileNum + 1; i++)
-		{
-			stringstream writer;
-			writer << model->item(i, 2)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 3)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 4)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 5)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 6)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 7)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 8)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 9)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 10)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 11)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 12)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 13)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 14)->data(Qt::DisplayRole).toString().toStdString() + ";\n";
-			writer << model->item(i, 0)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 1)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 15)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 16)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 17)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 18)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 19)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 21)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			string file1 = "test" + to_string(i - 1);
-			std::ofstream _file1(file1 + ".txt", std::ios_base::out);
-			if (_file1)
-			{
-				_file1 << writer.str();
-			}
-			_file1.close();
-		}
-	}
-	if (fileNum != 0 && DeviceName == "45Д-20-2")
-	{
-		system("del test*.txt");
-		string t;
-		for (int i = 1; i < fileNum + 1; i++)
-		{
-			stringstream writer;
-			writer << model->item(i, 2)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 3)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 4)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 5)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 6)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 7)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 8)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 9)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 10)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 11)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 12)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 13)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 14)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 15)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 16)->data(Qt::DisplayRole).toString().toStdString() + ";";
-			writer << model->item(i, 17)->data(Qt::DisplayRole).toString().toStdString() + ";\n";
-			writer << model->item(i, 0)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 1)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 15)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 19)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 20)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 21)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			writer << model->item(i, 22)->data(Qt::DisplayRole).toString().toStdString() + "\n";
-			string file1 = "test" + to_string(i - 1);
-			std::ofstream _file1(file1 + ".txt", std::ios_base::out);
-			if (_file1)
-			{
-				_file1 << writer.str();
-			}
-			_file1.close();
-		}
-	}
-	if (DeviceName == "СКТ-232Б")
+	if (DeviceName == "СКТ-232Б") 
 	{
 		system("Converter.exe SKT");
 	}
-	if (DeviceName == "45Д20-2")
+	else if (DeviceName == "45Д20-2") 
 	{
 		system("Converter.exe 45D20");
 	}
+
 	fileNum = 0;
 	loop = 1;
 
@@ -1199,85 +1279,117 @@ void StepWindow::StartUpConverter()
 	CreateTable();
 }
 
-void StepWindow::CreateTable()
+void StepWindow::setModelHeaders(QStandardItemModel* model, const QStringList& headers)
 {
-	if (DeviceName == "45Д20-2")
+	for (int i = 0; i < headers.size(); ++i) 
 	{
-		loop = 0;
-		for (int i = 0; i < 23; i++)
-		{
-			model->setItem(0, i, new QStandardItem(QString::fromStdString("")));
-		}
-		int angleTable = 40;
-		for (int i = 2; i < 18; i++)
-		{
-			if (angleTable == 0)angleTable -= 5;
-			model->setHeaderData(i, Qt::Horizontal, QString::fromStdString(to_string(angleTable)));
-			angleTable -= 5;
-		}
-		model->setHeaderData(0, Qt::Horizontal, QString::fromStdString("Iвых"));
-		model->setHeaderData(1, Qt::Horizontal, QString::fromStdString("Uмин"));
-		model->setHeaderData(18, Qt::Horizontal, QString::fromStdString("Uвых"));
-		model->setHeaderData(19, Qt::Horizontal, QString::fromStdString("Uкомп/Uвых"));
-		model->setHeaderData(20, Qt::Horizontal, QString::fromStdString("Класс"));
-		model->setHeaderData(21, Qt::Horizontal, QString::fromStdString("Uвых при 40град"));
-		model->setHeaderData(22, Qt::Horizontal, QString::fromStdString("Номер изделия"));
+		model->setHeaderData(i, Qt::Horizontal, headers[i]);
 	}
-	if (DeviceName == "СКТ-232Б")
-	{
-		//*Заполнение пунктов комутации 0,1, 6, 7,9,10,11,12, 3,4,2,8,5
-		Punkts["а"] = 0;
-		Punkts["б"] = 1;
-		Punkts["в"] = 6;
-		Punkts["г"] = 7;
-		Punkts["д"] = 9;
-		Punkts["е"] = 10;
-		Punkts["ж"] = 11;
-		Punkts["з"] = 12;
-		Punkts["и"] = 3;
-		Punkts["л"] = 5;
-		Punkts["к1"] = 2;
-		Punkts["к2"] = 8;
-		Punkts["к3"] = 4;
+}
 
+void StepWindow::setupDevice45D20(QStandardItemModel* model)
+{
+	for (int i = 0; i < 23; i++) {
+		model->setItem(0, i, new QStandardItem(QString::fromStdString("")));
+	}
+
+	QStringList headers = { "Iвых", "Uмин" };
+	int angleTable = 40;
+	for (int i = 2; i < 18; i++) {
+		headers.append(QString::fromStdString(to_string(angleTable)));
+		angleTable -= 5;
+	}
+	headers.append("Uвых");
+	headers.append("Uкомп/Uвых");
+	headers.append("Класс");
+	headers.append("Uвых при 40град");
+	headers.append("Номер изделия");
+
+	setModelHeaders(model, headers);
+}
+
+void StepWindow::setupDeviceSKT232B(QStandardItemModel* model)
+{
+	// Заполнение пунктов комутации
+	Punkts = 
+	{
+		{"а", 0}, {"б", 1}, {"в", 6}, {"г", 7}, {"д", 9},
+		{"е", 10}, {"ж", 11}, {"з", 12}, {"и", 3}, {"л", 5},
+		{"к1", 2}, {"к2", 8}, {"к3", 4}
+	};
+
+	model->setItem(0, 0, new QStandardItem("<15"));
+	model->setItem(0, 1, new QStandardItem(">7"));
+	setModelHeaders(model, { "I (mA)", "Umax(V)" });
+
+	for (int i = 0; i < 13; i++)
+	{
+		model->setItem(0, i + 2, new QStandardItem(QString::fromStdString(to_string(Diap[Ind[i]][0]))));
+	}
+
+	int k = 0;
+	for (const auto& t : Punkts) 
+	{
 		
-		model->setItem(0, 0, new QStandardItem(QString::fromStdString("<15")));
-		model->setItem(0, 1, new QStandardItem(QString::fromStdString(">7")));
-		model->setHeaderData(0, Qt::Horizontal, QString::fromStdString("I (mA)"));//Usr / 10
-		model->setHeaderData(1, Qt::Horizontal, QString::fromStdString("Umax(V)"));//110 - 180grad max
-		int k = 0;
-		for (auto t : Punkts)
-		{
-			model->setItem(0, k + 2, new QStandardItem(QString::fromStdString(to_string(Diap[Ind[k]][0]))));
-			if (t.first == "к1")model->setHeaderData(12, Qt::Horizontal, QString::fromStdString(t.first));
-			else if (t.first == "к2")model->setHeaderData(13, Qt::Horizontal, QString::fromStdString(t.first));
-			else if (t.first == "к3")model->setHeaderData(14, Qt::Horizontal, QString::fromStdString(t.first));
-			else if (t.first == "л")model->setHeaderData(11, Qt::Horizontal, QString::fromStdString(t.first));
-			else model->setHeaderData(k+2, Qt::Horizontal, QString::fromStdString(t.first));
-			k++;
-		}
-		k=15;
-		model->setItem(0, k, new QStandardItem("<10|<20"));
-		model->setHeaderData(k, Qt::Horizontal, "Электромаг.\n Ассиметрия");
+
+		// Установка заголовков для специальных пунктов
+		if (t.first == "к1") model->setHeaderData(12, Qt::Horizontal, QString::fromStdString(t.first));
+		else if (t.first == "к2") model->setHeaderData(13, Qt::Horizontal, QString::fromStdString(t.first));
+		else if (t.first == "к3") model->setHeaderData(14, Qt::Horizontal, QString::fromStdString(t.first));
+		else if (t.first == "л") model->setHeaderData(11, Qt::Horizontal, QString::fromStdString(t.first));
+		else model->setHeaderData(k + 2, Qt::Horizontal, QString::fromStdString(t.first));
+
 		k++;
-		model->setItem(0, k, new QStandardItem("<10|<20"));
-		model->setHeaderData(k, Qt::Horizontal, "Нера-во коэф.\n Ротора");
+	}
+
+	// Заполнение дополнительных заголовков
+	QStringList additionalHeaders = 
+	{
+		"<10|<17", "<10|<20", "<10|<20", "<10|<20", "<150|<200", "СТУ", ""
+	};
+	QStringList additionalHeaderNames = 
+	{
+		"Электромаг.\nАссиметрия", "Нера-во коэф.\nРотора",
+		"Нера-во коэф.\nСтатора", "Нера-во\nсопротивления",
+		"Квадратур.\nнапряжение(мВ)", "Фаза", "Номер изделия"
+	};
+	k += 2;
+	for (int i = 0; i < additionalHeaders.size(); ++i) 
+	{
+		model->setItem(0, k, new QStandardItem(additionalHeaders[i]));
+		model->setHeaderData(k, Qt::Horizontal, additionalHeaderNames[i]);
 		k++;
-		model->setItem(0, k, new QStandardItem("<10|<20"));
-		model->setHeaderData(k, Qt::Horizontal, "Нера-во коэф.\n Статора");
-		k++;
-		model->setItem(0, k, new QStandardItem("<10|<20"));
-		model->setHeaderData(k, Qt::Horizontal, "Нера-во\nсопротивления");
-		k++;
-		model->setItem(0, k, new QStandardItem("<150|<200"));
-		model->setHeaderData(k, Qt::Horizontal, "Квадратур.\nнапряжение(мВ)");
-		k++;
-		model->setItem(0, k, new QStandardItem("СТУ"));
-		model->setHeaderData(k, Qt::Horizontal, "Фаза");
-		k++;
-		model->setItem(0, k, new QStandardItem(""));
-		model->setHeaderData(k, Qt::Horizontal, "Номер изделия");
-		k++;
+	}
+}
+
+void StepWindow::setupDeviceSKT265D(QStandardItemModel* model)
+{
+	QStringList additionalHeaders =
+	{
+		"U min \nКл. 0,1 <= 5\nКл. 0,2 <= 7,5",
+		"0", "45", "90","135","180", "225", "270", "315",
+		"U max\nХолостой", "Umax\nПри нагрузке", "Квадратурное\nнапряжение","I потр.","Класс"
+	};
+
+	for (int i = 0; i < additionalHeaders.size(); i++)
+	{
+		model->setHeaderData(i,Qt::Horizontal,additionalHeaders[i]);
+	}
+}
+
+
+
+void StepWindow::CreateTable()
+{                 
+	loop = 0;
+	if (DeviceName == "45Д20-2") {
+		setupDevice45D20(model);
+	}
+	else if (DeviceName == "СКТ-232Б") {
+		setupDeviceSKT232B(model);
+	}
+	else if (DeviceName == "СКТ-265Д") {
+		setupDeviceSKT265D(model);
 	}
 }
 
@@ -1291,35 +1403,23 @@ void StepWindow::DeleteRow()
 
 void StepWindow::Serialization(string file, vector<Data> cont)
 {
-	stringstream ss;
-	for (int i = 0; i < cont.size(); i++)
-	{
-		
-		if (DeviceName == "45Д20-2")
-		{
-			ss << cont[i].angle << " " << cont[i].min << "'\t\t";// << cont[i].sec << "'" << "'\t";
-			ss << cont[i].V1 << "\t\t" << cont[i].V2 << "\t\t" << cont[i].I << "\n";
-		}
-		if (DeviceName == "СКТ-232Б")
-		{
-			ss << cont[i].angle << " " << cont[i].min << "'\t\t";// << cont[i].sec << "'" << "'\t";
-			ss << cont[i].V2 << "\n";
-		}
+	std::ofstream outFile(file + ".txt");
+	if (!outFile) return; // Проверка открытия файла
 
-		//ss << cont[i].angleGrad << "       ";
-		//ss << cont[i].V1 << "       \n";
-		//ss << cont[i].Phase1 << "       ";
-		//ss << cont[i].Phase1 << "       ";
-		//ss << cont[i].I << "       ";
-		//ss << cont[i].IPhase << 
-	}
-	std::ofstream _file(file + ".txt", std::ios_base::out);
-	if (_file)
+	for (const auto& item : cont) 
 	{
-		_file << ss.str();
+		if (DeviceName == "45Д20-2") 
+		{
+			outFile << item.angle << " " << item.min << "'\t\t"
+				<< item.V1 << "\t\t" << item.V2 << "\t\t" << item.I << "\n";
+		}
+		else if (DeviceName == "СКТ-232Б") 
+		{
+			outFile << item.angle << " " << item.min << "'\t\t"
+				<< item.V2 << "\n";
+		}
 	}
-	_file.close();
-}
+}                
 
 void StepWindow::StartMonitor()
 {
@@ -1384,10 +1484,11 @@ void StepWindow::ConvertAngle(float _angle)
 	_min = _angle - grad;
 	_min = std::trunc(_min * 60.0);
 	_sec = (_angle - grad) * 60.0 - _min;
-	_sec = std::trunc(_sec * 60.0);
+	_sec = _sec * 60.0;//std::trunc(_sec * 60.0);
 	angle = grad;
 	min = _min;
 	sec = _sec;
+	secDec = std::round(_sec * 10.0f) / 10.0f;
 }
 
 bool StepWindow::Dialog()
