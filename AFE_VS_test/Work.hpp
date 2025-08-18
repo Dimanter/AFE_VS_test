@@ -130,16 +130,16 @@ public:
 		return [this]()
 			{
 				//Положительный
-				this->out->outP = 5800.f;
-				this->out->meanP = 2900.f;
+				this->out->outP = OutputU;
+				this->out->meanP = OutputU/2;
 				this->out->phaseP = 0.f;
 
 				//Отрицательный
-				this->out->outN = 5800.f;
-				this->out->meanN = 2900.f;
+				this->out->outN = OutputU;
+				this->out->meanN = OutputU/2;
 				this->out->phaseN = M_PI;
 				//Частота и ввод
-				this->out->freq = 12200.f;
+				this->out->freq = OutputFreq;
 				this->out->transmit(1, Service::Type::TransmitConfirmed);
 				return std::make_pair(this->out->getAddress(), Service::State::Ready);
 			};
@@ -153,16 +153,16 @@ public:
 		return [this]()
 			{
 				//Положительный
-				this->out->outP = 3000.f;
-				this->out->meanP = 1500.f;
+				this->out->outP = OutputU;
+				this->out->meanP = OutputU/2;
 				this->out->phaseP = 0.f;
 
 				//Отрицательный
-				this->out->outN = 3000.f;
-				this->out->meanN = 1500.f;
+				this->out->outN = OutputU;
+				this->out->meanN = OutputU/2;
 				this->out->phaseN = M_PI;
 				//Частота и ввод
-				this->out->freq = 400.f;
+				this->out->freq = OutputFreq;
 				this->out->transmit(1, Service::Type::TransmitConfirmed);
 				return std::make_pair(this->out->getAddress(), Service::State::Ready);
 			};
@@ -322,6 +322,40 @@ public:
 
 		processes.add(processBackward, setStepper(stepDirection::Backward, stepRatio::_1, 1200U, 2700U));
 		processes.add(processBackward, startStepper());
+
+		try
+		{
+			std::ifstream _file("Init.txt");
+			string text;
+			getline(_file, text);
+			OutputU = stof(text);
+			getline(_file, text);
+			OutputFreq = stof(text);
+			_file.close();
+
+			if (OutputU < 100 || OutputU > 12000)
+			{
+				QMessageBox msgBox;
+				msgBox.setText("Ошибка: установлено неправильное напряжение!");
+				msgBox.exec();
+				OutputU = 3900;
+			}
+
+			if (OutputFreq < 400 || OutputFreq > 12200)
+			{
+				QMessageBox msgBox;
+				msgBox.setText("Ошибка: установлена неправильная частота!");
+				msgBox.exec();
+				OutputFreq = 400;
+			}
+		}
+		catch (const std::exception&)
+		{
+			QMessageBox msgBox;
+			msgBox.setText("Ошибка: Не удалось считать настройки напряжения!\nБудут выставлены настройки по умолчанию.");
+			msgBox.exec();
+		}
+
 	}
 	void portError(QSerialPort::SerialPortError error)
 	{
@@ -444,7 +478,9 @@ public:
 			this->control->transmit(1, Service::Type::TransmitConfirmed);
 			return std::make_pair(this->control->getAddress(), Service::State::Ready);
 			});
-		processes.add(processStart, setStepper(stepDirection::Forward, stepRatio::_1_2, 900, 100000));//125к 365град - 115к 280град
+		processes.add(processStart, setStepper(stepDirection::Forward, stepRatio::_1_4, 700, 120000));//1_4 700 120000  1_8 700 225000
+		processes.add(processStart, startStepper());
+		processes.add(processStart, setStepper(stepDirection::Backward, stepRatio::_1, 1300, 25000));
 		processes.add(processStart, startStepper());
 	}
 
@@ -755,4 +791,6 @@ public:
 	std::shared_ptr<measureService> measure = makeService<measureService>(this, &Work::notify, Services::Parameters);//сервис с данными измерений
 	float frequency = 400;
 	float resist = 6000;
+	float OutputU = 5800;
+	float OutputFreq = 12200;
 };

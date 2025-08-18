@@ -163,7 +163,7 @@ void StepWindow::Test232BComplete()
 			allData[i] = Erase(allData[i]);
 			allData[i] = Erase(allData[i]);
 			MinV.push_back(FindMinV(allData[i]));
-			if (allData[i][MinV[i]].V2 > 35.f)
+			if (allData[i][MinV[i]].V2 > MinCoef)
 			{
 				QMessageBox::warning(window, "Error", "Umin > 30 \n" +
 					QString::fromStdString(to_string(allData[i][MinV[i]].angle) + " " + to_string(allData[i][MinV[i]].min) + "'"
@@ -265,6 +265,9 @@ void StepWindow::Test232BComplete()
 
 	//*Цветные ячейки
 	int QuadM = FindMaxV(Quad);
+	Quad[QuadM].V2 = Quad[QuadM].V2 * QuadCoef;
+	Isr = Isr * ICoef;
+	MaxU[maxU].V2 = MaxU[maxU].V2 * UCoef;
 	QStandardItem* IsrText = new QStandardItem(QString::fromStdString(to_string(Isr).erase(4, 8)));
 	QStandardItem* UText = new QStandardItem(QString::fromStdString(to_string(neravU).erase(4, 8)));
 	QStandardItem* elText = new QStandardItem(QString::fromStdString(to_string(elAssimetry).erase(4, 8)));
@@ -303,6 +306,7 @@ void StepWindow::Test232BComplete()
 	k++;
 	model->setItem(loop, k, new QStandardItem(NumberDevice));
 	k++;
+
 
 	writer << NumberDevice.toStdString();
 	string file1 = "232B" + to_string(fileNum);
@@ -480,12 +484,220 @@ void StepWindow::Test45D20Complete()
 void StepWindow::Test265DComplete()
 {
 	Stop();
-	stringstream writer;
 	testTimer->stop();
+	stringstream writer;//потоковая запись результатов измерений в файл
+	stringstream helper;
 	//*Запись данных в файл
-	Serialization("Data0", data);
-	QMessageBox::warning(window, "Okay", "Test Compliete.");
-}
+	
+	//data = ReadFromFile("Data0");
+	bool endDiap = true;
+	bool endLoop = false;
+	vector<vector<Data>> MinAngl;
+	vector<Data> adt = data;//Контенер данных с устройства
+	vector<Data> MinU;//Напряжение в каждом диапазоне
+	vector<Data> elCur;
+	vector<Data> Quad;
+	vector<int> Grad;
+	float MaxQuad = 0;
+	float MaxU1 = 0;
+	float MaxU2 = 0;
+	float UMin = 0;
+	float MaxTok = 0;
+	int MaxMin = 0;
+	try
+	{
+		for (int i = 0; i < adt.size(); i++)
+		{
+			if (!endLoop)
+			{
+				if (adt[i].angle > 20 && adt[i].angle < 45)
+				{
+					elCur.push_back(adt[i]);
+				}
+				else if (adt[i].angle > 65 && adt[i].angle < 90 || adt[i].angle > 110 && adt[i].angle < 135 
+					 || adt[i].angle > 155 && adt[i].angle < 180 || adt[i].angle > 200 && adt[i].angle < 225 
+					 || adt[i].angle > 245 && adt[i].angle < 270 || adt[i].angle > 290 && adt[i].angle < 315 || adt[i].angle > 335)
+				{
+					Quad.push_back(adt[i]);
+				}
+
+
+				if (adt[i].angle >= 359) endLoop = true;
+
+				for (int j = 0; j < 8; j++)
+				{
+					if (adt[i].angle >= Diap265[j][0] && adt[i].angle <= Diap265[j][1])
+					{
+						if (adt[i].angle == Diap265[j][0])
+						{
+							if (!MinU.empty())
+							{
+								MinU.clear();
+								continue;
+							}
+						}
+						if (adt[i].angle == Diap265[j][1] && endDiap)
+						{
+							if (MinU.size() < 10)continue;
+							allData.push_back(MinU);
+							MinU.clear();
+							endDiap = false;
+							continue;
+						}
+						else
+						{
+							if (adt[i].angle != Diap265[j][1])
+								endDiap = true;
+						}
+						MinU.push_back(adt[i]);
+					}
+				}
+			}
+			else
+			{
+				Quad.push_back(adt[i]);
+			}
+		}
+	}
+	catch (...)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось выполнить разделение данных, проверьте правильность установки датчика.");
+		return;
+	}
+	try
+	{
+		if (allData.size() < 10)
+		{
+			QMessageBox::warning(window, "Error", "Не удалось выполнить разделение данных, проверьте правильность установки датчика.");
+			return;
+		}
+		for (int i = 0; i < allData.size(); i++)
+		{
+			if (i == 3 || i == 4)continue;
+			MinAngl.push_back(allData[i]);
+		}
+	}
+	catch (...)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных.");
+		return;
+	}
+	try
+	{
+		Quad = EraseErrors(Quad);
+		Quad = Erase(Quad);
+		Quad = EraseErrors(Quad);
+		Quad = Erase(Quad);
+		elCur = EraseErrors(elCur);
+		elCur = Erase(elCur);
+		allData[3] = EraseErrors(allData[3]);
+		allData[4] = EraseErrors(allData[4]);
+		allData[3] = Erase(allData[3]);
+		allData[4] = Erase(allData[4]);
+		
+		for (int i = 0; i < 8; i++)
+		{
+			MinAngl[i] = EraseErrors(MinAngl[i]);
+			MinAngl[i] = Average(MinAngl[i]);
+			MinAngl[i] = Erase(MinAngl[i]);
+			MinAngl[i] = Erase(MinAngl[i]);
+			MinV.push_back(FindMinV(MinAngl[i]));
+			if (MinAngl[i][MinV[i]].V2 > MaxMin)MaxMin = MinAngl[i][MinV[i]].V2;
+			helper << MinAngl[i][MinV[i]].V2 << "\t";
+			//if (MinAngl[i][MinV[i]].V2 > MinCoef)
+			//{
+			//	QMessageBox::warning(window, "Error", "Umin > 30 \n" +
+			//		QString::fromStdString(to_string(MinAngl[i][MinV[i]].angle) + " " + to_string(MinAngl[i][MinV[i]].min) + "'"
+			//			+ " " + to_string(MinAngl[i][MinV[i]].V2)));
+			//	//return;
+			//}
+		}
+		helper << "\n" << allData.size();
+	}
+	catch (...)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось выполнить обработку данных.");
+		return;
+	}
+	
+	try
+	{
+		MaxQuad = FindMaxV(Quad);
+		MaxU1 = FindMaxV(allData[3]);
+		MaxU2 = FindMaxV(allData[4]);
+		MaxTok = FindMaxV(elCur);
+		writer << "0';";
+		model->setItem(loop, 1, new QStandardItem(QString::fromStdString("0'")));
+		for (int i = 1; i < 8; i++)
+		{
+			int angleT = MinAngl[i][MinV[i]].angle - Diap265[i][0];
+			int minT = MinAngl[i][MinV[i]].min;
+
+			int angleM = MinAngl[0][MinV[0]].angle * 60 + MinAngl[0][MinV[0]].min;
+			int delta = (angleT * 60 + minT) - angleM;
+			angleT = delta / 60;
+			minT = delta % 60;
+
+			model->setItem(loop, i+1, new QStandardItem(QString::fromStdString(to_string(minT) + "'")));
+			writer << minT << "';";
+			Grad.push_back(minT);
+		}
+		writer << "\n";
+		UMin = (MaxMin * 3.6) / (allData[3][MaxU1].V2 / 1000);
+	}
+	catch (...)
+	{
+		QMessageBox::warning(window, "Error", "Не удалось вычислить отклонение роторов, проверьте правильность установки датчика.");
+		return;
+	}
+
+	float temp = elCur[MaxTok].V2 / 10;
+	writer << UMin << "\n" << allData[3][MaxU1].V2/1000 << "\n" << allData[4][MaxU2].V2/1000 << "\n" << Quad[MaxQuad].V2 << "\n" << elCur[MaxTok].V2 / 10 << "\n" << NumberDevice.toStdString();
+	QStandardItem* QuadText = new QStandardItem(QString::fromStdString(to_string((Quad[MaxQuad].V2)).erase(5, 9)));
+	QStandardItem* MaxU1Text = new QStandardItem(QString::fromStdString(to_string((allData[3][MaxU1].V2/1000)).erase(4, 9)));
+	QStandardItem* MaxU2Text = new QStandardItem(QString::fromStdString(to_string((allData[4][MaxU2].V2)/1000).erase(6, 9)));
+	QStandardItem* UMinText = new QStandardItem(QString::fromStdString(to_string((UMin)).erase(3, 9)));
+	QStandardItem* MaxTokText = new QStandardItem(QString::fromStdString(to_string((temp)).erase(4, 9)));
+
+	Quad[MaxQuad].V2 <= 100 ? QuadText->setBackground(green) : (Quad[MaxQuad].V2 <= 200 ? QuadText->setBackground(yellow) : QuadText->setBackground(red));
+	allData[3][MaxU1].V2/1000 <= 34 ? MaxU1Text->setBackground(red) : allData[3][MaxU1].V2/1000 >= 38 ? MaxU1Text->setBackground(red) : MaxU1Text->setBackground(green);
+	allData[4][MaxU2].V2/1000 <= 19 ? MaxU2Text->setBackground(red) : allData[4][MaxU2].V2/1000 >= 25 ? MaxU2Text->setBackground(red) : MaxU2Text->setBackground(green);
+	UMin <= 5 ? UMinText->setBackground(green) : UMin <= 7.5 ? UMinText->setBackground(yellow) : UMinText->setBackground(red);
+	temp <= 38 ? MaxTokText->setBackground(red) : elCur[MaxTok].V2 >= 52 ? MaxTokText->setBackground(red) : MaxTokText->setBackground(green);
+
+	model->setItem(loop, 0, UMinText);
+	model->setItem(loop, 9, MaxU1Text);
+	model->setItem(loop, 10, MaxU2Text);
+	model->setItem(loop, 11, QuadText);
+	model->setItem(loop, 12, MaxTokText);
+
+	for (int i = 0; i < MinAngl.size(); i++)
+	{
+		Serialization("Dt" + to_string(i), MinAngl[i]);
+	}
+	Serialization("MaxU1", allData[3]);
+	Serialization("MaxU2", allData[4]);
+	Serialization("Quad", Quad);
+	Serialization("Tok", elCur);// tok/10
+	
+	string file1 = "265D" + to_string(fileNum);
+	std::ofstream _file1(file1 + ".txt", std::ios_base::out);
+	if (_file1)
+	{
+		_file1 << writer.str();
+	}
+	_file1.close();
+
+	std::ofstream _file2("helper.txt", std::ios_base::out);
+	if (_file2)
+	{
+		_file2 << helper.str();
+	}
+	_file2.close();
+
+	loop++;
+	fileNum++;
+}//u min = findmax(u min) * 3.6 / MaxU1
 
 void StepWindow::Test()
 {
@@ -501,6 +713,8 @@ void StepWindow::Test()
 		}
 		else if (DeviceName == "СКТ-265Д")
 		{
+			data = Erase(data);
+			Serialization("Data0", data);
 			Test265DComplete();
 		}
 	}
@@ -508,6 +722,142 @@ void StepWindow::Test()
 	ConvertAngle(ref);
 	if (Contains(data, ref))return;
 	data.push_back(Read());
+}
+
+void StepWindow::setupDevice45D20(QStandardItemModel* model)
+{
+	for (int i = 0; i < 23; i++) {
+		model->setItem(0, i, new QStandardItem(QString::fromStdString("")));
+	}
+
+	QStringList headers = { "Iвых", "Uмин" };
+	int angleTable = 40;
+	for (int i = 2; i < 18; i++) {
+		headers.append(QString::fromStdString(to_string(angleTable)));
+		angleTable -= 5;
+	}
+	headers.append("Uвых");
+	headers.append("Uкомп/Uвых");
+	headers.append("Класс");
+	headers.append("Uвых при 40град");
+	headers.append("Номер изделия");
+
+	setModelHeaders(model, headers);
+}
+
+void StepWindow::setupDeviceSKT232B(QStandardItemModel* model)
+{
+	// Заполнение пунктов комутации
+	Punkts =
+	{
+		{"а", 0}, {"б", 1}, {"в", 6}, {"г", 7}, {"д", 9},
+		{"е", 10}, {"ж", 11}, {"з", 12}, {"и", 3}, {"л", 5},
+		{"к1", 2}, {"к2", 8}, {"к3", 4}
+	};
+
+	model->setItem(0, 0, new QStandardItem("<15"));
+	model->setItem(0, 1, new QStandardItem(">7"));
+	setModelHeaders(model, { "I (mA)", "Umax(V)" });
+
+	for (int i = 0; i < 13; i++)
+	{
+		model->setItem(0, i + 2, new QStandardItem(QString::fromStdString(to_string(Diap[Ind[i]][0]))));
+	}
+
+	int k = 0;
+	for (const auto& t : Punkts)
+	{
+
+
+		// Установка заголовков для специальных пунктов
+		if (t.first == "к1") model->setHeaderData(12, Qt::Horizontal, QString::fromStdString(t.first));
+		else if (t.first == "к2") model->setHeaderData(13, Qt::Horizontal, QString::fromStdString(t.first));
+		else if (t.first == "к3") model->setHeaderData(14, Qt::Horizontal, QString::fromStdString(t.first));
+		else if (t.first == "л") model->setHeaderData(11, Qt::Horizontal, QString::fromStdString(t.first));
+		else model->setHeaderData(k + 2, Qt::Horizontal, QString::fromStdString(t.first));
+
+		k++;
+	}
+
+	// Заполнение дополнительных заголовков
+	QStringList additionalHeaders =
+	{
+		"<10|<17", "<10|<20", "<10|<20", "<10|<20", "<150|<200", "СТУ", ""
+	};
+	QStringList additionalHeaderNames =
+	{
+		"Электромаг.\nАссиметрия", "Нера-во коэф.\nРотора",
+		"Нера-во коэф.\nСтатора", "Нера-во\nсопротивления",
+		"Квадратур.\nнапряжение(мВ)", "Фаза", "Номер изделия"
+	};
+	k += 2;
+	for (int i = 0; i < additionalHeaders.size(); ++i)
+	{
+		model->setItem(0, k, new QStandardItem(additionalHeaders[i]));
+		model->setHeaderData(k, Qt::Horizontal, additionalHeaderNames[i]);
+		k++;
+	}
+	try {
+		std::ifstream _file("Init.txt");
+		string text;
+		getline(_file, text);
+		getline(_file, text);
+		getline(_file, text);
+		QuadCoef = stof(text);
+		getline(_file, text);
+		ICoef = stof(text);
+		getline(_file, text);
+		UCoef = stof(text);
+		getline(_file, text);
+		MinCoef = stof(text);
+		_file.close();
+	}
+	catch (const std::exception&)
+	{
+		QMessageBox msgBox;
+		msgBox.setText("Ошибка: Не удалось считать настройки!\nБудут выставлены настройки по умолчанию.");
+		msgBox.exec();
+	}
+}
+
+void StepWindow::setupDeviceSKT265D(QStandardItemModel* model)
+{
+	for (int i = 0; i < 23; i++) {
+		model->setItem(0, i, new QStandardItem(QString::fromStdString("")));
+	}
+	QStringList additionalHeaders =
+	{
+		"U min \nКл. 0,1 <= 5\nКл. 0,2 <= 7,5",
+		"0", "45", "90","135","180", "225", "270", "315",
+		"U max\nХолостой\n36+-2", "Umax\nПри нагрузке\n22+-3", "Квадратурное\nнапряжение\nКл0,1<100\n,Кл0,2<200","I потр.\n45+-7","Класс"
+	};
+
+	for (int i = 0; i < additionalHeaders.size(); i++)
+	{
+		model->setHeaderData(i, Qt::Horizontal, additionalHeaders[i]);
+	}
+}
+
+void StepWindow::CreateTable()
+{
+	loop = 0;
+	if (DeviceName == "45Д20-2") {
+		setupDevice45D20(model);
+	}
+	else if (DeviceName == "СКТ-232Б") {
+		setupDeviceSKT232B(model);
+	}
+	else if (DeviceName == "СКТ-265Д") {
+		setupDeviceSKT265D(model);
+	}
+}
+
+void StepWindow::DeleteRow()
+{
+	if (!DialogDel())return;
+	model->removeRow(rowDel - 1);
+	fileNum--;
+	loop--;
 }
 
 void StepWindow::SwitchDevice()
@@ -919,6 +1269,161 @@ void StepWindow::CreateWindow(QString device)
 	window->setLayout(layoutMainVer);
 }
 
+void StepWindow::LoadWindow(QString device)
+{
+	int i = 0;
+	if (device == "СКТ-232Б")
+	{
+		while (1)
+		{
+			std::ifstream _file("232B" + to_string(i) + ".txt");
+			if (_file.is_open())
+			{
+				int k = 2;
+				string tmp = "";
+				string text;
+
+				getline(_file, text);
+				for (int j = 0; j < text.size(); j++)
+				{
+					if (text[j] == ';')
+					{
+						model->setItem(i, k, new QStandardItem(QString::fromStdString(tmp)));
+						k++;
+						tmp = "";
+					}
+					else
+					{
+						tmp += text[j];
+					}
+				}
+				getline(_file, text);
+				model->setItem(i, 0, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 1, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 15, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 16, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 17, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 18, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 19, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 20, new QStandardItem(QString::fromStdString("СТУ")));
+				model->setItem(i, 21, new QStandardItem(QString::fromStdString(text)));
+			}
+			else
+			{
+				_file.close();
+				fileNum = i;
+				return;
+			}
+			i++;
+		}
+		return;
+	}
+	else if (device == "45Д20-2")
+	{
+		while (1)
+		{
+			std::ifstream _file("45D20" + to_string(i) + ".txt");
+			if (_file.is_open())
+			{
+				int k = 2;
+				string tmp = "";
+				string text;
+
+				getline(_file, text);
+				for (int j = 0; j < text.size(); j++)
+				{
+					if (text[j] == ';')
+					{
+						model->setItem(i, k, new QStandardItem(QString::fromStdString(tmp)));
+						k++;
+						tmp = "";
+					}
+					else
+					{
+						tmp += text[j];
+					}
+				}
+				getline(_file, text);
+				model->setItem(i, 0, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 1, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 18, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 19, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 21, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 20, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 22, new QStandardItem(QString::fromStdString(text)));
+			}
+			else
+			{
+				_file.close();
+				fileNum = i;
+				return;
+			}
+			i++;
+		}
+		return;
+	}
+	else if (device == "СКТ-265Д")
+	{
+		while (1)
+		{
+			std::ifstream _file("265D" + to_string(i) + ".txt");
+			if (_file.is_open())
+			{
+				int k = 1;
+				string tmp = "";
+				string text;
+
+				getline(_file, text);
+				for (int j = 0; j < text.size(); j++)
+				{
+					if (text[j] == ';')
+					{
+						model->setItem(i, k, new QStandardItem(QString::fromStdString(tmp)));
+						k++;
+						tmp = "";
+					}
+					else
+					{
+						tmp += text[j];
+					}
+				}
+				getline(_file, text);
+				model->setItem(i, 0, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 9, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 10, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 11, new QStandardItem(QString::fromStdString(text)));
+				getline(_file, text);
+				model->setItem(i, 12, new QStandardItem(QString::fromStdString(text)));
+			}
+			else
+			{
+				_file.close();
+				fileNum = i;
+				loop = i;
+				return;
+			}
+			i++;
+		}
+		return;
+	}
+}
+
 void StepWindow::ActivateButton()
 {
 	btnConnect->setEnabled(false);
@@ -1074,119 +1579,6 @@ void StepWindow::Connect()
 	ActivateButton();
 }
 
-void StepWindow::LoadWindow(QString device)
-{
-	int i = 0;
-	if (device == "СКТ-232Б")
-	{
-
-		while (1)
-		{
-			std::ifstream _file("232B" + to_string(i) + ".txt");
-			if (_file.is_open())
-			{
-				int k = 2;
-				string tmp = "";
-				string text;
-
-				getline(_file, text);
-				for (int j = 0; j < text.size(); j++)
-				{
-					if (text[j] == ';')
-					{
-						model->setItem(i, k, new QStandardItem(QString::fromStdString(tmp)));
-						k++;
-						tmp = "";
-					}
-					else
-					{
-						tmp += text[j];
-					}
-				}
-				getline(_file, text);
-				model->setItem(i, 0, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 1, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 15, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 16, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 17, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 18, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 19, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 20, new QStandardItem(QString::fromStdString("СТУ")));
-				model->setItem(i, 21, new QStandardItem(QString::fromStdString(text)));
-			}
-			else
-			{
-				_file.close();
-				fileNum = i;
-				return;
-			}
-			i++;
-		}
-		return;
-	}
-	else if (device == "45Д20-2")
-	{
-		while (1)
-		{
-			std::ifstream _file("45D20" + to_string(i) + ".txt");
-			if (_file.is_open())
-			{
-				int k = 2;
-				string tmp = "";
-				string text;
-
-				getline(_file, text);
-				for (int j = 0; j < text.size(); j++)
-				{
-					if (text[j] == ';')
-					{
-						model->setItem(i, k, new QStandardItem(QString::fromStdString(tmp)));
-						k++;
-						tmp = "";
-					}
-					else
-					{
-						tmp += text[j];
-					}
-				}
-				getline(_file, text);
-				model->setItem(i, 0, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 1, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 18, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 19, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 21, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 20, new QStandardItem(QString::fromStdString(text)));
-				getline(_file, text);
-				model->setItem(i, 22, new QStandardItem(QString::fromStdString(text)));
-			}
-			else
-			{
-				_file.close();
-				fileNum = i;
-				return;
-			}
-			i++;
-		}
-		return;
-	}
-	else if (device == "СКТ-265Д")
-	{
-
-	}
-}
-
 void StepWindow::Disconnect()
 {
 	work->Stop();
@@ -1230,6 +1622,18 @@ void StepWindow::Start()
 	MinV.clear();
 }
 
+void StepWindow::StartMonitor()
+{
+	if (!work->port->isOpen())return;
+	timer->start();
+	work->Monitor();
+}
+
+void StepWindow::StatusConnect(bool connected)
+{
+	btnConnect->setEnabled(!connected);
+}
+
 void StepWindow::deleteOldFiles()
 {
 	system("del test*.txt");
@@ -1263,13 +1667,17 @@ void StepWindow::writeDataToFile(QStandardItemModel* model, int fileIndex)
 
 void StepWindow::StartUpConverter()
 {
-	if (DeviceName == "СКТ-232Б") 
+	if (DeviceName == "СКТ-232Б")
 	{
 		system("Converter.exe SKT");
 	}
-	else if (DeviceName == "45Д20-2") 
+	else if (DeviceName == "45Д20-2")
 	{
 		system("Converter.exe 45D20");
+	}
+	else if (DeviceName == "СКТ-265Д")
+	{
+		system("Converter.exe SKT265");
 	}
 
 	fileNum = 0;
@@ -1287,151 +1695,32 @@ void StepWindow::setModelHeaders(QStandardItemModel* model, const QStringList& h
 	}
 }
 
-void StepWindow::setupDevice45D20(QStandardItemModel* model)
-{
-	for (int i = 0; i < 23; i++) {
-		model->setItem(0, i, new QStandardItem(QString::fromStdString("")));
-	}
-
-	QStringList headers = { "Iвых", "Uмин" };
-	int angleTable = 40;
-	for (int i = 2; i < 18; i++) {
-		headers.append(QString::fromStdString(to_string(angleTable)));
-		angleTable -= 5;
-	}
-	headers.append("Uвых");
-	headers.append("Uкомп/Uвых");
-	headers.append("Класс");
-	headers.append("Uвых при 40град");
-	headers.append("Номер изделия");
-
-	setModelHeaders(model, headers);
-}
-
-void StepWindow::setupDeviceSKT232B(QStandardItemModel* model)
-{
-	// Заполнение пунктов комутации
-	Punkts = 
-	{
-		{"а", 0}, {"б", 1}, {"в", 6}, {"г", 7}, {"д", 9},
-		{"е", 10}, {"ж", 11}, {"з", 12}, {"и", 3}, {"л", 5},
-		{"к1", 2}, {"к2", 8}, {"к3", 4}
-	};
-
-	model->setItem(0, 0, new QStandardItem("<15"));
-	model->setItem(0, 1, new QStandardItem(">7"));
-	setModelHeaders(model, { "I (mA)", "Umax(V)" });
-
-	for (int i = 0; i < 13; i++)
-	{
-		model->setItem(0, i + 2, new QStandardItem(QString::fromStdString(to_string(Diap[Ind[i]][0]))));
-	}
-
-	int k = 0;
-	for (const auto& t : Punkts) 
-	{
-		
-
-		// Установка заголовков для специальных пунктов
-		if (t.first == "к1") model->setHeaderData(12, Qt::Horizontal, QString::fromStdString(t.first));
-		else if (t.first == "к2") model->setHeaderData(13, Qt::Horizontal, QString::fromStdString(t.first));
-		else if (t.first == "к3") model->setHeaderData(14, Qt::Horizontal, QString::fromStdString(t.first));
-		else if (t.first == "л") model->setHeaderData(11, Qt::Horizontal, QString::fromStdString(t.first));
-		else model->setHeaderData(k + 2, Qt::Horizontal, QString::fromStdString(t.first));
-
-		k++;
-	}
-
-	// Заполнение дополнительных заголовков
-	QStringList additionalHeaders = 
-	{
-		"<10|<17", "<10|<20", "<10|<20", "<10|<20", "<150|<200", "СТУ", ""
-	};
-	QStringList additionalHeaderNames = 
-	{
-		"Электромаг.\nАссиметрия", "Нера-во коэф.\nРотора",
-		"Нера-во коэф.\nСтатора", "Нера-во\nсопротивления",
-		"Квадратур.\nнапряжение(мВ)", "Фаза", "Номер изделия"
-	};
-	k += 2;
-	for (int i = 0; i < additionalHeaders.size(); ++i) 
-	{
-		model->setItem(0, k, new QStandardItem(additionalHeaders[i]));
-		model->setHeaderData(k, Qt::Horizontal, additionalHeaderNames[i]);
-		k++;
-	}
-}
-
-void StepWindow::setupDeviceSKT265D(QStandardItemModel* model)
-{
-	QStringList additionalHeaders =
-	{
-		"U min \nКл. 0,1 <= 5\nКл. 0,2 <= 7,5",
-		"0", "45", "90","135","180", "225", "270", "315",
-		"U max\nХолостой", "Umax\nПри нагрузке", "Квадратурное\nнапряжение","I потр.","Класс"
-	};
-
-	for (int i = 0; i < additionalHeaders.size(); i++)
-	{
-		model->setHeaderData(i,Qt::Horizontal,additionalHeaders[i]);
-	}
-}
-
-
-
-void StepWindow::CreateTable()
-{                 
-	loop = 0;
-	if (DeviceName == "45Д20-2") {
-		setupDevice45D20(model);
-	}
-	else if (DeviceName == "СКТ-232Б") {
-		setupDeviceSKT232B(model);
-	}
-	else if (DeviceName == "СКТ-265Д") {
-		setupDeviceSKT265D(model);
-	}
-}
-
-void StepWindow::DeleteRow()
-{
-	if (!DialogDel())return;
-	model->removeRow(rowDel-1);
-	fileNum--;
-	loop--;
-}
-
 void StepWindow::Serialization(string file, vector<Data> cont)
 {
 	std::ofstream outFile(file + ".txt");
-	if (!outFile) return; // Проверка открытия файла
+	stringstream writer;
 
-	for (const auto& item : cont) 
+	for (int i=0;i<cont.size();i++) 
 	{
 		if (DeviceName == "45Д20-2") 
 		{
-			outFile << item.angle << " " << item.min << "'\t\t"
-				<< item.V1 << "\t\t" << item.V2 << "\t\t" << item.I << "\n";
+			writer << cont[i].angle << " " << cont[i].min << "'\t\t"
+				<< cont[i].V1 << "\t\t" << cont[i].V2 << "\t\t" << cont[i].I << "\n";
 		}
 		else if (DeviceName == "СКТ-232Б") 
 		{
-			outFile << item.angle << " " << item.min << "'\t\t"
-				<< item.V2 << "\n";
+			writer << cont[i].angle << " " << cont[i].min << "'\t\t"
+				<< cont[i].V2 << "\n";
+		}
+		else if (DeviceName == "СКТ-265Д")
+		{
+			writer << cont[i].angle << " " << cont[i].min << "'\t\t" << cont[i].V2 << "\n";
+				//<< cont[i].sec << "''\t\t" << cont[i].V2 << "\n";
 		}
 	}
+	outFile << writer.str();
+	outFile.close();
 }                
-
-void StepWindow::StartMonitor()
-{
-	if (!work->port->isOpen())return;
-	timer->start();
-	work->Monitor();
-}
-
-void StepWindow::StatusConnect(bool connected)
-{
-	btnConnect->setEnabled(!connected);
-}
 
 void StepWindow::RefreshComBox()
 {
@@ -1491,6 +1780,28 @@ void StepWindow::ConvertAngle(float _angle)
 	secDec = std::round(_sec * 10.0f) / 10.0f;
 }
 
+void StepWindow::ConvertAngle(float _angle, bool twin)
+{
+	float grad, _min, _sec;
+	grad = std::trunc(_angle);
+	_min = _angle - grad;
+	if (twin)
+		_min = std::trunc(_min * 120.0);
+	_sec = (_angle - grad) * 120.0 - _min;
+	_sec = _sec * 60.0;//std::trunc(_sec * 60.0);
+	angle = grad;
+	min = _min;
+	sec = _sec;
+	secDec = std::round(_sec * 10.0f) / 10.0f;
+}
+
+void StepWindow::AboutProgramm()
+{
+	QMessageBox box;
+	box.setText("Программа измерений программноаппаратного комплекса УПП-1 \nFirmware версия 1.0 \nИдентификационный номер (CRC32): 889DBC3C");
+	box.exec();
+}
+
 bool StepWindow::Dialog()
 {
 	bool ok;
@@ -1515,13 +1826,6 @@ bool StepWindow::DialogDel()
 	return ok;
 }
 
-void StepWindow::AboutProgramm()
-{
-	QMessageBox box;
-	box.setText("Программа измерений программноаппаратного комплекса УПП-1 \nFirmware версия 1.0 \nИдентификационный номер (CRC32): 889DBC3C");
-	box.exec();
-}
-
 bool StepWindow::Contains(vector<Data> cont, float _agnle)
 {
 	for (int i = 0; i < cont.size(); i++)
@@ -1536,8 +1840,8 @@ bool StepWindow::Contains(vector<Data> cont, int _angle, int _min)
 {
 	for (int i = 0; i < cont.size(); i++)
 	{
-		if (cont[i].min == _min)
-			if (cont[i].angle == _angle)
+		if (cont[i].angle == _angle)
+			if (cont[i].min == _min)
 				return true;
 	}
 	return false;
@@ -1583,17 +1887,26 @@ bool StepWindow::CheckDiap(int _angle, int _min)
 	return false;
 }
 
+bool StepWindow::CheckDiap(int _angle)
+{
+	for (int i = 0; i < 8; i++)
+		if (_angle >= Diap265[i][0] && _angle <= Diap265[i][1])return true;
+	return false;
+}
+
 int StepWindow::FindMinV(vector<Data> cont)
 {
 	float min = cont[0].V2;
 	if (DeviceName == "45Д20-2")min = cont[0].V1;
 	if (DeviceName == "СКТ-232Б")min = cont[0].V2;
+	if (DeviceName == "СКТ-265Д")min = cont[0].V2;
 	int idx = 0;
 	for (int i = 0; i < cont.size(); i++)
 	{
-		float tmp;
+		float tmp = 0;
 		if (DeviceName == "45Д20-2")tmp = cont[i].V1;
 		if (DeviceName == "СКТ-232Б")tmp = cont[i].V2;
+		if (DeviceName == "СКТ-265Д")tmp = cont[i].V2;
 		if (tmp < min)
 		{
 			min = tmp;
@@ -1674,7 +1987,7 @@ int StepWindow::FindMinV(vector<Data> cont, int minAngle, int maxAngle)
 	float min;
 	if(DeviceName == "45Д20-2") min = cont[i].V1;
 	if (DeviceName == "СКТ-232Б") min = cont[i].V2;
-	
+	if (DeviceName == "СКТ-265Д") min = cont[i].V2;
 	int idx = i;
 	for (int j = i; j <= cont.size(); j++)
 	{
@@ -1684,7 +1997,7 @@ int StepWindow::FindMinV(vector<Data> cont, int minAngle, int maxAngle)
 		float temp;
 		if (DeviceName == "45Д20-2") temp = cont[j].V1;
 		if (DeviceName == "СКТ-232Б") temp = cont[j].V2;
-
+		if (DeviceName == "СКТ-265Д") temp = cont[j].V2;
 		if (temp < min)
 		{
 			min = temp;
@@ -1728,6 +2041,17 @@ int* StepWindow::VectorInMass(vector<Data> cont, bool mins)
 	return temp;
 }
 
+float* StepWindow::VectorInMassV(vector<Data> cont, bool V1)
+{
+	float* V = new float[cont.size()];
+	for (int i = 0; i < cont.size(); i++)
+	{
+		if (V1)V[i] = cont[i].V1;
+		else V[i] = cont[i].V2;
+	}
+	return V;
+}
+
 float StepWindow::AverageU(vector<Data> cont)
 {
 	float result = 0;
@@ -1763,17 +2087,6 @@ float StepWindow::FindUex(vector<int> cont)
 	}
 	result += max;
 	return result / 48.f;
-}
-
-float* StepWindow::VectorInMassV(vector<Data> cont,bool V1)
-{
-	float* V = new float[cont.size()];
-	for (int i = 0; i < cont.size(); i++)
-	{
-		if(V1)V[i] = cont[i].V1;
-		else V[i] = cont[i].V2;
-	}
-	return V;
 }
 
 float StepWindow::AverageI(vector<Data> cont)
@@ -1843,7 +2156,12 @@ vector<Data> StepWindow::EraseErrors(vector<Data> cont)
 			if (abs(temp[temp.size() - 1].V1 - cont[i].V1) < 60);
 			temp.push_back(cont[i]);
 		}
-		if (DeviceName == "СКТ-232Б")
+		else if (DeviceName == "СКТ-232Б")
+		{
+			if (abs(temp[temp.size() - 1].V2 - cont[i].V2) < 60);
+			temp.push_back(cont[i]);
+		}
+		else if (DeviceName == "СКТ-265Д")
 		{
 			if (abs(temp[temp.size() - 1].V2 - cont[i].V2) < 60);
 			temp.push_back(cont[i]);
@@ -1861,7 +2179,16 @@ vector<Data> StepWindow::EraseErrors(vector<Data> cont)
 			if (abs(temp[i].V1 - val1) < delta || abs(temp[i].V1 - val2) < delta)
 				result.push_back(temp[i]);
 		}
-		if (DeviceName == "СКТ-232Б")
+		else if (DeviceName == "СКТ-232Б")
+		{
+			float val1 = (temp[i - 1].V2 + temp[i - 2].V2) / 2;
+			float val2 = (temp[i + 1].V2 + temp[i + 2].V2) / 2;
+			float delta = (val1 + val2) / 10;
+			if (val1 < 50)delta = 5;
+			if (abs(temp[i].V2 - val1) < delta || abs(temp[i].V2 - val2) < delta)
+				result.push_back(temp[i]);
+		}
+		else if (DeviceName == "СКТ-265Д")
 		{
 			float val1 = (temp[i - 1].V2 + temp[i - 2].V2) / 2;
 			float val2 = (temp[i + 1].V2 + temp[i + 2].V2) / 2;
@@ -1999,24 +2326,6 @@ vector<Data>  StepWindow::OffsetToZero(vector<Data> cont)
 	return cont;
 }
 
-Data StepWindow::Read()
-{
-	Data temp;
-
-	temp.angle = angle;
-	temp.min = min;
-	temp.sec = sec;
-	temp.angleGrad = work->measure->refAngle;
-	temp.V1 = measures_t(work->measure->Result).V1.RMS;
-	temp.V2 = measures_t(work->measure->Result).V2.RMS;
-	temp.Phase1 = measures_t(work->measure->Result).V1.Phase;
-	temp.Phase2 = measures_t(work->measure->Result).V2.Phase;
-	temp.I = measures_t(work->measure->Result).I.RMS;
-	temp.IPhase = measures_t(work->measure->Result).I.Phase;
-
-	return temp;
-}
-
 Data StepWindow::FindNearestAngle(float V, int _angle, vector<Data> cont)
 {
 	int ind = 0;
@@ -2043,6 +2352,27 @@ Data StepWindow::FindNearestAngle(float V, int _angle, vector<Data> cont)
 	}
 	Serialization("Near", temp);
 	return temp[ind];
+}
+
+Data StepWindow::Read()
+{
+	Data temp;
+
+	temp.angle = angle;
+	temp.min = min;
+	temp.sec = sec;
+	temp.angleGrad = work->measure->refAngle;
+	temp.V1 = measures_t(work->measure->Result).V1.RMS;
+	if (DeviceName == "СКТ-265Д")
+		temp.V2 = measures_t(work->measure->Result).V2.RMS * 3.876;
+	else 
+		temp.V2 = measures_t(work->measure->Result).V2.RMS;
+	temp.Phase1 = measures_t(work->measure->Result).V1.Phase;
+	temp.Phase2 = measures_t(work->measure->Result).V2.Phase;
+	temp.I = measures_t(work->measure->Result).I.RMS;
+	temp.IPhase = measures_t(work->measure->Result).I.Phase;
+
+	return temp;
 }
 
 StepWindow::~StepWindow()
