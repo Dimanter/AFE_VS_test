@@ -97,11 +97,13 @@ private slots:
 private:
 	Ui::MonitoringClass ui;
 	Work* work;
+	
 	int angle = 0;// Угол в градусах целочисленный
 	int min = 0;// Минуты угла
 	int sec = 0;// Секунды Угла
 	float secDec = 0;
 	vector<Data> data;//контенер измеренных данных
+	vector<Data> AvCont;
 	QTimer* timer = new QTimer(this);// Таймер для вывода данных на интерфейс
 	QTimer* timerAverage = new QTimer(this);// Таймер для усреднения данных
 	bool connection;// Статус подключения к порту

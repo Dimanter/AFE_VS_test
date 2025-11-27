@@ -792,5 +792,5 @@ public:
 	float frequency = 400;
 	float resist = 6000;
 	float OutputU = 5800;
-	float OutputFreq = 12200;
+	float OutputFreq = 12000;
 };

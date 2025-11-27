@@ -7,6 +7,8 @@ Monitoring::Monitoring(QWidget *parent) : QMainWindow(parent)
 	work = new Work("Changed", 2400, 1400);
 	connect(work, &Work::portStatus, this, &Monitoring::StatusConnect);
 	Create();
+	ui.frequency->setSingleStep(100);
+	ui.resist->setSingleStep(100);
 }
 
 Monitoring::~Monitoring()
@@ -187,10 +189,9 @@ int Monitoring::FindMinV(vector<Data> cont)
 	int idx = 0;
 	for (int i = 0; i < cont.size(); i++)
 	{
-		float tmp;
-		if (tmp < min)
+		if (min > cont[i].V2)
 		{
-			min = tmp;
+			min = cont[i].V2;
 			idx = i;
 		}
 	}
@@ -200,13 +201,15 @@ vector<Data> Monitoring::EraseErrors(vector<Data> cont)
 {
 	vector<Data> result;
 	int temp = FindMinV(cont);
-
-	for (int i = 0; i < cont.size(); i++)
+	for (int i = 3; i < cont.size() - 2; i++)
 	{
-		if (cont[i].V2 < cont[temp].V2 + 100)
-		{
+		float val1 = (cont[i - 1].V2 + cont[i - 2].V2) / 2;
+		float val2 = (cont[i + 1].V2 + cont[i + 2].V2) / 2;
+		float delta = (val1 + val2) / 20;
+
+		if (val1 < 50)delta = 5;
+		if (abs(cont[i].V2 - val1) < delta || abs(cont[i].V2 - val2) < delta)
 			result.push_back(cont[i]);
-		}
 	}
 
 	return result;
@@ -221,7 +224,7 @@ Data Monitoring::Read()
 	temp.sec = sec;
 	temp.angleGrad = work->measure->refAngle;
 	temp.V1 = measures_t(work->measure->Result).V1.RMS;
-	temp.V2 = measures_t(work->measure->Result).V2.RMS;
+	temp.V2 = measures_t(work->measure->Result).V2.RMS * 2;
 	temp.Phase1 = measures_t(work->measure->Result).V1.Phase;
 	temp.Phase2 = measures_t(work->measure->Result).V2.Phase;
 	temp.I = measures_t(work->measure->Result).I.RMS;
@@ -310,9 +313,18 @@ void Monitoring::Average()
 	
 	data = EraseErrors(data);
 	Data temp = AverageData(data);
+	Serialization("data_0", data);
 	data.clear();
 
-	
+	AvCont.push_back(temp);
+	if (AvCont.size() > 2)
+	{
+		auto it = AvCont.begin();
+		AvCont.erase(it);
+	}
+		
+	temp = AverageData(AvCont);
+
 	ConvertAngle(temp.angleGrad);
 	std::ostringstream stream;
 	stream << std::fixed << std::setprecision(1) << secDec;

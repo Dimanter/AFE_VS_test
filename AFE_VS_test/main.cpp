@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     QCoreApplication::setApplicationName("Монитор");
     w.show();
     return a.exec();*/
-
+    //включить для программы метер
     StartWindow main{};
     main.show();
     return 0;

@@ -47,12 +47,13 @@ void StepWindow::Test232BComplete()
 	stringstream writer;
 	testTimer->stop();
 	//*Запись данных в файл
+	data = Erase(data);
 	Serialization("Data0", data);
 	//*
-	//data = ReadFromFile("Data0");
 	bool flag = false;//Флаг смены направления(возрастание/убывание)
-	bool flagResist = false;
-
+	bool flagResist = false;//Флаг замеров квадратурного напряжения
+	bool endDiap = false;//Флаг конца диапазона
+	
 	float Uav = 0;//Среднее напряжение на участке силы тока
 
 	int UavSize = 0;//Размер буфера среднего напряжения
@@ -68,10 +69,7 @@ void StepWindow::Test232BComplete()
 	vector < string> tmpInd;//Буфер минимумов напряжения
 	string tmp = to_string(0) + "'";//Строка вывода минимумов напряжения в таблицу
 	tmpInd.push_back(tmp);
-	string IndPunkts[13] = { "а","б","в","г","д","е","ж","з","и","л","к1","к2","к3" };
-	//*
-	//*Убираем ошибочные данные
-	//adt = EraseErrors(adt);
+	string IndPunkts[13] = { "а","б","в","г","д","е","ж","з","и","л","к1","к2","к3" };//Пункты комутации
 	temp.push_back(adt[0]);
 	temp.push_back(adt[1]);
 
@@ -90,11 +88,10 @@ void StepWindow::Test232BComplete()
 			//*Участок поиска силы тока
 			if (adt[i].angle > 20 && adt[i].angle < 45)
 			{
-				if (adt[i].V2 < 100)
-				{
-					Uav += adt[i].V2;
-					UavSize++;
-				}
+
+				Uav += adt[i].V2;
+				UavSize++;
+
 			}
 			//*Участок поиска Umax
 			if (adt[i].angle >= 110 && adt[i].angle < 180 && !Contains(MaxU, adt[i].angle))
@@ -145,7 +142,8 @@ void StepWindow::Test232BComplete()
 	//*
 	if (allData.size() < 12 || allData.size() > 13)
 	{
-		QMessageBox::warning(window, "Error", "Проверьте правильность подключения");
+		string tmp = "Проверьте правильность подключения " + to_string(allData.size());
+		QMessageBox::warning(window, "Error", QString::fromStdString(tmp));
 		return;
 	}
 	//*Убираем ошибки при переключении схемы комутации и усредняем данные
@@ -153,7 +151,7 @@ void StepWindow::Test232BComplete()
 	Serialization("Quad", Quad);
 	int maxU = FindMaxV(MaxU);//Индекс максимального напряжения
 	Uav /= UavSize;
-	float Isr = Uav / 10;//Сила тока
+	float Isr = Uav / 1000;//Сила тока
 	try
 	{
 		for (int i = 0; i < allData.size(); i++)
@@ -604,13 +602,13 @@ void StepWindow::Test265DComplete()
 			MinV.push_back(FindMinV(MinAngl[i]));
 			if (MinAngl[i][MinV[i]].V2 > MaxMin)MaxMin = MinAngl[i][MinV[i]].V2;
 			helper << MinAngl[i][MinV[i]].V2 << "\t";
-			//if (MinAngl[i][MinV[i]].V2 > MinCoef)
-			//{
-			//	QMessageBox::warning(window, "Error", "Umin > 30 \n" +
-			//		QString::fromStdString(to_string(MinAngl[i][MinV[i]].angle) + " " + to_string(MinAngl[i][MinV[i]].min) + "'"
-			//			+ " " + to_string(MinAngl[i][MinV[i]].V2)));
-			//	//return;
-			//}
+			if (MinAngl[i][MinV[i]].V2 > MinCoef)
+			{
+				QMessageBox::warning(window, "Error", "Umin > 30 \n" +
+					QString::fromStdString(to_string(MinAngl[i][MinV[i]].angle) + " " + to_string(MinAngl[i][MinV[i]].min) + "'"
+						+ " " + to_string(MinAngl[i][MinV[i]].V2)));
+				//return;
+			}
 		}
 		helper << "\n" << allData.size();
 	}
@@ -663,7 +661,7 @@ void StepWindow::Test265DComplete()
 	allData[3][MaxU1].V2/1000 <= 34 ? MaxU1Text->setBackground(red) : allData[3][MaxU1].V2/1000 >= 38 ? MaxU1Text->setBackground(red) : MaxU1Text->setBackground(green);
 	allData[4][MaxU2].V2/1000 <= 19 ? MaxU2Text->setBackground(red) : allData[4][MaxU2].V2/1000 >= 25 ? MaxU2Text->setBackground(red) : MaxU2Text->setBackground(green);
 	UMin <= 5 ? UMinText->setBackground(green) : UMin <= 7.5 ? UMinText->setBackground(yellow) : UMinText->setBackground(red);
-	temp <= 38 ? MaxTokText->setBackground(red) : elCur[MaxTok].V2 >= 52 ? MaxTokText->setBackground(red) : MaxTokText->setBackground(green);
+	temp <= 38 ? MaxTokText->setBackground(red) : elCur[MaxTok].V2 <= 52 ? MaxTokText->setBackground(green) : MaxTokText->setBackground(red);
 
 	model->setItem(loop, 0, UMinText);
 	model->setItem(loop, 9, MaxU1Text);
@@ -705,6 +703,7 @@ void StepWindow::Test()
 	{
 		if (DeviceName == "СКТ-232Б")
 		{
+			data = Erase(data);
 			Test232BComplete();
 		}
 		else if (DeviceName == "45Д20-2")
@@ -797,27 +796,6 @@ void StepWindow::setupDeviceSKT232B(QStandardItemModel* model)
 		model->setHeaderData(k, Qt::Horizontal, additionalHeaderNames[i]);
 		k++;
 	}
-	try {
-		std::ifstream _file("Init.txt");
-		string text;
-		getline(_file, text);
-		getline(_file, text);
-		getline(_file, text);
-		QuadCoef = stof(text);
-		getline(_file, text);
-		ICoef = stof(text);
-		getline(_file, text);
-		UCoef = stof(text);
-		getline(_file, text);
-		MinCoef = stof(text);
-		_file.close();
-	}
-	catch (const std::exception&)
-	{
-		QMessageBox msgBox;
-		msgBox.setText("Ошибка: Не удалось считать настройки!\nБудут выставлены настройки по умолчанию.");
-		msgBox.exec();
-	}
 }
 
 void StepWindow::setupDeviceSKT265D(QStandardItemModel* model)
@@ -886,21 +864,21 @@ void StepWindow::StepThreading()
 	if (DeviceName == "45Д20-2")
 	{
 		std::ostringstream U;
-		U << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).V1.RMS;
+		U << std::fixed << std::setprecision(1) << (measures_t(work->measure->Result).V1.RMS);
 		std::string roundedString = U.str();
 		RmsV2->setText(QString::fromStdString(roundedString));
 	}
 	if (DeviceName == "СКТ-232Б")
 	{
 		std::ostringstream U;
-		U << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).V2.RMS;
+		U << std::fixed << std::setprecision(1) << (measures_t(work->measure->Result).V2.RMS);
 		std::string roundedString = U.str();
 		RmsV2->setText(QString::fromStdString(roundedString));
 	}
 	if(DeviceName == "СКТ-265Д")
 	{
 		std::ostringstream U;
-		U << std::fixed << std::setprecision(1) << measures_t(work->measure->Result).V2.RMS;
+		U << std::fixed << std::setprecision(1) << (measures_t(work->measure->Result).V2.RMS);
 		std::string roundedString = U.str();
 		RmsV2->setText(QString::fromStdString(roundedString));
 	}
@@ -1271,6 +1249,29 @@ void StepWindow::CreateWindow(QString device)
 
 void StepWindow::LoadWindow(QString device)
 {
+
+	try {
+		std::ifstream _file("Init.txt");
+		string text;
+		getline(_file, text);
+		getline(_file, text);
+		getline(_file, text);
+		QuadCoef = stof(text);
+		getline(_file, text);
+		ICoef = stof(text);
+		getline(_file, text);
+		UCoef = stof(text);
+		getline(_file, text);
+		MinCoef = stof(text);
+		_file.close();
+	}
+	catch (const std::exception&)
+	{
+		QMessageBox msgBox;
+		msgBox.setText("Ошибка: Не удалось считать настройки!\nБудут выставлены настройки по умолчанию.");
+		msgBox.exec();
+	}
+
 	int i = 0;
 	if (device == "СКТ-232Б")
 	{
@@ -1319,6 +1320,7 @@ void StepWindow::LoadWindow(QString device)
 			{
 				_file.close();
 				fileNum = i;
+				loop = i;
 				return;
 			}
 			i++;
@@ -1591,6 +1593,7 @@ void StepWindow::Disconnect()
 
 void StepWindow::Stop()
 {
+	textAngle->clear();
 	work->Stop();
 }
 
@@ -2184,6 +2187,7 @@ vector<Data> StepWindow::EraseErrors(vector<Data> cont)
 			float val1 = (temp[i - 1].V2 + temp[i - 2].V2) / 2;
 			float val2 = (temp[i + 1].V2 + temp[i + 2].V2) / 2;
 			float delta = (val1 + val2) / 10;
+			if(val1 > 1000) delta = (val1 + val2) / 30;
 			if (val1 < 50)delta = 5;
 			if (abs(temp[i].V2 - val1) < delta || abs(temp[i].V2 - val2) < delta)
 				result.push_back(temp[i]);
@@ -2364,8 +2368,8 @@ Data StepWindow::Read()
 	temp.angleGrad = work->measure->refAngle;
 	temp.V1 = measures_t(work->measure->Result).V1.RMS;
 	if (DeviceName == "СКТ-265Д")
-		temp.V2 = measures_t(work->measure->Result).V2.RMS * 3.876;
-	else 
+		temp.V2 = measures_t(work->measure->Result).V2.RMS * 3.86;
+	else
 		temp.V2 = measures_t(work->measure->Result).V2.RMS;
 	temp.Phase1 = measures_t(work->measure->Result).V1.Phase;
 	temp.Phase2 = measures_t(work->measure->Result).V2.Phase;
